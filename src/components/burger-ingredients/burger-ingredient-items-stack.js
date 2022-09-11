@@ -6,8 +6,7 @@ import Styles from './style.module.scss';
 
 function BurgerIngredientItemsStore(props) {
   const {
-    image_mobile, image_large, name, type, price, isLocked,
-    calories, carbohydrates, fat, proteins
+    image_mobile, name, type, price, isLocked
   } = props;
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -33,12 +32,7 @@ function BurgerIngredientItemsStore(props) {
       />
       {modalVisible && <IngredientDetailModal
         onClose={handleCloseModal}
-        image_large={image_large}
-        name={name}
-        calories={calories}
-        carbohydrates={carbohydrates}
-        fat={fat}
-        proteins={proteins}
+        {...props}
       />}
     </div>
   )
