@@ -1,8 +1,8 @@
+import { string, number, func } from 'prop-types';
 import {
   CurrencyIcon,
   Counter,
 } from '@ya.praktikum/react-developer-burger-ui-components';
-
 
 import Styles from './style.module.scss';
 
@@ -22,6 +22,15 @@ function BurgerIngredientItem({ _id, name, image, proteins, count, onClickHandle
       </div>
     </div>
   )
+}
+
+BurgerIngredientItem.protoType = {
+  _id: string,
+  name: string,
+  image: string,
+  proteins: number,
+  count: number,
+  onClickHandler: func
 }
 
 export default BurgerIngredientItem;
