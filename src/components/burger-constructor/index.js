@@ -86,7 +86,7 @@ BurgerConstructor.propTypes = {
     __v: number,
     _id: string
   })),
-  ingredientsStack: arrayOf(object)
+  ingredientsStack: object
 };
 
 export default BurgerConstructor;
