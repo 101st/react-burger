@@ -20,7 +20,6 @@ function BurgerIngredientItem({ _id, name, image, proteins, count, onClickHandle
       <div className={`${Styles['name']}`}>
         {name}
       </div>
-      
     </div>
   )
 }
