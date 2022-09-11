@@ -9,13 +9,11 @@ function BurgerConstructor({ data, ingredientsStack }) {
   const [totalPrice, setTotalPrice] = useState(0);
   const [modalVisible, setModalVisible] = useState(false);
 
-  const handleOpenModal = (e) => {
-    e.stopPropagation();
+  const handleOpenModal = () => {
     setModalVisible(true);
   }
 
   const handleCloseModal = (e) => {
-    e.stopPropagation();
     setModalVisible(false);
   }
 

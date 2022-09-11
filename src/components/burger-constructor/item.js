@@ -10,8 +10,7 @@ function BurgerConstructorItem(props) {
   } = props;
   const [modalVisible, setModalVisible] = useState(false);
 
-  const handleOpenModal = (e) => {
-    e.stopPropagation();
+  const handleOpenModal = () => {
     setModalVisible(true);
   }
 
@@ -32,6 +31,7 @@ function BurgerConstructorItem(props) {
       />
       {modalVisible && <IngredientDetailModal
         onClose={handleCloseModal}
+        setModalVisible={setModalVisible}
         {...props}
       />}
     </div>
