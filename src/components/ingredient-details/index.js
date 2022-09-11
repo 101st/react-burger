@@ -1,4 +1,4 @@
-import { arrayOf, shape, string, number, object, func } from 'prop-types';
+import { string, number, func } from 'prop-types';
 import Modal from '../modal';
 import Styles from './style.module.scss';
 function IngredientDetailModal({ name, image_large, calories, fat, carbohydrates, proteins, onClose, setModalVisible }) {
@@ -23,7 +23,7 @@ function IngredientDetailModal({ name, image_large, calories, fat, carbohydrates
   )
 }
 
-IngredientDetailModal.protoType = {
+IngredientDetailModal.propTypes = {
   name: string,
   image_large: string,
   calories: number,

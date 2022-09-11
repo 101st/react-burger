@@ -42,7 +42,7 @@ function BurgerIngredients({
   </>)
 }
 
-BurgerIngredients.protoType = {
+BurgerIngredients.propTypes = {
   ingredientClickHandler: func,
   ingredientsStack: object,
   currentIngredientType: string,

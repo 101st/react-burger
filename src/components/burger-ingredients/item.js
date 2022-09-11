@@ -24,7 +24,7 @@ function BurgerIngredientItem({ _id, name, image, proteins, count, onClickHandle
   )
 }
 
-BurgerIngredientItem.protoType = {
+BurgerIngredientItem.propTypes = {
   _id: string,
   name: string,
   image: string,
