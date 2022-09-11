@@ -1,3 +1,4 @@
+import { arrayOf, shape, string, number, object, func } from 'prop-types';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import BurgerIngredientItem from './item';
 import Styles from './style.module.scss';
@@ -14,7 +15,6 @@ function BurgerIngredients({
   currentIngredientType,
   setCurrentIngredientType,
   ingredientsStore }) {
-
   return (<>
     <div className='mr-10'>
       <h1 className='mt-10 mb-5 text text_type_main-large'>Соберите бургер</h1>
@@ -40,6 +40,27 @@ function BurgerIngredients({
       </div>
     </div>
   </>)
+}
+
+BurgerIngredients.protoType = {
+  ingredientClickHandler: func,
+  ingredientsStack: object,
+  currentIngredientType: string,
+  setCurrentIngredientType: func,
+  ingredientsStore: arrayOf(shape({
+    calories: number,
+    carbohydrates: number,
+    fat: number,
+    image: string,
+    image_large: string,
+    image_mobile: string,
+    name: string,
+    price: number,
+    proteins: number,
+    type: string,
+    __v: number,
+    _id: string
+  }))
 }
 
 export default BurgerIngredients;
