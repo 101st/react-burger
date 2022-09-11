@@ -1,6 +1,6 @@
+import { arrayOf, shape, string, number, object, func } from 'prop-types';
 import Modal from '../modal';
 import Styles from './style.module.scss';
-
 function IngredientDetailModal({ name, image_large, calories, fat, carbohydrates, proteins, onClose, setModalVisible }) {
   const Test = ({ name, metric, value }) => <div className={`mr-5 text text_type_main-default text_color_inactive`}>
     <div>{name}, {metric}</div>
@@ -21,6 +21,17 @@ function IngredientDetailModal({ name, image_large, calories, fat, carbohydrates
       </div>
     </Modal>
   )
+}
+
+IngredientDetailModal.protoType = {
+  name: string,
+  image_large: string,
+  calories: number,
+  fat: number,
+  carbohydrates: number,
+  proteins: number,
+  onClose: func,
+  setModalVisible: func
 }
 
 export default IngredientDetailModal;
