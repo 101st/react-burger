@@ -1,4 +1,5 @@
 import * as ReactDOM from 'react-dom';
+import { func, string, elementType } from 'prop-types';
 import ModalHeader from './modal-header';
 import ModalBackDrop from '../modal-overlay';
 
@@ -26,6 +27,13 @@ function Modal({ onClose, header, setModalVisible, children }) {
     </div>,
     document.getElementById("react-modals")
   );
+}
+
+Modal.propTypes = {
+  onClose: func,
+  header: string,
+  setModalVisible: func,
+  children: elementType
 }
 
 export default Modal;
