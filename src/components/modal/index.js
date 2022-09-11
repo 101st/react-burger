@@ -3,8 +3,19 @@ import ModalHeader from './modal-header';
 import ModalBackDrop from '../modal-overlay';
 
 import Styles from './style.module.scss';
+import { useEffect } from 'react';
 
-function Modal({ onClose, header, children }) {
+function Modal({ onClose, header, setModalVisible, children }) {
+
+  useEffect(() => {
+    const onEscClose = document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') setModalVisible(false);
+    });
+    return () => {
+      document.removeEventListener(onEscClose, () => { });
+    }
+  }, [onClose, setModalVisible])
+
   return ReactDOM.createPortal(
     <div className={`${Styles.container}`}>
       <div className={`${Styles.modal} pt-10 pr-10 pl-10 pb-15`}>
