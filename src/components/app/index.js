@@ -1,8 +1,8 @@
 import React from 'react';
-import './App.module.scss';
+import './style.module.scss';
 
-import AppHeader from './components/app-header';
-import BurgerIngredients from './components/burger-ingredients';
+import AppHeader from '../app-header';
+import BurgerIngredients from '../burger-ingredients';
 
 const BASE_URL = 'https://norma.nomoreparties.space'
 

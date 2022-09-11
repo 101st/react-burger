@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Tab, CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 
-import BurgerIngredientItemStore from './burger-ingredient-items-store';
-import BurgerIngredientItemStack from './burger-ingredient-items-stack';
+import BurgerIngredientItem from './burger-ingredient-item';
+import BurgerIngredientItemStack from '../burger-constructor';
 import IngredientOrderModal from './ingredient-order-modal';
 
 import Styles from './style.module.scss';
@@ -80,7 +80,7 @@ function BurgerIngredients({ data }) {
 
       <div className={`${Styles['ingredients-store-container']} pt-6 pl-4 pr-4`}>
         {ingredientsStore.map(item =>
-          <BurgerIngredientItemStore
+          <BurgerIngredientItem
             onClickHandler={ingredientClickHandler}
             key={item._id} {...item} count={ingredientsStack[item._id]}
           />

@@ -1,6 +1,6 @@
 import * as ReactDOM from 'react-dom';
 import ModalHeader from './modal-header';
-import ModalBackDrop from './modal-black-drop';
+import ModalBackDrop from '../modal-overlay';
 
 import Styles from './style.module.scss';
 

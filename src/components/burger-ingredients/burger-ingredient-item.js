@@ -6,7 +6,7 @@ import {
 
 import Styles from './style.module.scss';
 
-function BurgerIngredientItemsStore({ _id, name, image, proteins, count, onClickHandler }) {
+function BurgerIngredientItem({ _id, name, image, proteins, count, onClickHandler }) {
   return (
     <div className={`${Styles.item} pl-4 pr-4 mb-10`} data-id={_id} onClick={onClickHandler}>
       {count > 0 && <Counter count={count} size="default" />}
@@ -25,4 +25,4 @@ function BurgerIngredientItemsStore({ _id, name, image, proteins, count, onClick
   )
 }
 
-export default BurgerIngredientItemsStore;
+export default BurgerIngredientItem;
