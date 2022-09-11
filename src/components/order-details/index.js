@@ -1,3 +1,5 @@
+import { string, func } from 'prop-types';
+
 import Modal from '../modal';
 import Done from '../../images/done.svg';
 
@@ -16,5 +18,13 @@ function IngredientOrderModal({ orderId, status, onClose, name, setModalVisible 
     </Modal>
   )
 }
+
+IngredientOrderModal.propTypes = {
+  orderId: string,
+  status: string,
+  onClose: func,
+  name: string,
+  setModalVisible: func,
+};
 
 export default IngredientOrderModal;
