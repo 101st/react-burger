@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { arrayOf, shape, string, number, object } from 'prop-types';
 import { CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import BurgerConstructorItem from "./item";
 import IngredientOrderModal from '../order-details';
@@ -69,5 +70,23 @@ function BurgerConstructor({ data, ingredientsStack }) {
     </div>
   )
 }
+
+BurgerConstructor.propTypes = {
+  data: arrayOf(shape({
+    calories: number,
+    carbohydrates: number,
+    fat: number,
+    image: string,
+    image_large: string,
+    image_mobile: string,
+    name: string,
+    price: number,
+    proteins: number,
+    type: string,
+    __v: number,
+    _id: string
+  })),
+  ingredientsStack: arrayOf(object)
+};
 
 export default BurgerConstructor;
