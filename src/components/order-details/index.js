@@ -3,9 +3,9 @@ import Done from '../../images/done.svg';
 
 import Styles from './style.module.scss';
 
-function IngredientOrderModal({ orderId, status, onClose, name }) {
+function IngredientOrderModal({ orderId, status, onClose, name, setModalVisible }) {
   return (
-    <Modal header={name} onClose={onClose}>
+    <Modal header={name} onClose={onClose} setModalVisible={setModalVisible}>
       <div className={`${Styles['order-id']} mt-16 text text_type_main-large`}>{orderId}</div>
       <div className={`${Styles['sub-title']} mt-8 text text_type_main-default`}>идентификатор заказа</div>
       <div className={`${Styles['sub-title']} mt-15`}>
