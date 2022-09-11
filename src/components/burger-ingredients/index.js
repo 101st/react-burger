@@ -3,7 +3,7 @@ import { Tab, CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-
 
 import BurgerIngredientItem from './burger-ingredient-item';
 import BurgerIngredientItemStack from '../burger-constructor';
-import IngredientOrderModal from './ingredient-order-modal';
+import IngredientOrderModal from '../order-details';
 
 import Styles from './style.module.scss';
 

@@ -1,5 +1,5 @@
-import Modal from '../../modal';
-import Done from '../../../images/done.svg';
+import Modal from '../modal';
+import Done from '../../images/done.svg';
 
 import Styles from './style.module.scss';
 
