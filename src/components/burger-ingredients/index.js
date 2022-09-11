@@ -104,7 +104,6 @@ function BurgerIngredients({ data }) {
             count={ingredientsStack[item]}
             type={type}
             isLocked={isLocked}
-
           />
         }
         )}
