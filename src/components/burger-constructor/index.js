@@ -13,7 +13,7 @@ function BurgerConstructor({ data, ingredientsStack }) {
     setModalVisible(true);
   }
 
-  const handleCloseModal = (e) => {
+  const handleCloseModal = () => {
     setModalVisible(false);
   }
 
