@@ -1,19 +1,8 @@
-.container {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-
-  &>div {
-    width: 600px;
-  }
-}
-
 .tabs {
   display: flex;
 }
 
-.ingredients-store-container {
+.container {
   height: 765px;
   display: flex;
   flex-direction: row;
@@ -36,28 +25,7 @@
 
 }
 
-.ingredients-stack-container {
-  height: 765px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-content: flex-start;
-  overflow: overlay;
-
-  &::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  &::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px #2F2F37;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: #8585AD;
-    outline: 3px solid #4C4CFF;
-  }
-
-}
+/* item */
 
 .item {
   position: relative;
@@ -69,7 +37,14 @@
   cursor: pointer;
 }
 
-.item-proteins {
+.proteins-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.proteins {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -78,34 +53,7 @@
   height: 24px;
 }
 
-.item-proteins-container {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-
-.item-name-container {
+.name {
   width: 100%;
   text-align: center;
-}
-
-.order {
-  height: 64px;
-  width: 100%;
-}
-
-.item-price {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-.totla-proce {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  transform: scale(1.4);
 }

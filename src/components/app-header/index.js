@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import {
   Logo,
   BurgerIcon,
@@ -9,9 +9,9 @@ import {
 import Styles from './style.module.scss';
 
 function AppHeader() {
-  const [activeMenuItem, setActiveMenuItem] = React.useState('BurgerIcon');
+  const [activeMenuItem, setActiveMenuItem] = useState('BurgerIcon');
 
-  const onClickMenuHandler = React.useCallback((e) => {
+  const onClickMenuHandler = useCallback((e) => {
     setActiveMenuItem(e.currentTarget.getAttribute("data-name"));
   }, []);
 

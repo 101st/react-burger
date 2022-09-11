@@ -1,3 +1,47 @@
 .container {
-  width: 97%;
+  height: 765px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  overflow: overlay;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px #2F2F37;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #8585AD;
+    outline: 3px solid #4C4CFF;
+  }
+
+}
+
+.order {
+  height: 64px;
+  width: 100%;
+}
+
+.price {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.totla-price {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  transform: scale(1.4);
+}
+
+/* item */
+.in-stack {
+  width: 100%;
 }
