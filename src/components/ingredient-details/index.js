@@ -1,4 +1,4 @@
-import Modal from '../../modal';
+import Modal from '../modal';
 import Styles from './style.module.scss';
 
 function IngredientDetailModal({ name, image_large, calories, fat, carbohydrates, proteins, onClose }) {

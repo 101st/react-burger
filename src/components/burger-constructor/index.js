@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
-import IngredientDetailModal from './ingredient-detail-modal';
+import IngredientDetailModal from '../ingredient-details';
 
 import Styles from './style.module.scss';
 
