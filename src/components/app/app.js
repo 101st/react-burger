@@ -10,26 +10,8 @@ const BASE_URL = 'https://norma.nomoreparties.space'
 function App() {
   const [data, setData] = useState([]);
   const [currentIngredientType, setCurrentIngredientType] = useState('main');
-  const [ingredientsStack, setIngredientsStack] = useState({});
   const [ingredientsStore, setIngredientsStore] = useState(() =>
     data.filter(item => item.type === currentIngredientType));
-
-  const ingredientClickHandler = e => {
-    e.preventDefault();
-    const id = e.currentTarget.getAttribute('data-id');
-    if (ingredientsStack[id] === undefined) {
-      setIngredientsStack({
-        ...ingredientsStack,
-        ...{ [id]: 1 }
-      })
-      return;
-    }
-
-    setIngredientsStack({
-      ...ingredientsStack,
-      ...{ [id]: ingredientsStack[id] + 1 }
-    })
-  }
 
   useEffect(() => {
     setIngredientsStore(data.filter(item => item.type === currentIngredientType))
@@ -60,12 +42,9 @@ function App() {
           currentIngredientType={currentIngredientType}
           setCurrentIngredientType={setCurrentIngredientType}
           ingredientsStore={ingredientsStore}
-          ingredientsStack={ingredientsStack}
-          ingredientClickHandler={ingredientClickHandler}
         />
         <BurgerConstructor
           data={data}
-          ingredientsStack={ingredientsStack}
         />
       </div>
     </>
