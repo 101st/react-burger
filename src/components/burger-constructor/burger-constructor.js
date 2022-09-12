@@ -40,13 +40,31 @@ function BurgerConstructor({ data, ingredientsStack }) {
           if (key === 0) { type = 'top'; isLocked = true };
           if (key === Object.keys(ingredientsStack).length - 1) { type = 'bottom'; isLocked = true };
 
+          const {
+            image_mobile,
+            image_large,
+            name,
+            price,
+            calories,
+            fat,
+            carbohydrates,
+            proteins,
+          } = data.find(i => i._id === item);
+
           return (
             <BurgerConstructorItem
               key={item}
-              {...data.find(i => i._id === item)}
               count={ingredientsStack[item]}
               type={type}
               isLocked={isLocked}
+              image_mobile={image_mobile}
+              image_large={image_large}
+              name={name}
+              price={price}
+              calories={calories}
+              fat={fat}
+              carbohydrates={carbohydrates}
+              proteins={proteins}
             />
           )
         }
