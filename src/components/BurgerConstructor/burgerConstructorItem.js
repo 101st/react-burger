@@ -5,7 +5,8 @@ import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burg
 import Styles from './style.module.scss';
 
 function BurgerConstructorItem({
-  currentItem
+  currentItem,
+  isDraggable,
 }) {
   const {
     image_mobile,
@@ -16,8 +17,8 @@ function BurgerConstructorItem({
   } = currentItem;
 
   return (
-    <div className={`${Styles['in-stack']} mb-4 ml-8 mr-4`}>
-      <DragIcon type="primary" />
+    <div className={`${Styles['in-stack']} mb-4 ml-8`}>
+      { isDraggable && <DragIcon type="primary" />}
       <ConstructorElement
         className={`mb-4`}
         text={`${name}`}
