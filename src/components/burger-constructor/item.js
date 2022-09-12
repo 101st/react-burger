@@ -11,6 +11,12 @@ function BurgerConstructorItem(props) {
   } = props;
   const [modalVisible, setModalVisible] = useState(false);
 
+  const getType = type => {
+    if (type === 'top') return ' (верх)';
+    if (type === 'bottom') return ' (низ)';
+    return '';
+  }
+
   const handleOpenModal = () => {
     setModalVisible(true);
   }
@@ -24,7 +30,7 @@ function BurgerConstructorItem(props) {
     <div className={`${Styles['in-stack']} mb-4 ml-8 mr-4`} onClick={handleOpenModal}>
       <ConstructorElement
         className={`mb-4`}
-        text={name}
+        text={`${name}${getType(type)}`}
         isLocked={isLocked}
         type={type}
         price={price}
