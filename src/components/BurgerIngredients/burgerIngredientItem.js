@@ -1,14 +1,15 @@
-import { string, number, func } from 'prop-types';
+import { number, func } from 'prop-types';
+import { ingredientType } from '../../utils/types';
 import { CurrencyIcon, Counter } from '@ya.praktikum/react-developer-burger-ui-components';
 
 
 import Styles from './style.module.scss';
 
-function BurgerIngredientItem({ count, currentIngredient, onClick, setCurrentIngredient }) {
+function BurgerIngredientItem({ count, onClick, currentIngredient, setCurrentIngredient }) {
   const { name, image, proteins, } = currentIngredient;
 
   return (
-    <div className={`${Styles.item} pl-4 pr-4 mb-10`} onClick={()=>{
+    <div className={`${Styles.item} pl-4 pr-4 mb-10`} onClick={() => {
       setCurrentIngredient(currentIngredient);
       onClick();
     }}>
@@ -29,12 +30,10 @@ function BurgerIngredientItem({ count, currentIngredient, onClick, setCurrentIng
 }
 
 BurgerIngredientItem.propTypes = {
-  _id: string,
-  name: string,
-  image: string,
-  proteins: number,
   count: number,
-  onClickHandler: func
+  currentIngredient: ingredientType.isRequired,
+  onClick: func.isRequired,
+  setCurrentIngredient: func.isRequired
 }
 
 export default BurgerIngredientItem;

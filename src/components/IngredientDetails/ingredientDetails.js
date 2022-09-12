@@ -1,7 +1,7 @@
-import { string, number, func } from 'prop-types';
+import { ingredientType } from '../../utils/types';
 import Styles from './style.module.scss';
 
-function IngredientDetailModal({ currentIngredient }) {
+function IngredientDetail({ currentIngredient }) {
   const { name, image_large, calories, fat, carbohydrates, proteins } = currentIngredient;
   const Test = ({ name, metric, value }) => (
     <div className={`mr-5 text text_type_main-default text_color_inactive`}>
@@ -26,15 +26,8 @@ function IngredientDetailModal({ currentIngredient }) {
   )
 }
 
-IngredientDetailModal.propTypes = {
-  name: string,
-  image_large: string,
-  calories: number,
-  fat: number,
-  carbohydrates: number,
-  proteins: number,
-  onClose: func,
-  setModalVisible: func
+IngredientDetail.propTypes = {
+  currentIngredient: ingredientType.isRequired
 }
 
-export default IngredientDetailModal;
+export default IngredientDetail;

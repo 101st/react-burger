@@ -1,4 +1,4 @@
-import { object } from 'prop-types';
+import { oneOf } from 'prop-types';
 import { ingredientType } from '../../utils/types';
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
@@ -31,8 +31,8 @@ function BurgerConstructorItem({
 }
 
 BurgerConstructorItem.propTypes = {
-  data: ingredientType,
-  ingredientsStack: object,
+  currentItem: ingredientType,
+  isDraggable: oneOf([true, undefined]),
 };
 
 export default BurgerConstructorItem;

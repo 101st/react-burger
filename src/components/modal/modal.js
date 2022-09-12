@@ -6,7 +6,7 @@ import ModalBackDrop from '../ModalOverlay/modalOverlay';
 import Styles from './style.module.scss';
 import { useEffect } from 'react';
 
-function Modal({ onClose, title, isOpen, children }) {
+function Modal({ title, onClose, isOpen, children }) {
 
   useEffect(() => {
     function closeByEscape(e) {
@@ -35,9 +35,9 @@ function Modal({ onClose, title, isOpen, children }) {
 }
 
 Modal.propTypes = {
-  onClose: func,
+  onClose: func.isRequired,
+  isOpen: func.isRequired,
   header: string,
-  setModalVisible: func,
   children: node
 }
 

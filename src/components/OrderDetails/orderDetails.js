@@ -1,9 +1,9 @@
-import { string, func } from 'prop-types';
+import { string } from 'prop-types';
 import Done from '../../images/done.svg';
 
 import Styles from './style.module.scss';
 
-function orderDetails({ orderId, status }) {
+function OrderDetails({ orderId, status }) {
   return (
     <>
       <div className={`${Styles['order-id']} mt-16 text text_type_main-large`}>{orderId}</div>
@@ -17,12 +17,9 @@ function orderDetails({ orderId, status }) {
   )
 }
 
-orderDetails.propTypes = {
-  orderId: string,
+OrderDetails.propTypes = {
+  orderId: string.isRequired,
   status: string,
-  onClose: func,
-  name: string,
-  setModalVisible: func,
 };
 
-export default orderDetails;
+export default OrderDetails;

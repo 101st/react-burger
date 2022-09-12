@@ -1,7 +1,7 @@
 import { func } from 'prop-types';
 import Styles from './style.module.scss';
 
-function BlackDropModal({ onClose }) {
+function ModalOverlay({ onClose }) {
   return (
     <div
       onClick={onClose}
@@ -9,8 +9,8 @@ function BlackDropModal({ onClose }) {
   )
 }
 
-BlackDropModal.propTypes = {
-  onClose: func
+ModalOverlay.propTypes = {
+  onClose: func.isRequired
 }
 
-export default BlackDropModal;
+export default ModalOverlay;

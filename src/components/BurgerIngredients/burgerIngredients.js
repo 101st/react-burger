@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { string, object, func } from 'prop-types';
+import { string, arrayOf, shape, func } from 'prop-types';
 import { ingredientType } from '../../utils/types';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import BurgerIngredientItem from './burgerIngredientItem';
@@ -70,11 +70,9 @@ function BurgerIngredients({
 }
 
 BurgerIngredients.propTypes = {
-  ingredientClickHandler: func,
-  ingredientsStack: object,
-  currentIngredientType: string,
-  setCurrentIngredientType: func,
-  ingredientsStore: ingredientType,
+  currentIngredientType: string.isRequired,
+  setCurrentIngredientType: func.isRequired,
+  ingredientsStore: arrayOf(shape(ingredientType)).isRequired,
 }
 
 export default BurgerIngredients;

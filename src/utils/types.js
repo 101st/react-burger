@@ -1,6 +1,6 @@
-import { arrayOf, shape, string, number } from 'prop-types';
+import { string, number } from 'prop-types';
 
-export const ingredientType = arrayOf(shape({
+export const ingredientType = {
   calories: number,
   carbohydrates: number,
   fat: number,
@@ -13,4 +13,4 @@ export const ingredientType = arrayOf(shape({
   type: string,
   __v: number,
   _id: string
-}));
+};

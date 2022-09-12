@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react';
-import { object } from 'prop-types';
-import { ingredientType } from '../../utils/types';
 import { CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import BurgerConstructorItem from "./burgerConstructorItem";
 import Modal from '../Modal/modal';
@@ -32,7 +30,6 @@ function BurgerConstructor() {
         <BurgerConstructorItem
           key={'bun-1'}
           currentItem={{ ...bun, type: 'top', name: bun.name + ' (верх)' }}
-          isDraggable={false}
         />
       </div>
       <div className={`${Styles['container']} pr-4`}>
@@ -52,7 +49,7 @@ function BurgerConstructor() {
         <BurgerConstructorItem
           key={'bun-2'}
           currentItem={{ ...bun, type: 'bottom', name: bun.name + ' (низ)' }}
-          isDraggable={false} />
+        />
       </div>
       <div className={`${Styles.order}`}>
         <div className={`${Styles['price']} mt-10`}>
@@ -81,10 +78,5 @@ function BurgerConstructor() {
     </div>
   )
 }
-
-BurgerConstructor.propTypes = {
-  data: ingredientType,
-  ingredientsStack: object,
-};
 
 export default BurgerConstructor;
