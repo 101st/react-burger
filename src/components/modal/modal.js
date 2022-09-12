@@ -6,7 +6,7 @@ import ModalBackDrop from '../ModalOverlay/modalOverlay';
 import Styles from './style.module.scss';
 import { useEffect } from 'react';
 
-function Modal({ title, onClose, isOpen, children }) {
+function Modal({ title, isOpen, onClose, children }) {
 
   useEffect(() => {
     function closeByEscape(e) {

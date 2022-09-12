@@ -67,10 +67,7 @@ function BurgerConstructor() {
           onClose={handleCloseModal}
         >
           <OrderDetails
-            onClose={handleCloseModal}
-            setModalVisible={setModalVisible}
             orderId={'034536'}
-            name={''}
             status={'Ваш заказ начали шльлвить'}
           />
         </Modal>

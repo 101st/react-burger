@@ -50,9 +50,9 @@ function BurgerIngredients({
       <div className={`${Styles['container']} pt-6 pl-4 pr-4`}>
         {ingredientsStore.map(item => (
           <BurgerIngredientItem
+            key={item._id}
             onClick={handleOpenModal}
             setCurrentIngredient={setCurrentIngredient}
-            key={item._id}
             currentIngredient={item}
             count={0}
           />
@@ -63,7 +63,9 @@ function BurgerIngredients({
         isOpen={isIngredientModalOpen}
         onClose={handleCloseModal}
       >
-        <IngredientDetails currentIngredient={currentIngredient} />
+        <IngredientDetails
+          currentIngredient={currentIngredient}
+        />
       </Modal>
     </div>
   )

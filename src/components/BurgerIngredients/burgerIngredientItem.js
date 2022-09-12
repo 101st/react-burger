@@ -5,7 +5,12 @@ import { CurrencyIcon, Counter } from '@ya.praktikum/react-developer-burger-ui-c
 
 import Styles from './style.module.scss';
 
-function BurgerIngredientItem({ count, onClick, currentIngredient, setCurrentIngredient }) {
+function BurgerIngredientItem({
+  onClick,
+  setCurrentIngredient,
+  currentIngredient,
+  count
+}) {
   const { name, image, proteins, } = currentIngredient;
 
   return (
@@ -30,10 +35,10 @@ function BurgerIngredientItem({ count, onClick, currentIngredient, setCurrentIng
 }
 
 BurgerIngredientItem.propTypes = {
-  count: number,
-  currentIngredient: ingredientType.isRequired,
   onClick: func.isRequired,
-  setCurrentIngredient: func.isRequired
+  setCurrentIngredient: func.isRequired,
+  currentIngredient: ingredientType.isRequired,
+  count: number,
 }
 
 export default BurgerIngredientItem;
