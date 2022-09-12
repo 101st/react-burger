@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import Styles from './style.module.scss';
 
-import AppHeader from '../app-header';
-import BurgerIngredients from '../burger-ingredients';
-import BurgerConstructor from '../burger-constructor';
+import AppHeader from '../app-header/app-header';
+import BurgerIngredients from '../burger-ingredients/burger-ingredients';
+import BurgerConstructor from '../burger-constructor/burger-constructor';
 
 const BASE_URL = 'https://norma.nomoreparties.space'
 

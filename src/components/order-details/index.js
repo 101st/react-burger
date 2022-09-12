@@ -1,6 +1,6 @@
 import { string, func } from 'prop-types';
 
-import Modal from '../modal';
+import Modal from '../modal/modal';
 import Done from '../../images/done.svg';
 
 import Styles from './style.module.scss';

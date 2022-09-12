@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { arrayOf, shape, string, number, object } from 'prop-types';
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
-import IngredientDetailModal from '../ingredient-details';
+import IngredientDetailModal from '../ingredient-details/ingredient-details';
 
 import Styles from './style.module.scss';
 
