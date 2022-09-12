@@ -3,7 +3,7 @@ import { object } from 'prop-types';
 import { ingredientType } from '../../utils/types';
 import { CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import BurgerConstructorItem from "./item";
-import IngredientOrderModal from '../order-details';
+import IngredientOrderModal from '../OrderDetails/oederDetails';
 
 import Styles from './style.module.scss';
 

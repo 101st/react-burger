@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { object } from 'prop-types';
 import { ingredientType } from '../../utils/types';
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
-import IngredientDetailModal from '../ingredient-details/ingredient-details';
+import IngredientDetailModal from '../IngredientDetails/ingredientDetails';
 
 import Styles from './style.module.scss';
 

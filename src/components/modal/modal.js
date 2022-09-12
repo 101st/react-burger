@@ -1,7 +1,7 @@
 import * as ReactDOM from 'react-dom';
 import { func, string, node } from 'prop-types';
-import ModalHeader from './modal-header/modal-header';
-import ModalBackDrop from '../modal-overlay/modal-overlay';
+import ModalHeader from './ModalHeader/modalHeader';
+import ModalBackDrop from '../ModalOverlay/modalOverlay';
 
 import Styles from './style.module.scss';
 import { useEffect } from 'react';
