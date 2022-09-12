@@ -1,7 +1,8 @@
 import { string, number, func } from 'prop-types';
-import Modal from '../Modal/modal';
 import Styles from './style.module.scss';
-function IngredientDetailModal({ name, image_large, calories, fat, carbohydrates, proteins, onClose, setModalVisible }) {
+
+function IngredientDetailModal({ currentIngredient }) {
+  const { name, image_large, calories, fat, carbohydrates, proteins } = currentIngredient;
   const Test = ({ name, metric, value }) => (
     <div className={`mr-5 text text_type_main-default text_color_inactive`}>
       <div>{name}, {metric}</div>
@@ -10,7 +11,7 @@ function IngredientDetailModal({ name, image_large, calories, fat, carbohydrates
   )
 
   return (
-    <Modal header="Детали ингредиента" onClose={onClose} setModalVisible={setModalVisible}>
+    <>
       <div className={`${Styles.image}`}>
         <img width={'100%'} alt={name} src={image_large} />
       </div>
@@ -21,7 +22,7 @@ function IngredientDetailModal({ name, image_large, calories, fat, carbohydrates
         <Test name={`Жиры`} metric={`г`} value={fat} />
         <Test name={`Углеводы`} metric={`г`} value={carbohydrates} />
       </div>
-    </Modal>
+    </>
   )
 }
 
