@@ -37,9 +37,19 @@ function App() {
 
   useEffect(() => {
     fetch(`${BASE_URL}/api/ingredients`)
-      .then(response => response.json())
-      .then(response => response.success && setData(response.data))
-      .catch(console.log);
+      .then(response => {
+        if (response.ok)
+          return response.json();
+        else
+          throw new Error(`Ошибка запроса к серверу. Код ${response?.status}`);
+      })
+      .then(response => {
+        if (response.success) 
+        setData(response.data);
+        else
+        throw new Error('Ошибка ответа сервера');
+      })
+      .catch(console.error);
   }, []);
   return <>
     <AppHeader />
