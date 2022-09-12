@@ -44,13 +44,19 @@ function BurgerConstructor() {
             </Button>
           </div>
         </div>
-        {modalVisible && <IngredientOrderModal
+        <Modal
+          title={'Детали ингредиента'}
+          isOpen={isOrderModalOpen}
           onClose={handleCloseModal}
-          setModalVisible={setModalVisible}
-          orderId={'034536'}
-          name={''}
-          status={'Ваш заказ начали шльлвить'}
-        />}
+        >
+          <OrderDetails
+            onClose={handleCloseModal}
+            setModalVisible={setModalVisible}
+            orderId={'034536'}
+            name={''}
+            status={'Ваш заказ начали шльлвить'}
+          />
+        </Modal>
       </div>
     </div>
   )
