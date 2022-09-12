@@ -1,4 +1,5 @@
-import { arrayOf, shape, string, number, object, func } from 'prop-types';
+import { string, object, func } from 'prop-types';
+import { ingredientType } from '../../utils/types';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import BurgerIngredientItem from './item';
 import Styles from './style.module.scss';
@@ -49,20 +50,7 @@ BurgerIngredients.propTypes = {
   ingredientsStack: object,
   currentIngredientType: string,
   setCurrentIngredientType: func,
-  ingredientsStore: arrayOf(shape({
-    calories: number,
-    carbohydrates: number,
-    fat: number,
-    image: string,
-    image_large: string,
-    image_mobile: string,
-    name: string,
-    price: number,
-    proteins: number,
-    type: string,
-    __v: number,
-    _id: string
-  }))
+  ingredientsStore: ingredientType,
 }
 
 export default BurgerIngredients;

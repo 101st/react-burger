@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { arrayOf, shape, string, number, object } from 'prop-types';
+import { object } from 'prop-types';
+import { ingredientType } from '../../utils/types';
 import { CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import BurgerConstructorItem from "./item";
 import IngredientOrderModal from '../order-details';
@@ -74,21 +75,8 @@ function BurgerConstructor({ data, ingredientsStack }) {
 }
 
 BurgerConstructor.propTypes = {
-  data: arrayOf(shape({
-    calories: number,
-    carbohydrates: number,
-    fat: number,
-    image: string,
-    image_large: string,
-    image_mobile: string,
-    name: string,
-    price: number,
-    proteins: number,
-    type: string,
-    __v: number,
-    _id: string
-  })),
-  ingredientsStack: object
+  data: ingredientType,
+  ingredientsStack: object,
 };
 
 export default BurgerConstructor;
