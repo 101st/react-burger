@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { object } from 'prop-types';
 import { ingredientType } from '../../utils/types';
 import { CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -12,6 +12,7 @@ import Styles from './style.module.scss';
 
 function BurgerConstructor() {
   const [isOrderModalOpen, setModalVisible] = useState(false);
+  const [bun, setBun] = useState({});
 
   const handleOpenModal = () => {
     setModalVisible(true);
@@ -21,10 +22,16 @@ function BurgerConstructor() {
     setModalVisible(false);
   }
 
+  useEffect(() => {
+    setBun(constructorData.find(({ type }) => type === 'bun'));
+  }, [])
+
   return (
-    <div>
-      <div className={`${Styles['container']} mt-25`}>
+    <div className='mt-25'>
+      <BurgerConstructorItem key={'bun-1'} currentItem={{ ...bun, type: 'top' }} isDraggable={false} />
+      <div className={`${Styles['container']}`}>
         {constructorData.map((currentItem, index) => {
+          if (currentItem.type === 'bun') return null;
           return (
             <BurgerConstructorItem
               key={currentItem._id + index}
@@ -34,6 +41,7 @@ function BurgerConstructor() {
         }
         )}
       </div>
+      <BurgerConstructorItem key={'bun-2'} currentItem={{ ...bun, type: 'bottom' }} isDraggable={false} />
       <div className={`${Styles.order}`}>
         <div className={`${Styles['price']} mt-10`}>
           <span className='text text_type_digits-medium mr-2'>{610}</span>
