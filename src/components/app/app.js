@@ -38,14 +38,11 @@ function App() {
       <AppHeader />
       <div className={Styles.container}>
         <BurgerIngredients
-          data={data}
           currentIngredientType={currentIngredientType}
           setCurrentIngredientType={setCurrentIngredientType}
           ingredientsStore={ingredientsStore}
         />
-        <BurgerConstructor
-          data={data}
-        />
+        <BurgerConstructor />
       </div>
     </>
   );

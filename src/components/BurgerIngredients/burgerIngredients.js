@@ -16,8 +16,8 @@ const INGREDIENTS_TITLE_MAPPING = {
 function BurgerIngredients({
   currentIngredientType,
   setCurrentIngredientType,
-  ingredientsStore }) {
-
+  ingredientsStore
+}) {
   const [isIngredientModalOpen, setIsIngredientModalOpen] = useState(false);
   const [currentIngredient, setCurrentIngredient] = useState({});
 
