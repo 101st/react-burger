@@ -9,11 +9,14 @@ import { useEffect } from 'react';
 function Modal({ onClose, header, setModalVisible, children }) {
 
   useEffect(() => {
-    const onEscClose = document.addEventListener('keydown', function (e) {
+    function closeByEscape(e) {
       if (e.key === 'Escape') setModalVisible(false);
-    });
+    }
+
+    document.addEventListener('keydown', closeByEscape);
+    
     return () => {
-      document.removeEventListener(onEscClose, () => { });
+      document.removeEventListener('keydown', closeByEscape);
     }
   }, [onClose, setModalVisible])
 
