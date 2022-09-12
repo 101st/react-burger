@@ -1,5 +1,5 @@
 import { string, number, func } from 'prop-types';
-import Modal from '../modal/modal';
+import Modal from '../Modal/modal';
 import Styles from './style.module.scss';
 function IngredientDetailModal({ name, image_large, calories, fat, carbohydrates, proteins, onClose, setModalVisible }) {
   const Test = ({ name, metric, value }) => (
