@@ -28,7 +28,13 @@ function BurgerConstructor() {
 
   return (
     <div className='mt-25'>
-      <BurgerConstructorItem key={'bun-1'} currentItem={{ ...bun, type: 'top' }} isDraggable={false} />
+      <div className='pl-6 mr-10'>
+        <BurgerConstructorItem
+          key={'bun-1'}
+          currentItem={{ ...bun, type: 'top' }}
+          isDraggable={false}
+        />
+      </div>
       <div className={`${Styles['container']}`}>
         {constructorData.map((currentItem, index) => {
           if (currentItem.type === 'bun') return null;
@@ -36,12 +42,18 @@ function BurgerConstructor() {
             <BurgerConstructorItem
               key={currentItem._id + index}
               currentItem={currentItem}
+              isDraggable={true}
             />
           )
         }
         )}
       </div>
-      <BurgerConstructorItem key={'bun-2'} currentItem={{ ...bun, type: 'bottom' }} isDraggable={false} />
+      <div className='pl-6 mr-10'>
+        <BurgerConstructorItem
+          key={'bun-2'}
+          currentItem={{ ...bun, type: 'bottom' }}
+          isDraggable={false} />
+      </div>
       <div className={`${Styles.order}`}>
         <div className={`${Styles['price']} mt-10`}>
           <span className='text text_type_digits-medium mr-2'>{610}</span>
