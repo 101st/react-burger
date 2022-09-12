@@ -37,10 +37,10 @@ function AppHeader() {
         <Logo />
       </div>
       <div className='mt-4 mb-4'>
-        <div className='pl-5 pr-5' data-name='ProfileIcon'>
+        <nav className='pl-5 pr-5' data-name='ProfileIcon'>
           <ProfileIcon type={activeMenuItem === 'ProfileIcon' ? 'primary' : 'secondary'} />
           <a className={`ml-2 ${activeMenuItem !== 'ProfileIcon' && 'text_color_inactive'}`} href='/#'>Личный кабинет</a>
-        </div>
+        </nav>
       </div>
     </header>
   )
