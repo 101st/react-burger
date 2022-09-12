@@ -1,6 +1,6 @@
 import { object } from 'prop-types';
 import { ingredientType } from '../../utils/types';
-import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
+import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
 import Styles from './style.module.scss';
 
@@ -17,6 +17,7 @@ function BurgerConstructorItem({
 
   return (
     <div className={`${Styles['in-stack']} mb-4 ml-8 mr-4`}>
+      <DragIcon type="primary" />
       <ConstructorElement
         className={`mb-4`}
         text={`${name}`}
