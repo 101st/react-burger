@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { object } from 'prop-types';
 import { ingredientType } from '../../utils/types';
 import { CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import BurgerConstructorItem from "./item";
+import BurgerConstructorItem from "./burgerConstructorItem";
 import Modal from '../Modal/modal';
 import OrderDetails from '../OrderDetails/orderDetails';
 
