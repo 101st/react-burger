@@ -1,14 +1,17 @@
 import { string, number, func } from 'prop-types';
-import {
-  CurrencyIcon,
-  Counter,
-} from '@ya.praktikum/react-developer-burger-ui-components';
+import { CurrencyIcon, Counter } from '@ya.praktikum/react-developer-burger-ui-components';
+
 
 import Styles from './style.module.scss';
 
-function BurgerIngredientItem({ _id, name, image, proteins, count, onClickHandler }) {
+function BurgerIngredientItem({ count, currentIngredient, onClick, setCurrentIngredient }) {
+  const { name, image, proteins, } = currentIngredient;
+
   return (
-    <div className={`${Styles.item} pl-4 pr-4 mb-10`} data-id={_id} onClick={onClickHandler}>
+    <div className={`${Styles.item} pl-4 pr-4 mb-10`} onClick={()=>{
+      setCurrentIngredient(currentIngredient);
+      onClick();
+    }}>
       {count > 0 && <Counter count={count} size="default" />}
       <img width={252} height={126} alt={name} src={image} />
       <div className={`${Styles['proteins-container']}`}>
@@ -20,6 +23,7 @@ function BurgerIngredientItem({ _id, name, image, proteins, count, onClickHandle
       <div className={`${Styles['name']}`}>
         {name}
       </div>
+
     </div>
   )
 }
