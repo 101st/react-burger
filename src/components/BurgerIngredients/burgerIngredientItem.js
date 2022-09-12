@@ -1,4 +1,4 @@
-import { number, func } from 'prop-types';
+import { number, func, shape } from 'prop-types';
 import { ingredientType } from '../../utils/types';
 import { CurrencyIcon, Counter } from '@ya.praktikum/react-developer-burger-ui-components';
 
@@ -37,7 +37,7 @@ function BurgerIngredientItem({
 BurgerIngredientItem.propTypes = {
   onClick: func.isRequired,
   setCurrentIngredient: func.isRequired,
-  currentIngredient: ingredientType.isRequired,
+  currentIngredient: shape(ingredientType).isRequired,
   count: number,
 }
 

@@ -1,3 +1,4 @@
+import { shape } from 'prop-types';
 import { ingredientType } from '../../utils/types';
 import Styles from './style.module.scss';
 
@@ -27,7 +28,6 @@ function IngredientDetail({ currentIngredient }) {
 }
 
 IngredientDetail.propTypes = {
-  currentIngredient: ingredientType.isRequired
+  currentIngredient: shape(ingredientType)
 }
-
 export default IngredientDetail;
