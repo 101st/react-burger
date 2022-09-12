@@ -16,7 +16,7 @@ function AppHeader() {
   }, []);
 
   useEffect(() => {
-    document.querySelectorAll('div.pl-5.pr-5').forEach(element => {
+    document.querySelectorAll('nav.pl-5.pr-5').forEach(element => {
       element.addEventListener('click', onClickMenuHandler);
     })
   }, [onClickMenuHandler]);
