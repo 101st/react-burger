@@ -6,10 +6,18 @@ import IngredientDetailModal from '../ingredient-details/ingredient-details';
 
 import Styles from './style.module.scss';
 
-function BurgerConstructorItem(props) {
-  const {
-    image_mobile, name, type, price, isLocked
-  } = props;
+function BurgerConstructorItem({
+  image_mobile,
+  image_large,
+  name,
+  type,
+  price,
+  calories,
+  fat,
+  isLocked,
+  carbohydrates,
+  proteins,
+}) {
   const [modalVisible, setModalVisible] = useState(false);
 
   const getType = type => {
@@ -40,7 +48,12 @@ function BurgerConstructorItem(props) {
       {modalVisible && <IngredientDetailModal
         onClose={handleCloseModal}
         setModalVisible={setModalVisible}
-        {...props}
+        name={name}
+        image_large={image_large}
+        calories={calories}
+        fat={fat}
+        carbohydrates={carbohydrates}
+        proteins={proteins}
       />}
     </div>
   )
