@@ -44,30 +44,32 @@ function App() {
           throw new Error(`Ошибка запроса к серверу. Код ${response?.status}`);
       })
       .then(response => {
-        if (response.success) 
-        setData(response.data);
+        if (response.success)
+          setData(response.data);
         else
-        throw new Error('Ошибка ответа сервера');
+          throw new Error('Ошибка ответа сервера');
       })
       .catch(console.error);
   }, []);
-  return <>
-    <AppHeader />
-    <div className={Styles.container}>
-      <BurgerIngredients
-        data={data}
-        currentIngredientType={currentIngredientType}
-        setCurrentIngredientType={setCurrentIngredientType}
-        ingredientsStore={ingredientsStore}
-        ingredientsStack={ingredientsStack}
-        ingredientClickHandler={ingredientClickHandler}
-      />
-      <BurgerConstructor
-        data={data}
-        ingredientsStack={ingredientsStack}
-      />
-    </div>
-  </>;
+  return (
+    <>
+      <AppHeader />
+      <div className={Styles.container}>
+        <BurgerIngredients
+          data={data}
+          currentIngredientType={currentIngredientType}
+          setCurrentIngredientType={setCurrentIngredientType}
+          ingredientsStore={ingredientsStore}
+          ingredientsStack={ingredientsStack}
+          ingredientClickHandler={ingredientClickHandler}
+        />
+        <BurgerConstructor
+          data={data}
+          ingredientsStack={ingredientsStack}
+        />
+      </div>
+    </>
+  );
 }
 
 export default App;
