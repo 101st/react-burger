@@ -28,14 +28,14 @@ function BurgerConstructor() {
 
   return (
     <div className='mt-25'>
-      <div className='pl-6 mr-10'>
+      <div className={`${Styles.bun} ml-6 pr-4`}>
         <BurgerConstructorItem
           key={'bun-1'}
           currentItem={{ ...bun, type: 'top', name: bun.name + ' (верх)' }}
           isDraggable={false}
         />
       </div>
-      <div className={`${Styles['container']}`}>
+      <div className={`${Styles['container']} pr-4`}>
         {constructorData.map((currentItem, index) => {
           if (currentItem.type === 'bun') return null;
           return (
@@ -48,7 +48,7 @@ function BurgerConstructor() {
         }
         )}
       </div>
-      <div className='pl-6 mr-10'>
+      <div className={`${Styles.bun} ml-6 mt-4 pr-4`}>
         <BurgerConstructorItem
           key={'bun-2'}
           currentItem={{ ...bun, type: 'bottom', name: bun.name + ' (низ)' }}

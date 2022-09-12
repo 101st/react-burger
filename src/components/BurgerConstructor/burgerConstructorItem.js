@@ -17,10 +17,9 @@ function BurgerConstructorItem({
   } = currentItem;
 
   return (
-    <div className={`${Styles['in-stack']} mb-4 ml-8`}>
-      { isDraggable && <DragIcon type="primary" />}
+    <div className={`${Styles['in-stack']} mb-4`}>
+      {isDraggable && <div className='mr-2'><DragIcon type="primary" /></div>}
       <ConstructorElement
-        className={`mb-4`}
         text={`${name}`}
         isLocked={isLocked}
         type={type}
