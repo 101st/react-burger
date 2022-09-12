@@ -2,10 +2,12 @@ import { string, number, func } from 'prop-types';
 import Modal from '../modal/modal';
 import Styles from './style.module.scss';
 function IngredientDetailModal({ name, image_large, calories, fat, carbohydrates, proteins, onClose, setModalVisible }) {
-  const Test = ({ name, metric, value }) => <div className={`mr-5 text text_type_main-default text_color_inactive`}>
-    <div>{name}, {metric}</div>
-    <div>{value}</div>
-  </div>
+  const Test = ({ name, metric, value }) => (
+    <div className={`mr-5 text text_type_main-default text_color_inactive`}>
+      <div>{name}, {metric}</div>
+      <div>{value}</div>
+    </div>
+  )
 
   return (
     <Modal header="Детали ингредиента" onClose={onClose} setModalVisible={setModalVisible}>

@@ -23,9 +23,11 @@ function BurgerIngredients({
 
         <div className={`${Styles.tabs} mb-10`}>
           {Object.keys(INGREDIENTS_TITLE_MAPPING)
-            .map(item => <Tab key={`tabs-key-${item}`} value={item} active={currentIngredientType === item} onClick={setCurrentIngredientType}>
-              {INGREDIENTS_TITLE_MAPPING[item]}
-            </Tab>)}
+            .map(item => (
+              <Tab key={`tabs-key-${item}`} value={item} active={currentIngredientType === item} onClick={setCurrentIngredientType}>
+                {INGREDIENTS_TITLE_MAPPING[item]}
+              </Tab>
+            ))}
         </div>
 
         <div className='mb-6'>
@@ -33,11 +35,12 @@ function BurgerIngredients({
         </div>
 
         <div className={`${Styles['container']} pt-6 pl-4 pr-4`}>
-          {ingredientsStore.map(item =>
+          {ingredientsStore.map(item => (
             <BurgerIngredientItem
               onClickHandler={ingredientClickHandler}
               key={item._id} {...item} count={ingredientsStack[item._id]}
             />
+          )
           )}
         </div>
       </div>
