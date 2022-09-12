@@ -31,7 +31,7 @@ function BurgerConstructor() {
       <div className='pl-6 mr-10'>
         <BurgerConstructorItem
           key={'bun-1'}
-          currentItem={{ ...bun, type: 'top' }}
+          currentItem={{ ...bun, type: 'top', name: bun.name + ' (верх)' }}
           isDraggable={false}
         />
       </div>
@@ -51,7 +51,7 @@ function BurgerConstructor() {
       <div className='pl-6 mr-10'>
         <BurgerConstructorItem
           key={'bun-2'}
-          currentItem={{ ...bun, type: 'bottom' }}
+          currentItem={{ ...bun, type: 'bottom', name: bun.name + ' (низ)' }}
           isDraggable={false} />
       </div>
       <div className={`${Styles.order}`}>
