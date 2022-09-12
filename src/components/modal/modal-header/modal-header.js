@@ -1,4 +1,4 @@
-import { func, elementType } from 'prop-types';
+import { func, node } from 'prop-types';
 import {
   CloseIcon,
 } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -18,7 +18,7 @@ function ModalHeader({ onClose, children }) {
 
 ModalHeader.propTypes = {
   onClose: func,
-  children: elementType
+  children: node
 }
 
 export default ModalHeader;
