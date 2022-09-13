@@ -31,7 +31,7 @@ function BurgerConstructorItem({
 }
 
 BurgerConstructorItem.propTypes = {
-  currentItem: shape(ingredientType),
+  currentItem: shape(ingredientType).isRequired,
   isDraggable: bool,
 };
 

@@ -35,10 +35,10 @@ function Modal({ title, isOpen, onClose, children }) {
 }
 
 Modal.propTypes = {
+  title: string,
   onClose: func.isRequired,
   isOpen: bool.isRequired,
-  header: string,
-  children: node
+  children: node.isRequired
 }
 
 export default Modal;
