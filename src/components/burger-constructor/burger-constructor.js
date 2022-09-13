@@ -62,7 +62,7 @@ function BurgerConstructor() {
           </div>
         </div>
         <Modal
-          title={'Детали ингредиента'}
+          title={''}
           isOpen={isOrderModalOpen}
           onClose={handleCloseModal}
         >
