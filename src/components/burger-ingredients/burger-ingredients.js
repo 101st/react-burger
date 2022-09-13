@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { string, arrayOf, shape, func } from 'prop-types';
 import { ingredientType } from '../../utils/types';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
-import BurgerIngredientItem from './burgerIngredientItem';
-import Modal from '../Modal/modal';
-import IngredientDetails from '../IngredientDetails/ingredientDetails';
+import BurgerIngredientItem from './burger-ingredient-item';
+import Modal from '../modal/modal';
+import IngredientDetails from '../ingredient-details/ingredient-details';
 import Styles from './style.module.scss';
 
 const INGREDIENTS_TITLE_MAPPING = {

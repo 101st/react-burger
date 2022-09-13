@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import BurgerConstructorItem from "./burgerConstructorItem";
-import Modal from '../Modal/modal';
-import OrderDetails from '../OrderDetails/orderDetails';
+import BurgerConstructorItem from "./burger-constructor-item";
+import Modal from '../modal/modal';
+import OrderDetails from '../order-details/order-details';
 
 import { constructorData } from '../../utils/data';
 

@@ -2,7 +2,7 @@ import { shape } from 'prop-types';
 import { ingredientType } from '../../utils/types';
 import Styles from './style.module.scss';
 
-function IngredientDetail({ currentIngredient }) {
+function IngredientDetails({ currentIngredient }) {
   const { name, image_large, calories, fat, carbohydrates, proteins } = currentIngredient;
   const Test = ({ name, metric, value }) => (
     <div className={`mr-5 text text_type_main-default text_color_inactive`}>
@@ -27,7 +27,7 @@ function IngredientDetail({ currentIngredient }) {
   )
 }
 
-IngredientDetail.propTypes = {
+IngredientDetails.propTypes = {
   currentIngredient: shape(ingredientType)
 }
-export default IngredientDetail;
+export default IngredientDetails;
