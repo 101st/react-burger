@@ -10,15 +10,17 @@ function Modal({ title, isOpen, onClose, children }) {
 
   useEffect(() => {
     function closeByEscape(e) {
-      if (e.key === 'Escape') onClose(false);
+      if (e.key === 'Escape') onClose();
     }
 
-    document.addEventListener('keydown', closeByEscape);
+    if(isOpen) {
+      document.addEventListener('keydown', closeByEscape);
 
-    return () => {
-      document.removeEventListener('keydown', closeByEscape);
+      return () => {
+        document.removeEventListener('keydown', closeByEscape);
+      }
     }
-  }, [onClose])
+  }, [isOpen, onClose])
 
   if (isOpen)
     return ReactDOM.createPortal(
