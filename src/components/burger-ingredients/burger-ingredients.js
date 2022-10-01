@@ -1,10 +1,17 @@
 import { useState } from 'react';
-import { string, arrayOf, shape, func } from 'prop-types';
-import { ingredientType } from '../../utils/types';
+import { useDispatch, useSelector } from "react-redux";
+// import { string, arrayOf, shape, func } from 'prop-types';
+// import { ingredientType } from '../../utils/types';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import BurgerIngredientItem from './burger-ingredient-item';
 import Modal from '../modal/modal';
 import IngredientDetails from '../ingredient-details/ingredient-details';
+
+import {
+  setCurrentIngredientType,
+  setIngredientsStore,
+} from '../../services/actions/ingredients';
+
 import Styles from './style.module.scss';
 
 const INGREDIENTS_TITLE_MAPPING = {
@@ -13,11 +20,13 @@ const INGREDIENTS_TITLE_MAPPING = {
   'main': 'Начинка',
 }
 
-function BurgerIngredients({
-  currentIngredientType,
-  setCurrentIngredientType,
-  ingredientsStore
-}) {
+function BurgerIngredients() {
+  const dispatch = useDispatch();
+  const {
+    currentIngredientType,
+    ingredientsStore,
+  } = useSelector((store) => store.ingredients);
+
   const [isIngredientModalOpen, setIsIngredientModalOpen] = useState(false);
   const [currentIngredient, setCurrentIngredient] = useState({});
 
@@ -28,7 +37,6 @@ function BurgerIngredients({
   const handleCloseModal = () => {
     setIsIngredientModalOpen(false);
   }
-
   return (
     <div className='mr-10'>
       <h1 className='mt-10 mb-5 text text_type_main-large'>Соберите бургер</h1>
@@ -39,7 +47,10 @@ function BurgerIngredients({
               key={`tabs-key-${item}`}
               value={item}
               active={currentIngredientType === item}
-              onClick={setCurrentIngredientType}>
+              onClick={() => {
+                dispatch(setCurrentIngredientType(item));
+                dispatch(setIngredientsStore(item));
+              }}>
               {INGREDIENTS_TITLE_MAPPING[item]}
             </Tab>
           ))}
@@ -72,9 +83,9 @@ function BurgerIngredients({
 }
 
 BurgerIngredients.propTypes = {
-  currentIngredientType: string.isRequired,
-  setCurrentIngredientType: func.isRequired,
-  ingredientsStore: arrayOf(shape(ingredientType)).isRequired,
+  // currentIngredientType: string.isRequired,
+  // setCurrentIngredientType: func.isRequired,
+  // ingredientsStore: arrayOf(shape(ingredientType)).isRequired,
 }
 
 export default BurgerIngredients;
