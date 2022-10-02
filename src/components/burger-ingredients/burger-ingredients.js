@@ -1,9 +1,9 @@
-import { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import BurgerIngredientItem from './burger-ingredient-item';
 import Modal from '../modal/modal';
 import IngredientDetails from '../ingredient-details/ingredient-details';
+import { setIngredientDetails, clearIngredientDetails } from '../../services/actions/ingredient-details';
 
 import {
   setCurrentIngredientType,
@@ -20,22 +20,9 @@ const INGREDIENTS_TITLE_MAPPING = {
 
 function BurgerIngredients() {
   const dispatch = useDispatch();
-  const {
-    currentIngredientType,
-    ingredientsStore,
-    currentIngredient,
-  } = useSelector((store) => store.ingredients);
+  const { currentIngredientType, ingredientsStore } = useSelector((store) => store.ingredients);
   const { constructorIngredients } = useSelector((store) => store.constructors);
-
-  const [isIngredientModalOpen, setIsIngredientModalOpen] = useState(false);
-
-  const handleOpenModal = () => {
-    setIsIngredientModalOpen(true);
-  }
-
-  const handleCloseModal = () => {
-    setIsIngredientModalOpen(false);
-  }
+  const { isOpen } = useSelector(store => store.ingredientDetails);
 
   const getCount = (_id) => {
     return constructorIngredients
@@ -67,7 +54,7 @@ function BurgerIngredients() {
         {ingredientsStore.map(item => (
           <BurgerIngredientItem
             key={item._id}
-            onClick={handleOpenModal}
+            onClick={() => dispatch(setIngredientDetails(item))}
             ingredient={item}
             count={getCount(item._id)}
           />
@@ -75,12 +62,10 @@ function BurgerIngredients() {
       </div>
       <Modal
         title={'Детали ингредиента'}
-        isOpen={isIngredientModalOpen}
-        onClose={handleCloseModal}
+        isOpen={isOpen}
+        onClose={() => dispatch(clearIngredientDetails())}
       >
-        <IngredientDetails
-          currentIngredient={currentIngredient}
-        />
+        <IngredientDetails />
       </Modal>
     </div>
   )
