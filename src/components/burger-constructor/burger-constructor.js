@@ -12,9 +12,9 @@ import Styles from './style.module.scss';
 
 function BurgerConstructor() {
   const dispatch = useDispatch();
-  const { constructorIngredients } = useSelector((store) => store.constructor);
+  const { constructorIngredients, bun } = useSelector(store => store.constructors);
+
   const [isOrderModalOpen, setModalVisible] = useState(false);
-  const [bun,] = useState({});
 
   const handleOpenModal = () => {
     setModalVisible(true);
@@ -35,35 +35,35 @@ function BurgerConstructor() {
   });
 
   const boxShadowColor = isHover ? "#4c4cff90" : "transparent";
-  
-  console.log(constructorIngredients)
+
   return (
-    <div className='mt-25' ref={dropTarget} style={{ boxShadow: `inset 0px 0px 72px -35px ${boxShadowColor}` }}>
+    <div className='mt-25' ref={dropTarget}
+      style={{ boxShadow: `inset 0px 0px 72px -35px ${boxShadowColor}`, paddingTop: bun ? 0 : '96px' }}>
       <div className={`${Styles.bun} ml-6 pr-4`}>
-        {false && <BurgerConstructorItem
+        {bun && <BurgerConstructorItem
           key={'bun-1'}
-          item={{ ...bun, type: 'top', name: bun.name + ' (верх)' }}
+          ingredient={{ ...bun, type: 'top', name: bun.name + ' (верх)', isLocked: true }}
         />}
       </div>
-      <div className={`${Styles['container']} pr-4`}>
-        {[].map((item, index) => {
+      <div className={`${Styles['container']} pr-4`} style={{ marginBottom: bun ? 0 : '96px' }}>
+        {constructorIngredients.map((item, index) => {
           if (item.type === 'bun') return null;
           return (
             <BurgerConstructorItem
-              key={item._id + index}
-              item={item}
+              key={item.id}
+              ingredient={item}
+              index={index}
               isDraggable={true}
             />
           )
-        }
-        )}
+        })}
       </div>
-      {false && <div className={`${Styles.bun} ml-6 mt-4 pr-4`}>
-        <BurgerConstructorItem
+      <div className={`${Styles.bun} ml-6 mt-4 pr-4`}>
+        {bun && <BurgerConstructorItem
           key={'bun-2'}
-          item={{ ...bun, type: 'bottom', name: bun.name + ' (низ)' }}
-        />
-      </div>}
+          ingredient={{ ...bun, type: 'bottom', name: bun.name + ' (низ)', isLocked: true }}
+        />}
+      </div>
       <div className={`${Styles.order}`}>
         <div className={`${Styles['price']} mt-10`}>
           <span className='text text_type_digits-medium mr-2'>{610}</span>
