@@ -44,18 +44,21 @@ export function getIngredients() {
 
 export const SET_CURRENT_INGREDIENT_TYPE = 'SET_CURRENT_INGREDIENT_TYPE';
 
-export function setCurrentIngredientType(currentIngredientType) {
-  return {
-    type: SET_CURRENT_INGREDIENT_TYPE,
-    currentIngredientType
-  }
-}
+export const setCurrentIngredientType = (currentIngredientType) => ({
+  type: SET_CURRENT_INGREDIENT_TYPE,
+  currentIngredientType,
+});
+
+export const SET_CURRENT_INGREDIENT = 'SET_CURRENT_INGREDIENT';
+
+export const setCurrentIngredient = (currentIngredient) => ({
+  type: SET_CURRENT_INGREDIENT,
+  currentIngredient
+});
 
 export const SET_INGRIDIENTS_STORE = 'SET_INGRIDIENTS_STORE';
 
-export function setIngredientsStore(currentIngredientType) {
-  return {
-    type: SET_INGRIDIENTS_STORE,
-    currentIngredientType
-  }
-}
+export const setIngredientsStore = (currentIngredientType) => ({
+  type: SET_INGRIDIENTS_STORE,
+  currentIngredientType,
+});
