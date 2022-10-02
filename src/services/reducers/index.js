@@ -4,5 +4,5 @@ import { constructorReducer } from './constructor';
 
 export const rootReducer = combineReducers({
   ingredients: ingredientsReducer,
-  constructor: constructorReducer,
+  constructors: constructorReducer, // 's потосу что слово constructor зарезервировано
 });
