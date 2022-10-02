@@ -1,16 +1,20 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { useDrop } from 'react-dnd';
+
 import { CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import BurgerConstructorItem from "./burger-constructor-item";
 import Modal from '../modal/modal';
 import OrderDetails from '../order-details/order-details';
-
-import { constructorData } from '../../utils/data';
+import { addIngredient } from '../../services/actions/constructor';
 
 import Styles from './style.module.scss';
 
 function BurgerConstructor() {
+  const dispatch = useDispatch();
+  const { constructorIngredients } = useSelector((store) => store.constructor);
   const [isOrderModalOpen, setModalVisible] = useState(false);
-  const [bun, setBun] = useState({});
+  const [bun,] = useState({});
 
   const handleOpenModal = () => {
     setModalVisible(true);
@@ -20,37 +24,46 @@ function BurgerConstructor() {
     setModalVisible(false);
   }
 
-  useEffect(() => {
-    setBun(constructorData.find(({ type }) => type === 'bun'));
-  }, [])
+  const [{ isHover }, dropTarget] = useDrop({
+    accept: 'INGREDIENT',
+    drop(item) {
+      dispatch(addIngredient(item));
+    },
+    collect: (monitor) => ({
+      isHover: monitor.isOver(),
+    })
+  });
 
+  const boxShadowColor = isHover ? "#4c4cff90" : "transparent";
+  
+  console.log(constructorIngredients)
   return (
-    <div className='mt-25'>
+    <div className='mt-25' ref={dropTarget} style={{ boxShadow: `inset 0px 0px 72px -35px ${boxShadowColor}` }}>
       <div className={`${Styles.bun} ml-6 pr-4`}>
-        <BurgerConstructorItem
+        {false && <BurgerConstructorItem
           key={'bun-1'}
-          currentItem={{ ...bun, type: 'top', name: bun.name + ' (верх)' }}
-        />
+          item={{ ...bun, type: 'top', name: bun.name + ' (верх)' }}
+        />}
       </div>
       <div className={`${Styles['container']} pr-4`}>
-        {constructorData.map((currentItem, index) => {
-          if (currentItem.type === 'bun') return null;
+        {[].map((item, index) => {
+          if (item.type === 'bun') return null;
           return (
             <BurgerConstructorItem
-              key={currentItem._id + index}
-              currentItem={currentItem}
+              key={item._id + index}
+              item={item}
               isDraggable={true}
             />
           )
         }
         )}
       </div>
-      <div className={`${Styles.bun} ml-6 mt-4 pr-4`}>
+      {false && <div className={`${Styles.bun} ml-6 mt-4 pr-4`}>
         <BurgerConstructorItem
           key={'bun-2'}
-          currentItem={{ ...bun, type: 'bottom', name: bun.name + ' (низ)' }}
+          item={{ ...bun, type: 'bottom', name: bun.name + ' (низ)' }}
         />
-      </div>
+      </div>}
       <div className={`${Styles.order}`}>
         <div className={`${Styles['price']} mt-10`}>
           <span className='text text_type_digits-medium mr-2'>{610}</span>

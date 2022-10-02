@@ -25,10 +25,10 @@ function BurgerIngredients() {
   const {
     currentIngredientType,
     ingredientsStore,
+    currentIngredient,
   } = useSelector((store) => store.ingredients);
 
   const [isIngredientModalOpen, setIsIngredientModalOpen] = useState(false);
-  const [currentIngredient, setCurrentIngredient] = useState({});
 
   const handleOpenModal = () => {
     setIsIngredientModalOpen(true);
@@ -63,8 +63,7 @@ function BurgerIngredients() {
           <BurgerIngredientItem
             key={item._id}
             onClick={handleOpenModal}
-            setCurrentIngredient={setCurrentIngredient}
-            currentIngredient={item}
+            ingredient={item}
             count={0}
           />
         ))}
@@ -82,10 +81,10 @@ function BurgerIngredients() {
   )
 }
 
-BurgerIngredients.propTypes = {
-  // currentIngredientType: string.isRequired,
-  // setCurrentIngredientType: func.isRequired,
-  // ingredientsStore: arrayOf(shape(ingredientType)).isRequired,
-}
+/* BurgerIngredients.propTypes = {
+  currentIngredientType: string.isRequired,
+  setCurrentIngredientType: func.isRequired,
+  ingredientsStore: arrayOf(shape(ingredientType)).isRequired,
+} */
 
 export default BurgerIngredients;

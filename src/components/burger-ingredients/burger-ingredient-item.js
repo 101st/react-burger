@@ -1,21 +1,29 @@
+import { useDispatch } from 'react-redux';
 import { number, func, shape } from 'prop-types';
+import { useDrag } from 'react-dnd';
+
+import { setCurrentIngredient } from '../../services/actions/ingredients';
+
 import { ingredientType } from '../../utils/types';
 import { CurrencyIcon, Counter } from '@ya.praktikum/react-developer-burger-ui-components';
 
-
 import Styles from './style.module.scss';
-
 function BurgerIngredientItem({
+  ingredient,
   onClick,
-  setCurrentIngredient,
-  currentIngredient,
-  count
+  count,
 }) {
-  const { name, image, proteins, } = currentIngredient;
+  const dispatch = useDispatch();
+  const { name, image, proteins } = ingredient;
+  const [, ref] = useDrag({
+    type: 'INGREDIENT',
+    item: ingredient,
+    collect: (monitor) => ({})
+  });
 
   return (
-    <div className={`${Styles.item} pl-4 pr-4 mb-10`} onClick={() => {
-      setCurrentIngredient(currentIngredient);
+    <div className={`${Styles.item} pl-4 pr-4 mb-10`} ref={ref} onClick={() => {
+      dispatch(setCurrentIngredient(ingredient));
       onClick();
     }}>
       {count > 0 && <Counter count={count} size="default" />}
@@ -34,11 +42,11 @@ function BurgerIngredientItem({
   )
 }
 
-BurgerIngredientItem.propTypes = {
+/* BurgerIngredientItem.propTypes = {
   onClick: func.isRequired,
   setCurrentIngredient: func.isRequired,
   currentIngredient: shape(ingredientType).isRequired,
   count: number,
-}
+} */
 
 export default BurgerIngredientItem;
