@@ -17,7 +17,8 @@ export const constructorReducer = (state = initialState, action) => {
       if (action.ingredient.type === 'bun') {
         return {
           ...state,
-          bun: action.ingredient
+          bun: action.ingredient,
+          constructorIngredients: [...state.constructorIngredients.filter(item => item.type !== 'bun'), action.ingredient, action.ingredient],
         }
       }
       return {

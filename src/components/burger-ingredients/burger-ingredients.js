@@ -25,6 +25,7 @@ function BurgerIngredients() {
     ingredientsStore,
     currentIngredient,
   } = useSelector((store) => store.ingredients);
+  const { constructorIngredients } = useSelector((store) => store.constructors);
 
   const [isIngredientModalOpen, setIsIngredientModalOpen] = useState(false);
 
@@ -35,6 +36,12 @@ function BurgerIngredients() {
   const handleCloseModal = () => {
     setIsIngredientModalOpen(false);
   }
+
+  const getCount = (_id) => {
+    return constructorIngredients
+      .filter(item => item._id === _id).length;
+  }
+
   return (
     <div className='mr-10'>
       <h1 className='mt-10 mb-5 text text_type_main-large'>Соберите бургер</h1>
@@ -62,7 +69,7 @@ function BurgerIngredients() {
             key={item._id}
             onClick={handleOpenModal}
             ingredient={item}
-            count={0}
+            count={getCount(item._id)}
           />
         ))}
       </div>
