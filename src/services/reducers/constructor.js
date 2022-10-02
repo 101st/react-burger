@@ -1,0 +1,59 @@
+import {
+  ADD_INGREDIENT,
+  REMOVE_INGREDIENT,
+  CLEAR_CONSTRUCTOR,
+  DRAG_INGREDIENT,
+} from "../actions/constructor";
+
+const initialState = {
+  constructorIngredients: [],
+  bun: null,
+  totalPrice: 0,
+};
+
+export const constructorReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case ADD_INGREDIENT: {
+      if (action.ingredient.type === 'bun') {
+        return {
+          ...state,
+          bun: action.ingredient
+        }
+      }
+      return {
+        ...state,
+        constructorIngredients: [...state.constructorIngredients, action.ingredient],
+      };
+    }
+    case REMOVE_INGREDIENT: {
+      return {
+        ...state,
+        constructorIngredients: [...state.constructorIngredients].filter(
+          (ingredient) => ingredient.id !== action.ingredient.id
+        ),
+      };
+    }
+    case DRAG_INGREDIENT: {
+      const state_ = [...state.constructorIngredients];
+      const prevIngredient = state_.splice(
+        action.hoverIndex,
+        1,
+        action.ingredient
+      );
+      state_.splice(action.dragIndex, 1, prevIngredient[0]);
+      return {
+        ...state,
+        constructorIngredients: state_,
+      };
+    }
+    case CLEAR_CONSTRUCTOR: {
+      return {
+        ...state,
+        constructorIngredients: [],
+      };
+    }
+    default: {
+      return state;
+    }
+  }
+};
