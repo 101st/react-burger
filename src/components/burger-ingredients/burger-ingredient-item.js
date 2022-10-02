@@ -1,10 +1,8 @@
 import { useDispatch } from 'react-redux';
-import { number, func, shape } from 'prop-types';
 import { useDrag } from 'react-dnd';
 
 import { setCurrentIngredient } from '../../services/actions/ingredients';
 
-import { ingredientType } from '../../utils/types';
 import { CurrencyIcon, Counter } from '@ya.praktikum/react-developer-burger-ui-components';
 
 import Styles from './style.module.scss';
@@ -41,12 +39,5 @@ function BurgerIngredientItem({
     </div>
   )
 }
-
-/* BurgerIngredientItem.propTypes = {
-  onClick: func.isRequired,
-  setCurrentIngredient: func.isRequired,
-  currentIngredient: shape(ingredientType).isRequired,
-  count: number,
-} */
 
 export default BurgerIngredientItem;

@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-// import { string, arrayOf, shape, func } from 'prop-types';
-// import { ingredientType } from '../../utils/types';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import BurgerIngredientItem from './burger-ingredient-item';
 import Modal from '../modal/modal';
@@ -80,11 +78,5 @@ function BurgerIngredients() {
     </div>
   )
 }
-
-/* BurgerIngredients.propTypes = {
-  currentIngredientType: string.isRequired,
-  setCurrentIngredientType: func.isRequired,
-  ingredientsStore: arrayOf(shape(ingredientType)).isRequired,
-} */
 
 export default BurgerIngredients;
