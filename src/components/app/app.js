@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
 import {
   setIngredientsStore,
@@ -14,7 +16,12 @@ import BurgerConstructor from '../burger-constructor/burger-constructor';
 
 function App() {
   const dispatch = useDispatch();
-  const { ingredients } = useSelector((store) => store.ingredients);
+  const {
+    ingredients,
+    ingredientsStore,
+    getIngredientsRequest,
+    getIngredientsFailed,
+  } = useSelector((store) => store.ingredients);
 
   useEffect(() => {
     dispatch(setIngredientsStore('main'));
@@ -27,10 +34,20 @@ function App() {
   return (
     <>
       <AppHeader />
-      <div className={Styles.container}>
-        <BurgerIngredients />
-        <BurgerConstructor />
-      </div>
+      <DndProvider backend={HTML5Backend}>
+        <div className={Styles.container}>
+          {getIngredientsRequest && "Загрузка ингредиентов..."}
+          {getIngredientsFailed && "Ошибка: Загрузка ингредиентов!"}
+          {
+            !getIngredientsRequest
+            && !getIngredientsFailed
+            && ingredientsStore.length
+            && <>
+              <BurgerIngredients />
+              <BurgerConstructor />
+            </>}
+        </div>
+      </DndProvider>
     </>
   );
 }
