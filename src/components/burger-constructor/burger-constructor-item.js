@@ -1,3 +1,5 @@
+import { bool, number, shape } from 'prop-types';
+import { ingredientType } from '../../utils/types';
 import { useRef } from "react";
 import { useDispatch } from 'react-redux';
 import { useDrag, useDrop } from 'react-dnd';
@@ -52,5 +54,11 @@ function BurgerConstructorItem({ ingredient, isDraggable, index }) {
     </div>
   )
 }
+
+BurgerConstructorItem.propTypes = {
+  ingredient: shape(ingredientType).isRequired,
+  isDraggable: bool,
+  index: number,
+};
 
 export default BurgerConstructorItem;

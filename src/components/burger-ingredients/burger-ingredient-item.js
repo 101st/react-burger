@@ -1,3 +1,5 @@
+import { number, func, shape } from 'prop-types';
+import { ingredientType } from '../../utils/types';
 import { useDispatch } from 'react-redux';
 import { useDrag } from 'react-dnd';
 
@@ -38,6 +40,12 @@ function BurgerIngredientItem({
 
     </div>
   )
+}
+
+BurgerIngredientItem.propTypes = {
+  ingredient: shape(ingredientType).isRequired,
+  onClick: func.isRequired,
+  count: number,
 }
 
 export default BurgerIngredientItem;

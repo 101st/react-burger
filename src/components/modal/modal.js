@@ -1,4 +1,5 @@
 import * as ReactDOM from 'react-dom';
+import { func, string, node, bool } from 'prop-types';
 import ModalHeader from './modal-header/modal-header';
 import ModalBackDrop from '../modal-overlay/modal-overlay';
 
@@ -33,6 +34,13 @@ function Modal({ title, isOpen, onClose, children }) {
       document.getElementById("react-modals")
     );
   return;
+}
+
+Modal.propTypes = {
+  title: string,
+  isOpen: bool.isRequired,
+  onClose: func.isRequired,
+  children: node.isRequired,
 }
 
 export default Modal;
