@@ -6,7 +6,6 @@ export const GET_INGRIDIENTS_FAILED = "GET_INGRIDIENTS_FAILED";
 
 export function getIngredients() {
   return function (dispatch) {
-    // START
     dispatch({
       type: GET_INGRIDIENTS_REQUEST,
     });
@@ -19,13 +18,11 @@ export function getIngredients() {
       })
       .then((json) => {
         if (json.success)
-          // SUCCESS
           dispatch({
             type: GET_INGRIDIENTS_SUCCESS,
             ingredients: json.data,
           });
         else {
-          // ERROR
           dispatch({
             type: GET_INGRIDIENTS_FAILED,
           });
@@ -33,7 +30,6 @@ export function getIngredients() {
         }
       })
       .catch((error) => {
-        // ERROR
         dispatch({
           type: GET_INGRIDIENTS_FAILED,
         });
