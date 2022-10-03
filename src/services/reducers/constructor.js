@@ -3,6 +3,7 @@ import {
   REMOVE_INGREDIENT,
   CLEAR_CONSTRUCTOR,
   DRAG_INGREDIENT,
+  SET_TOTAL_PRICE,
 } from "../actions/constructor";
 
 const initialState = {
@@ -48,9 +49,12 @@ export const constructorReducer = (state = initialState, action) => {
       };
     }
     case CLEAR_CONSTRUCTOR: {
+      return initialState;
+    }
+    case SET_TOTAL_PRICE: {
       return {
         ...state,
-        constructorIngredients: [],
+        totalPrice: action.data,
       };
     }
     default: {
