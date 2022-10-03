@@ -5,7 +5,7 @@ import {
 
 const initialState = {
   ingredientDetails: {},
-  isOpened: false,
+  isOpen: false,
 };
 
 export const ingredientDetailsReducer = (state = initialState, action) => {
