@@ -19,7 +19,10 @@ export const constructorReducer = (state = initialState, action) => {
         return {
           ...state,
           bun: action.ingredient,
-          constructorIngredients: [...state.constructorIngredients.filter(item => item.type !== 'bun'), action.ingredient, action.ingredient],
+          constructorIngredients: [
+            ...state.constructorIngredients
+              .filter(item => item.type !== 'bun'), action.ingredient, action.ingredient
+          ],
         }
       }
       return {
