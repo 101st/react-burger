@@ -1,4 +1,5 @@
 import { BASE_URL } from "../../utils/const";
+import { checkResponse } from "../../utils/common";
 import { clearConstructor } from "./constructor";
 
 export const CLEAR_ORDER = "CLEAR_ORDER";
@@ -18,12 +19,7 @@ export const getOrder = (ingredientsId) => {
         ingredients: ingredientsId,
       }),
     })
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error(`Ошибка запроса к серверу. Код ${response?.status}`);
-      })
+      .then(checkResponse)
       .then((json) => {
         if (json.success) {
           dispatch({

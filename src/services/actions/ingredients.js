@@ -1,4 +1,5 @@
 import { BASE_URL } from "../../utils/const";
+import { checkResponse } from "../../utils/common";
 
 export const GET_INGRIDIENTS_REQUEST = "GET_INGRIDIENTS_REQUEST";
 export const GET_INGRIDIENTS_SUCCESS = "GET_INGRIDIENTS_SUCCESS";
@@ -10,12 +11,7 @@ export function getIngredients() {
       type: GET_INGRIDIENTS_REQUEST,
     });
     fetch(`${BASE_URL}/api/ingredients`)
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error(`Ошибка запроса к серверу. Код ${response?.status}`);
-      })
+      .then(checkResponse)
       .then((json) => {
         if (json.success)
           dispatch({
