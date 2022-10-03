@@ -1,4 +1,4 @@
-import { string } from 'prop-types';
+import { string, number, oneOfType } from 'prop-types';
 import Done from '../../images/done.svg';
 
 import Styles from './style.module.scss';
@@ -18,7 +18,7 @@ function OrderDetails({ orderId, status }) {
 }
 
 OrderDetails.propTypes = {
-  orderId: string.isRequired,
+  orderId: oneOfType([string, number]).isRequired,
   status: string,
 };
 
