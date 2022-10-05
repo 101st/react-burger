@@ -6,6 +6,7 @@ import { CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-co
 import BurgerConstructorItem from "./burger-constructor-item";
 import Modal from '../modal/modal';
 import OrderDetails from '../order-details/order-details';
+import OrderDetailsLoader from '../order-details/order-details-loader';
 import { addIngredient, setTotalPrice } from '../../services/actions/constructor';
 import { getOrder } from '../../services/actions/order';
 import { CLEAR_ORDER } from '../../services/actions/order';
@@ -15,7 +16,7 @@ import Styles from './style.module.scss';
 function BurgerConstructor() {
   const dispatch = useDispatch();
   const { constructorIngredients, bun, totalPrice } = useSelector(store => store.constructors);
-  const { isOpen: isOrderModalOpen, name, order } = useSelector((store) => store.order);
+  const { getOrderRequest, isOpen: isOrderModalOpen, name, order } = useSelector((store) => store.order);
 
   const [withBun, setWithBun] = useState(null);
 
@@ -96,10 +97,12 @@ function BurgerConstructor() {
           isOpen={isOrderModalOpen}
           onClose={() => dispatch({ type: CLEAR_ORDER })}
         >
-          <OrderDetails
-            orderId={order?.number | 1}
-            status={`Ваш заказ "${name}" начали готовить`}
-          />
+          {getOrderRequest
+            ? <OrderDetailsLoader />
+            : <OrderDetails
+              orderId={order?.number | 1}
+              status={`Ваш заказ "${name}" начали готовить`}
+            />}
         </Modal>
       </div>
     </div >

@@ -20,6 +20,7 @@ export const orderReducer = (state = initialState, action) => {
         ...state,
         getOrderRequest: true,
         getOrderFailed: false,
+        isOpen: true,
       };
     }
     case GET_ORDER_SUCCESS: {
@@ -28,7 +29,6 @@ export const orderReducer = (state = initialState, action) => {
         order: action.order,
         name: action.name,
         getOrderRequest: false,
-        isOpen: true,
       };
     }
     case GET_ORDER_FAILED: {
