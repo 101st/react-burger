@@ -13,16 +13,11 @@ export function getIngredients() {
     fetch(`${BASE_URL}/api/ingredients`)
       .then(checkResponse)
       .then((json) => {
-        if (json.success)
+        if (json.success) {
           dispatch({
             type: GET_INGRIDIENTS_SUCCESS,
             ingredients: json.data,
           });
-        else {
-          dispatch({
-            type: GET_INGRIDIENTS_FAILED,
-          });
-          throw new Error('Ошибка ответа сервера');
         }
       })
       .catch((error) => {

@@ -28,11 +28,6 @@ export const getOrder = (ingredientsId) => {
             name: json.name,
           });
           dispatch(clearConstructor());
-        } else {
-          dispatch({
-            type: GET_ORDER_FAILED,
-          });
-          throw new Error('Ошибка ответа сервера');
         }
       })
       .catch((error) => {
