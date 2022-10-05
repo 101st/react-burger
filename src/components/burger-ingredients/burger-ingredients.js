@@ -1,3 +1,4 @@
+import { useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import BurgerIngredientItem from './burger-ingredient-item';
@@ -24,10 +25,10 @@ function BurgerIngredients() {
   const { constructorIngredients } = useSelector((store) => store.constructors);
   const { isOpen } = useSelector(store => store.ingredientDetails);
 
-  const getCount = (_id) => {
+  const getCount = useCallback((_id) => {
     return constructorIngredients
       .filter(item => item._id === _id).length;
-  }
+  }, [constructorIngredients]);
 
   return (
     <div className='mr-10'>

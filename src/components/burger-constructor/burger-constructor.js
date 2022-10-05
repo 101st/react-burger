@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useDrop } from 'react-dnd';
 
@@ -30,9 +30,11 @@ function BurgerConstructor() {
     })
   });
 
-  const ingredientsId = constructorIngredients.map((ingredient) => {
-    return (ingredient = ingredient._id);
-  });
+  const ingredientsId = useMemo(() => {
+    return constructorIngredients.map((ingredient) => {
+      return (ingredient = ingredient._id);
+    });
+  }, [constructorIngredients]);
 
   const boxShadowColor = isHover ? "#4c4cff90" : "transparent";
 
