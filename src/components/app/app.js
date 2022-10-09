@@ -18,7 +18,6 @@ function App() {
   const dispatch = useDispatch();
   const {
     ingredients,
-    ingredientsStore,
     getIngredientsRequest,
     getIngredientsFailed,
   } = useSelector((store) => store.ingredients);
@@ -41,7 +40,7 @@ function App() {
           {
             !getIngredientsRequest
             && !getIngredientsFailed
-            && ingredientsStore.length
+            && ingredients.length
             && <>
               <BurgerIngredients />
               <BurgerConstructor />

@@ -4,10 +4,6 @@
 
 .container {
   height: 620px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-content: flex-start;
   overflow: overlay;
 
   &::-webkit-scrollbar {
@@ -22,6 +18,14 @@
     background-color: #8585AD;
   }
 
+}
+
+.ingredient-type-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: baseline;
 }
 
 /* item */

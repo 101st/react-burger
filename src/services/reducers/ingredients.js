@@ -2,17 +2,13 @@ import {
   GET_INGRIDIENTS_REQUEST,
   GET_INGRIDIENTS_SUCCESS,
   GET_INGRIDIENTS_FAILED,
-  SET_CURRENT_INGREDIENT_TYPE,
-  SET_INGRIDIENTS_STORE,
   SET_CURRENT_INGREDIENT,
 } from "../actions/ingredients";
 
 const initialState = {
   ingredients: [],
-  ingredientsStore: [],
   getIngredientsRequest: false,
   getIngredientsFailed: false,
-  currentIngredientType: 'main',
   currentIngredient: null
 };
 
@@ -39,22 +35,10 @@ export const ingredientsReducer = (state = initialState, action) => {
         getIngredientsFailed: true,
       };
     }
-    case SET_CURRENT_INGREDIENT_TYPE: {
-      return {
-        ...state,
-        currentIngredientType: action.currentIngredientType,
-      };
-    }
     case SET_CURRENT_INGREDIENT: {
       return {
         ...state,
         currentIngredient: action.currentIngredient,
-      };
-    }
-    case SET_INGRIDIENTS_STORE: {
-      return {
-        ...state,
-        ingredientsStore: state.ingredients.filter(item => item.type === action.currentIngredientType)
       };
     }
     default: {

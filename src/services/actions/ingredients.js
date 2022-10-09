@@ -29,13 +29,6 @@ export function getIngredients() {
   };
 };
 
-export const SET_CURRENT_INGREDIENT_TYPE = 'SET_CURRENT_INGREDIENT_TYPE';
-
-export const setCurrentIngredientType = (currentIngredientType) => ({
-  type: SET_CURRENT_INGREDIENT_TYPE,
-  currentIngredientType,
-});
-
 export const SET_CURRENT_INGREDIENT = 'SET_CURRENT_INGREDIENT';
 
 export const setCurrentIngredient = (currentIngredient) => ({
