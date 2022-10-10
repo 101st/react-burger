@@ -1,10 +1,11 @@
-import { useCallback, useState, useRef } from "react";
+import { useCallback, useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import BurgerIngredientItem from './burger-ingredient-item';
 import Modal from '../modal/modal';
 import IngredientDetails from '../ingredient-details/ingredient-details';
 import { setIngredientDetails, clearIngredientDetails } from '../../services/actions/ingredient-details';
+import { useInView } from "react-intersection-observer";
 
 import Styles from './style.module.scss';
 
@@ -22,10 +23,14 @@ function BurgerIngredients() {
   const { constructorIngredients } = useSelector((store) => store.constructors);
   const { isOpen } = useSelector(store => store.ingredientDetails);
 
+  const [bunRef, inViewBuns] = useInView({ threshold: 1 });
+  const [sauceRef, inViewSauce] = useInView({ threshold: 1 });
+  const [mainRef, inViewMain] = useInView({ threshold: .4 });
+
   const TABS = {
-    bun: useRef(),
-    sauce: useRef(),
-    main: useRef(),
+    bun: { scroll: bunRef, click: useRef() },
+    sauce: { scroll: sauceRef, click: useRef() },
+    main: { scroll: mainRef, click: useRef() },
   }
 
   const getCount = useCallback((_id) => {
@@ -47,8 +52,18 @@ function BurgerIngredients() {
   }, [ingredients, dispatch, getCount]);
 
   const handleSmoothScroll = (type) => {
-    TABS[type].current.scrollIntoView({ behavior: "smooth" });
+    TABS[type].click.current.scrollIntoView({ behavior: "smooth" });
   };
+
+  useEffect(() => {
+    if (inViewBuns) {
+      setCurrentIngredientType("bun");
+    } else if (inViewSauce) {
+      setCurrentIngredientType("sauce");
+    } else if (inViewMain) {
+      setCurrentIngredientType("main");
+    }
+  }, [inViewBuns, inViewSauce, inViewMain]);
 
   return (
     <div className='mr-10'>
@@ -74,8 +89,8 @@ function BurgerIngredients() {
         {Object.keys(TABS)
           .map(item => {
             return (
-              <div ref={TABS[item]} key={item}>
-                <div>{INGREDIENTS_TITLE_MAPPING[item]}</div>
+              <div ref={TABS[item]?.scroll} key={item}>
+                <div ref={TABS[item]?.click}>{INGREDIENTS_TITLE_MAPPING[item]}</div>
                 <div className={`${Styles['ingredient-type-container']}`}>{getIngredientsByType(item)}</div>
               </div>
             )
