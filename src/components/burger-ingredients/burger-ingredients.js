@@ -1,10 +1,12 @@
-import { useState } from 'react';
-import { string, arrayOf, shape, func } from 'prop-types';
-import { ingredientType } from '../../utils/types';
+import { useCallback, useState, useRef, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import BurgerIngredientItem from './burger-ingredient-item';
 import Modal from '../modal/modal';
 import IngredientDetails from '../ingredient-details/ingredient-details';
+import { setIngredientDetails, clearIngredientDetails } from '../../services/actions/ingredient-details';
+import { useInView } from "react-intersection-observer";
+
 import Styles from './style.module.scss';
 
 const INGREDIENTS_TITLE_MAPPING = {
@@ -13,68 +15,96 @@ const INGREDIENTS_TITLE_MAPPING = {
   'main': 'Начинка',
 }
 
-function BurgerIngredients({
-  currentIngredientType,
-  setCurrentIngredientType,
-  ingredientsStore
-}) {
-  const [isIngredientModalOpen, setIsIngredientModalOpen] = useState(false);
-  const [currentIngredient, setCurrentIngredient] = useState({});
+function BurgerIngredients() {
+  const dispatch = useDispatch();
 
-  const handleOpenModal = () => {
-    setIsIngredientModalOpen(true);
+  const [currentIngredientType, setCurrentIngredientType] = useState("bun");
+  const { ingredients } = useSelector((store) => store.ingredients);
+  const { constructorIngredients } = useSelector((store) => store.constructors);
+  const { isOpen } = useSelector(store => store.ingredientDetails);
+
+  const [bunRef, inViewBuns] = useInView({ threshold: 1 });
+  const [sauceRef, inViewSauce] = useInView({ threshold: 1 });
+  const [mainRef, inViewMain] = useInView({ threshold: .4 });
+
+  const TABS = {
+    bun: { scroll: bunRef, click: useRef() },
+    sauce: { scroll: sauceRef, click: useRef() },
+    main: { scroll: mainRef, click: useRef() },
   }
 
-  const handleCloseModal = () => {
-    setIsIngredientModalOpen(false);
-  }
+  const getCount = useCallback((_id) => {
+    return constructorIngredients
+      .filter(item => item._id === _id).length;
+  }, [constructorIngredients]);
+
+  const getIngredientsByType = useCallback((type) => {
+    const ingredientsForSpecifyType = ingredients.filter((el) => el.type === type);
+
+    return ingredientsForSpecifyType.map(item => (
+      <BurgerIngredientItem
+        key={item._id}
+        onClick={() => dispatch(setIngredientDetails(item))}
+        ingredient={item}
+        count={getCount(item._id)}
+      />
+    ));
+  }, [ingredients, dispatch, getCount]);
+
+  const handleSmoothScroll = (type) => {
+    TABS[type].click.current.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    if (inViewBuns) {
+      setCurrentIngredientType("bun");
+    } else if (inViewSauce) {
+      setCurrentIngredientType("sauce");
+    } else if (inViewMain) {
+      setCurrentIngredientType("main");
+    }
+  }, [inViewBuns, inViewSauce, inViewMain]);
 
   return (
     <div className='mr-10'>
       <h1 className='mt-10 mb-5 text text_type_main-large'>Соберите бургер</h1>
       <div className={`${Styles.tabs} mb-10`}>
         {Object.keys(INGREDIENTS_TITLE_MAPPING)
-          .map(item => (
-            <Tab
-              key={`tabs-key-${item}`}
-              value={item}
-              active={currentIngredientType === item}
-              onClick={setCurrentIngredientType}>
-              {INGREDIENTS_TITLE_MAPPING[item]}
-            </Tab>
-          ))}
-      </div>
-      <div className='mb-6'>
-        <h2>{INGREDIENTS_TITLE_MAPPING[currentIngredientType]}</h2>
+          .map(item => {
+            return (
+              <Tab
+                key={`tabs-key-${item}`}
+                value={item}
+                active={currentIngredientType === item}
+                onClick={() => {
+                  setCurrentIngredientType(item);
+                  handleSmoothScroll(item);
+                }}>
+                {INGREDIENTS_TITLE_MAPPING[item]}
+              </Tab>
+            )
+          })}
       </div>
       <div className={`${Styles['container']} pt-6 pl-4 pr-4`}>
-        {ingredientsStore.map(item => (
-          <BurgerIngredientItem
-            key={item._id}
-            onClick={handleOpenModal}
-            setCurrentIngredient={setCurrentIngredient}
-            currentIngredient={item}
-            count={0}
-          />
-        ))}
+        {Object.keys(TABS)
+          .map(item => {
+            return (
+              <div ref={TABS[item]?.scroll} key={item}>
+                <div ref={TABS[item]?.click}>{INGREDIENTS_TITLE_MAPPING[item]}</div>
+                <div className={`${Styles['ingredient-type-container']}`}>{getIngredientsByType(item)}</div>
+              </div>
+            )
+          })}
       </div>
       <Modal
         title={'Детали ингредиента'}
-        isOpen={isIngredientModalOpen}
-        onClose={handleCloseModal}
+        isOpen={isOpen}
+        onClose={() => dispatch(clearIngredientDetails())}
       >
-        <IngredientDetails
-          currentIngredient={currentIngredient}
-        />
+        <IngredientDetails />
       </Modal>
     </div>
   )
-}
-
-BurgerIngredients.propTypes = {
-  currentIngredientType: string.isRequired,
-  setCurrentIngredientType: func.isRequired,
-  ingredientsStore: arrayOf(shape(ingredientType)).isRequired,
 }
 
 export default BurgerIngredients;

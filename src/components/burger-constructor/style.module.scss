@@ -1,8 +1,5 @@
 .container {
   height: 464px;
-  display: flex;
-  flex-direction: row-reverse;
-  flex-wrap: wrap;
   overflow: overlay;
 
   &::-webkit-scrollbar {
@@ -27,7 +24,7 @@
 .price {
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
 }
 

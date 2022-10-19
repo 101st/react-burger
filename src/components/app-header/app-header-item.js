@@ -11,10 +11,10 @@ function AppHeaderItem({id, name, activeMenuItem, setActiveMenuItem}) {
 }
 
 AppHeaderItem.propTypes = {
+  id: string.isRequired,
   name: string.isRequired,
   activeMenuItem: string.isRequired,
   setActiveMenuItem: func.isRequired,
-  id: string.isRequired
 }
 
 export default AppHeaderItem;

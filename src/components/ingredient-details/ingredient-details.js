@@ -1,8 +1,8 @@
-import { shape } from 'prop-types';
-import { ingredientType } from '../../utils/types';
+import { useSelector } from 'react-redux';
 import Styles from './style.module.scss';
 
-function IngredientDetails({ currentIngredient }) {
+function IngredientDetails() {
+  const { currentIngredient } = useSelector((store) => store.ingredients);
   const { name, image_large, calories, fat, carbohydrates, proteins } = currentIngredient;
   const Test = ({ name, metric, value }) => (
     <div className={`mr-5 text text_type_main-default text_color_inactive`}>
@@ -27,7 +27,4 @@ function IngredientDetails({ currentIngredient }) {
   )
 }
 
-IngredientDetails.propTypes = {
-  currentIngredient: shape(ingredientType).isRequired
-}
 export default IngredientDetails;

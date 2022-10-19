@@ -38,9 +38,9 @@ function Modal({ title, isOpen, onClose, children }) {
 
 Modal.propTypes = {
   title: string,
-  onClose: func.isRequired,
   isOpen: bool.isRequired,
-  children: node.isRequired
+  onClose: func.isRequired,
+  children: node.isRequired,
 }
 
 export default Modal;
