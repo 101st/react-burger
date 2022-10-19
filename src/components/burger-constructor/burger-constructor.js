@@ -11,7 +11,7 @@ import { addIngredient, setTotalPrice } from '../../services/actions/constructor
 import { getOrder } from '../../services/actions/order';
 import { CLEAR_ORDER } from '../../services/actions/order';
 
-import Styles from './style.module.scss';
+import Styles from './burger-constructor.module.scss';
 
 function BurgerConstructor() {
   const dispatch = useDispatch();

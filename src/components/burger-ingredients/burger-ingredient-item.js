@@ -7,7 +7,8 @@ import { setCurrentIngredient } from '../../services/actions/ingredients';
 
 import { CurrencyIcon, Counter } from '@ya.praktikum/react-developer-burger-ui-components';
 
-import Styles from './style.module.scss';
+import Styles from './burger-ingredients.module.scss';
+
 function BurgerIngredientItem({
   ingredient,
   onClick,

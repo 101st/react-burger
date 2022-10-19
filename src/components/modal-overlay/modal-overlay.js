@@ -1,5 +1,5 @@
 import { func } from 'prop-types';
-import Styles from './style.module.scss';
+import Styles from './modal-overlay.module.scss';
 
 function ModalOverlay({ onClose }) {
   return (

@@ -1,7 +1,7 @@
 import { string, number, oneOfType } from 'prop-types';
 import Done from '../../images/done.svg';
 
-import Styles from './style.module.scss';
+import Styles from './order-details.module.scss';
 
 function OrderDetails({ orderId, status }) {
   return (

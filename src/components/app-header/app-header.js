@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Logo } from '@ya.praktikum/react-developer-burger-ui-components';
 import AppHeaderItem from './app-header-item';
 
-import Styles from './style.module.scss';
+import Styles from './app-header.module.scss';
 
 function AppHeader() {
   const [activeMenuItem, setActiveMenuItem] = useState('BurgerIcon');

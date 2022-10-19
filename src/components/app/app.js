@@ -9,7 +9,7 @@ import {
   getIngredients,
 } from '../../services/actions/ingredients';
 
-import Styles from './style.module.scss';
+import Styles from './app.module.scss';
 
 import AppHeader from '../app-header/app-header';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
@@ -39,20 +39,20 @@ function App() {
       <Switch>
         <Route path='/login'><Login /></Route>
         <Route path='/' exec>
-      <DndProvider backend={HTML5Backend}>
-        <div className={Styles.container}>
-          {getIngredientsRequest && "Загрузка ингредиентов..."}
-          {getIngredientsFailed && "Ошибка: Загрузка ингредиентов!"}
-          {
-            !getIngredientsRequest
-            && !getIngredientsFailed
-            && ingredients.length
-            && <>
-              <BurgerIngredients />
-              <BurgerConstructor />
-            </>}
-        </div>
-      </DndProvider>
+          <DndProvider backend={HTML5Backend}>
+            <div className={Styles.container}>
+              {getIngredientsRequest && "Загрузка ингредиентов..."}
+              {getIngredientsFailed && "Ошибка: Загрузка ингредиентов!"}
+              {
+                !getIngredientsRequest
+                && !getIngredientsFailed
+                && ingredients.length
+                && <>
+                  <BurgerIngredients />
+                  <BurgerConstructor />
+                </>}
+            </div>
+          </DndProvider>
 
         </Route>
       </Switch>

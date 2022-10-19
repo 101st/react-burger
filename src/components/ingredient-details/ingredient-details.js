@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import Styles from './style.module.scss';
+import Styles from './ingredient-details.module.scss';
 
 function IngredientDetails() {
   const { currentIngredient } = useSelector((store) => store.ingredients);

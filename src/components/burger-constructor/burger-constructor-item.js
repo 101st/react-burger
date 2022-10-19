@@ -6,7 +6,7 @@ import { useDrag, useDrop } from 'react-dnd';
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { removeIngredient, dragIngredient } from "../../services/actions/constructor";
 
-import Styles from './style.module.scss';
+import Styles from './burger-constructor.module.scss';
 
 function BurgerConstructorItem({ ingredient, isDraggable, index }) {
   const ref = useRef(null);

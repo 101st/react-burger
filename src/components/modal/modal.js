@@ -1,11 +1,10 @@
+import { useEffect } from 'react';
 import * as ReactDOM from 'react-dom';
 import { func, string, node, bool } from 'prop-types';
 import ModalHeader from './modal-header/modal-header';
 import ModalBackDrop from '../modal-overlay/modal-overlay';
 
-import Styles from './style.module.scss';
-import { useEffect } from 'react';
-
+import Styles from './modal.module.scss';
 function Modal({ title, isOpen, onClose, children }) {
 
   useEffect(() => {

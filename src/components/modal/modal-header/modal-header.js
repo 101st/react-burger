@@ -3,7 +3,7 @@ import {
   CloseIcon,
 } from '@ya.praktikum/react-developer-burger-ui-components';
 
-import Styles from './style.module.scss';
+import Styles from './modal-header.module.scss';
 
 function ModalHeader({ onClose, children }) {
   return (
