@@ -17,6 +17,7 @@ import BurgerConstructor from '../burger-constructor/burger-constructor';
 
 import Login from '../../pages/login/login';
 import Register from '../../pages/register/register';
+import ForgotPassword from '../../pages/forgot-password/forgot-password';
 
 function App() {
   const dispatch = useDispatch();
@@ -56,6 +57,7 @@ function App() {
         </Route>
         <Route exact path='/login'><Login /></Route>
         <Route exact path='/register'><Register /></Route>
+        <Route exact path='/forgot-password'><ForgotPassword /></Route>
       </Switch>
     </>
   );
