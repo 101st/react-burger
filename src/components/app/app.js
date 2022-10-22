@@ -16,6 +16,7 @@ import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
 
 import Login from '../../pages/login/login';
+import Register from '../../pages/register/register';
 
 function App() {
   const dispatch = useDispatch();
@@ -37,8 +38,7 @@ function App() {
     <>
       <AppHeader />
       <Switch>
-        <Route path='/login'><Login /></Route>
-        <Route path='/' exec>
+        <Route exact path='/'>
           <DndProvider backend={HTML5Backend}>
             <div className={Styles.container}>
               {getIngredientsRequest && "Загрузка ингредиентов..."}
@@ -53,8 +53,9 @@ function App() {
                 </>}
             </div>
           </DndProvider>
-
         </Route>
+        <Route exact path='/login'><Login /></Route>
+        <Route exact path='/register'><Register /></Route>
       </Switch>
     </>
   );
