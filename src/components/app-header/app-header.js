@@ -17,7 +17,7 @@ function AppHeader() {
         <Logo />
       </div>
       <div className='mt-4 mb-4'>
-        <AppHeaderItem id={'ProfileIcon'} name='Личный кабинет' activeMenuItem={activeMenuItem} setActiveMenuItem={setActiveMenuItem} />
+        <AppHeaderItem id={'ProfileIcon'} name='Личный кабинет' link='/profile' activeMenuItem={activeMenuItem} setActiveMenuItem={setActiveMenuItem} />
       </div>
     </header>
   )
