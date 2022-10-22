@@ -19,6 +19,7 @@ import Login from '../../pages/login/login';
 import Register from '../../pages/register/register';
 import ForgotPassword from '../../pages/forgot-password/forgot-password';
 import ResetPassword from '../../pages/reset-password/reset-password';
+import Profile from '../../pages/profile/profile';
 
 function App() {
   const dispatch = useDispatch();
@@ -60,6 +61,7 @@ function App() {
         <Route exact path='/register'><Register /></Route>
         <Route exact path='/forgot-password'><ForgotPassword /></Route>
         <Route exact path='/reset-password'><ResetPassword /></Route>
+        <Route exact path='/profile'><Profile /></Route>
       </Switch>
     </>
   );
