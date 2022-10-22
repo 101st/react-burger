@@ -14,25 +14,20 @@ const Login = () => {
       <h1 className='mb-6'>Вход</h1>
       <form className={styles.form} onSubmit={console.log}>
         <Input
-          className='mb-6'
-          type={'email'}
-          placeholder={'E-mail'}
+          type='email'
+          placeholder='E-mail'
           value={form.email}
           onChange={onChange}
-          name={'email'}
-          size={'default'}
+          name='email'
         />
         <Input
-          className='mb-6'
-          type={'text'}
-          placeholder={'Пароль'}
+          type='password'
+          placeholder='Пароль'
           value={form.password}
           onChange={onChange}
-          icon={'ShowIcon'}
-          name={'password'}
-          size={'default'}
+          name='password'
         />
-        <Button type='primary' size='medium'>Войти</Button>
+        <Button type='primary' htmlType='button' size='medium'>Войти</Button>
       </form>
       <div className={styles.links + ' text_color_inactive mt-20'}>
         <div className='mb-4'>
