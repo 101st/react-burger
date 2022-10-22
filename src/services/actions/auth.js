@@ -34,3 +34,38 @@ export const getForgotPassword = (email) => {
       });
   };
 };
+
+export const GET_RESET_PASSWORD_REQUEST = "GET_RESET_PASSWORD_REQUEST";
+export const GET_RESET_PASSWORD_SUCCESS = "GET_RESET_PASSWORD_SUCCESS";
+export const GET_RESET_PASSWORD_FAILED = "GET_RESET_PASSWORD_FAILED";
+
+export const getResetPassword = (password, token) => {
+  return function (dispatch) {
+    dispatch({
+      type: GET_RESET_PASSWORD_REQUEST,
+    });
+    fetch(`${BASE_URL}/api/password-reset/reset`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        password,
+        token,
+      }),
+    })
+      .then(checkResponse)
+      .then((json) => {
+        if (json.success) {
+          dispatch({
+            type: GET_RESET_PASSWORD_SUCCESS,
+            message: json.message,
+          });
+        }
+      })
+      .catch((error) => {
+        dispatch({
+          type: GET_RESET_PASSWORD_FAILED,
+        });
+        console.error(error);
+      });
+  };
+};
