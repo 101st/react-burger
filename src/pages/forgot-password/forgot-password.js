@@ -23,7 +23,7 @@ function ForgotPassword() {
     if (getForgotPasswordResponseMessage === true) {
       history.push("/reset-password");
     }
-  }, [dispatch, getForgotPasswordResponseMessage])
+  }, [dispatch, getForgotPasswordResponseMessage, history])
 
   return (
     <div className={styles.container + ' mt-20 text_type_main-default'}>
