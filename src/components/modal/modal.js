@@ -32,7 +32,7 @@ function Modal({ title, isOpen, onClose, children }) {
       </div>,
       document.getElementById("react-modals")
     );
-  return;
+  return null;
 }
 
 Modal.propTypes = {

@@ -84,7 +84,7 @@ function BurgerConstructor() {
           <span className='text text_type_digits-medium mr-2'>{totalPrice}</span>
           <div className={`${Styles['totla-price']}`}><CurrencyIcon type="primary" /></div>
           <div className='ml-10'>
-            <Button type="primary" size="medium"
+            <Button type="primary" htmlType='button' size="medium"
               onClick={() => {
                 dispatch(getOrder(ingredientsId));
               }}
