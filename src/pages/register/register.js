@@ -1,18 +1,25 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './register.module.scss';
 
+import { getRegister } from '../../services/actions/auth';
+
 function Register() {
-  const [form, setValue] = useState({ name: '', email: '', password: '' });
+  const dispatch = useDispatch();
+  const [form, setValue] = useState({ name: 'Username', email: 'test-data@yandex.ru', password: 'password' });
   const onChange = (e) => {
     setValue({ ...form, [e.target.name]: e.target.value });
   }
-
+  const onSubmit = (e) => {
+    e.preventDefault();
+    dispatch(getRegister(form));
+  }
   return (
     <div className={styles.container + ' mt-20 text_type_main-default'}>
       <h1 className='mb-6'>Регистрация</h1>
-      <form className={styles.form} onSubmit={console.log}>
+      <form className={styles.form} onSubmit={onSubmit}>
         <Input
           type='text'
           placeholder='Имя'
@@ -35,7 +42,7 @@ function Register() {
           icon='ShowIcon'
           name='password'
         />
-        <Button type='primary' htmlType='button' size='medium'>Зарегистрироваться</Button>
+        <Button type='primary' htmlType='submit' size='medium'>Зарегистрироваться</Button>
       </form>
       <div className={styles.links + ' text_color_inactive mt-20'}>
         <p className='text text_type_main-small'>

@@ -4,7 +4,7 @@ import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-component
 import styles from './login.module.scss';
 
 const Login = () => {
-  const [form, setValue] = useState({ email: '', password: '' });
+  const [form, setValue] = useState({ email: 'test-data@yandex.ru', password: 'password' });
   const onChange = (e) => {
     setValue({ ...form, [e.target.name]: e.target.value })
   }
@@ -27,7 +27,7 @@ const Login = () => {
           onChange={onChange}
           name='password'
         />
-        <Button type='primary' htmlType='button' size='medium'>Войти</Button>
+        <Button type='primary' htmlType='submit' size='medium'>Войти</Button>
       </form>
       <div className={styles.links + ' text_color_inactive mt-20'}>
         <div className='mb-4'>
