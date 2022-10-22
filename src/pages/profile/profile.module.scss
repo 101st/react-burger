@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.menu>div {
+  height: 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.link {
+  color: #8585AD;
+}
+
+.fields>form>div {
+  margin-top: 24px;
+}
+
+.add-info {
+  width: 320px;
+  font-size: 16px;
+  line-height: 24px;
+  color: #8585AD;
+  opacity: 0.4;
+}
