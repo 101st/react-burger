@@ -75,7 +75,6 @@ export const GET_REGISTER_SUCCESS = "GET_REGISTER_SUCCESS";
 export const GET_REGISTER_FAILED = "GET_REGISTER_FAILED";
 
 export const getRegister = ({ email, password, name }) => {
-  console.log(email, password, name)
   return function (dispatch) {
     dispatch({
       type: GET_REGISTER_REQUEST,
