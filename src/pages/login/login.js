@@ -1,18 +1,26 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
+import { getLogin } from '../../services/actions/auth';
 import styles from './login.module.scss';
 
 const Login = () => {
-  const [form, setValue] = useState({ email: 'test-data@yandex.ru', password: 'password' });
+  const dispatch = useDispatch();
+  const [form, setValue] = useState({ email: 'potorochinau@ya.ru', password: '' });
   const onChange = (e) => {
     setValue({ ...form, [e.target.name]: e.target.value })
+  }
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    dispatch(getLogin(form));
   }
 
   return (
     <div className={styles.container + ' mt-20 text_type_main-default'}>
       <h1 className='mb-6'>Вход</h1>
-      <form className={styles.form} onSubmit={console.log}>
+      <form className={styles.form} onSubmit={onSubmit}>
         <Input
           type='email'
           placeholder='E-mail'
