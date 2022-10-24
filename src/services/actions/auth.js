@@ -105,3 +105,38 @@ export const getRegister = ({ email, password, name }) => {
       });
   };
 };
+
+export const GET_LOGIN_REQUEST = "GET_LOGIN_REQUEST";
+export const GET_LOGIN_SUCCESS = "GET_LOGIN_SUCCESS";
+export const GET_LOGIN_FAILED = "GET_LOGIN_FAILED";
+
+export const getLogin = ({ email, password }) => {
+  return function (dispatch) {
+    dispatch({
+      type: GET_LOGIN_REQUEST,
+    });
+    fetch(`${BASE_URL}/api/auth/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    })
+      .then(checkResponse)
+      .then((json) => {
+        if (json.success) {
+          dispatch({
+            type: GET_LOGIN_SUCCESS,
+            data: json,
+          });
+        }
+      })
+      .catch((error) => {
+        dispatch({
+          type: GET_LOGIN_FAILED,
+        });
+        console.error(error);
+      });
+  };
+};
