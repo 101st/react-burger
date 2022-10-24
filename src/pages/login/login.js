@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { getLogin } from '../../services/actions/auth';
 import styles from './login.module.scss';
@@ -8,8 +8,11 @@ import styles from './login.module.scss';
 const Login = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const [form, setValue] = useState({ email: 'potorochinau@ya.ru', password: '' });
+  const location = useLocation();
+  const [form, setValue] = useState({ email: 'potorochinau@ya.ru', password: '1234567qQ' });
   const user = useSelector(store => store.auth.user);
+  const from = location.state?.from?.pathname || '/';
+
   const onChange = (e) => {
     setValue({ ...form, [e.target.name]: e.target.value })
   }
@@ -21,9 +24,9 @@ const Login = () => {
 
   useEffect(() => {
     if (user !== null && user.hasOwnProperty('name')) {
-      history.push('/');
+      history.push(from);
     }
-  }, [user, history]);
+  }, [user, history, from]);
 
   return (
     <div className={styles.container + ' mt-20 text_type_main-default'}>

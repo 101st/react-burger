@@ -19,8 +19,8 @@ function AppHeader() {
           <Link to='/' className={`ml-2 ${pathname !== '/' && 'text_color_inactive'}`}>Конструктор</Link>
         </nav>
         <nav className='pl-5 pr-5 mr-2'>
-          <ListIcon type={pathname === '/feed' ? 'primary' : 'secondary'} />
-          <Link to='/feed' className={`ml-2 ${pathname !== '/feed' && 'text_color_inactive'}`}>Лента заказов</Link>
+          <ListIcon type={pathname === '/profile/orders' ? 'primary' : 'secondary'} />
+          <Link to='/profile/orders' className={`ml-2 ${pathname !== '/profile/orders' && 'text_color_inactive'}`}>Лента заказов</Link>
         </nav>
       </div>
       <div className={Styles.logo}>

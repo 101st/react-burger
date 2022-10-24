@@ -20,6 +20,7 @@ import Register from '../../pages/register/register';
 import ForgotPassword from '../../pages/forgot-password/forgot-password';
 import ResetPassword from '../../pages/reset-password/reset-password';
 import Profile from '../../pages/profile/profile';
+import ProtectedRoute from '../protected-route/protected-route';
 
 function App() {
   const dispatch = useDispatch();
@@ -60,8 +61,9 @@ function App() {
         <Route exact path='/login'><Login /></Route>
         <Route exact path='/register'><Register /></Route>
         <Route exact path='/forgot-password'><ForgotPassword /></Route>
-        <Route exact path='/reset-password'><ResetPassword /></Route>
-        <Route exact path='/profile'><Profile /></Route>
+        <ProtectedRoute exact path='/reset-password'><ResetPassword /></ProtectedRoute>
+        <ProtectedRoute exect path='/profile/orders'><div>FEED</div></ProtectedRoute>
+        <ProtectedRoute exect path='/profile'><Profile /></ProtectedRoute>
       </Switch>
     </>
   );
