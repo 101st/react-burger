@@ -17,11 +17,11 @@ import {
 } from "../actions/auth";
 
 const initialState = {
-  getForgotPasswordResponseMessage: false,
+  getForgotPasswordSuccess: false,
   getForgotPasswordRequest: false,
   getForgotPasswordFailed: false,
 
-  getResetPasswordResponseMessage: false,
+  getResetPasswordSuccess: false,
   getResetPasswordRequest: false,
   getResetPasswordFailed: false,
 
@@ -31,7 +31,11 @@ const initialState = {
   accessToken: null,
 
   getRefreshTokenRequest: false,
+  getRefreshTokenSuccess: false,
   getRefreshTokenFailed: false,
+
+  getLogoutRequest: false,
+  getLogoutFailed: false,
 
 };
 
@@ -41,7 +45,7 @@ export const authReducer = (state = initialState, action) => {
     case GET_FORGOT_PASSWORD_REQUEST: {
       return {
         ...state,
-        getForgotPasswordResponse: false,
+        getForgotPasswordSuccess: false,
         getForgotPasswordRequest: true,
         getForgotPasswordFailed: false,
       };
@@ -50,7 +54,7 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         getForgotPasswordRequest: false,
-        getForgotPasswordResponseMessage: action.message === 'Reset email sent',
+        getForgotPasswordSuccess: action.message === 'Reset email sent',
       };
     }
     case GET_FORGOT_PASSWORD_FAILED: {
@@ -73,7 +77,7 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         getResetPasswordRequest: false,
-        getResetPasswordResponseMessage: action.message === 'Reset email sent',
+        getResetPasswordSuccess: action.message === 'Reset email sent',
       };
     }
     case GET_RESET_PASSWORD_FAILED: {
@@ -87,7 +91,6 @@ export const authReducer = (state = initialState, action) => {
     case GET_LOGIN_REQUEST: {
       return {
         ...state,
-        getLoginResponse: false,
         getLoginRequest: true,
         getLoginFailed: false,
       };
@@ -112,7 +115,7 @@ export const authReducer = (state = initialState, action) => {
     case GET_REFRESH_TOKEN_REQUEST: {
       return {
         ...state,
-        getRefreshTokenResponse: false,
+        getRefreshTokenSuccess: false,
         getRefreshTokenRequest: true,
         getRefreshTokenFailed: false,
       };
@@ -122,6 +125,7 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         getRefreshTokenRequest: false,
+        getRefreshTokenSuccess: true,
         accessToken: action.data?.accessToken,
       };
     }
