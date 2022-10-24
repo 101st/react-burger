@@ -20,7 +20,7 @@ import {
   PATCH_USER_REQUEST,
   PATCH_USER_SUCCESS,
   PATCH_USER_FAILED,
-} from "../actions/auth";
+} from '../actions/auth';
 
 const initialState = {
   getForgotPasswordRequest: false,

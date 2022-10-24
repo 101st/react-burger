@@ -30,7 +30,7 @@ function Modal({ title, isOpen, onClose, children }) {
         </div>
         <ModalBackDrop onClose={onClose} />
       </div>,
-      document.getElementById("react-modals")
+      document.getElementById('react-modals')
     );
   return null;
 }

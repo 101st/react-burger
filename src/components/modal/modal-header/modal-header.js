@@ -10,7 +10,7 @@ function ModalHeader({ onClose, children }) {
     <div className={`${Styles.container}`}>
       <h3>{children}</h3>
       <div>
-        <CloseIcon type="primary" onClick={onClose} />
+        <CloseIcon type='primary' onClick={onClose} />
       </div>
     </div>
   )

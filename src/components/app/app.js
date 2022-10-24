@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from "react-redux";
-import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
-import { Switch, Route } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+import { Switch, Route } from 'react-router-dom';
 
 import {
   setIngredientsStore,
@@ -44,8 +44,8 @@ function App() {
         <Route exact path='/'>
           <DndProvider backend={HTML5Backend}>
             <div className={Styles.container}>
-              {getIngredientsRequest && "Загрузка ингредиентов..."}
-              {getIngredientsFailed && "Ошибка: Загрузка ингредиентов!"}
+              {getIngredientsRequest && 'Загрузка ингредиентов...'}
+              {getIngredientsFailed && 'Ошибка: Загрузка ингредиентов!'}
               {
                 !getIngredientsRequest
                 && !getIngredientsFailed

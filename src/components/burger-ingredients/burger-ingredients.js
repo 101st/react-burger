@@ -1,11 +1,11 @@
-import { useCallback, useState, useRef, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useCallback, useState, useRef, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import BurgerIngredientItem from './burger-ingredient-item';
 import Modal from '../modal/modal';
 import IngredientDetails from '../ingredient-details/ingredient-details';
 import { setIngredientDetails, clearIngredientDetails } from '../../services/actions/ingredient-details';
-import { useInView } from "react-intersection-observer";
+import { useInView } from 'react-intersection-observer';
 
 import Styles from './burger-ingredients.module.scss';
 
@@ -18,7 +18,7 @@ const INGREDIENTS_TITLE_MAPPING = {
 function BurgerIngredients() {
   const dispatch = useDispatch();
 
-  const [currentIngredientType, setCurrentIngredientType] = useState("bun");
+  const [currentIngredientType, setCurrentIngredientType] = useState('bun');
   const { ingredients } = useSelector((store) => store.ingredients);
   const { constructorIngredients } = useSelector((store) => store.constructors);
   const { isOpen } = useSelector(store => store.ingredientDetails);
@@ -52,16 +52,16 @@ function BurgerIngredients() {
   }, [ingredients, dispatch, getCount]);
 
   const handleSmoothScroll = (type) => {
-    TABS[type].click.current.scrollIntoView({ behavior: "smooth" });
+    TABS[type].click.current.scrollIntoView({ behavior: 'smooth' });
   };
 
   useEffect(() => {
     if (inViewBuns) {
-      setCurrentIngredientType("bun");
+      setCurrentIngredientType('bun');
     } else if (inViewSauce) {
-      setCurrentIngredientType("sauce");
+      setCurrentIngredientType('sauce');
     } else if (inViewMain) {
-      setCurrentIngredientType("main");
+      setCurrentIngredientType('main');
     }
   }, [inViewBuns, inViewSauce, inViewMain]);
 

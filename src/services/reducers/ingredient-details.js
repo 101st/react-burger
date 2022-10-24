@@ -1,7 +1,7 @@
 import {
   CLEAR_INGREDIENT_DETAILS,
   SET_INGREDIENT_DETAILS,
-} from "../actions/ingredient-details";
+} from '../actions/ingredient-details';
 
 const initialState = {
   ingredientDetails: {},

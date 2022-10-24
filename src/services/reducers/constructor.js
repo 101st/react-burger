@@ -4,7 +4,7 @@ import {
   CLEAR_CONSTRUCTOR,
   DRAG_INGREDIENT,
   SET_TOTAL_PRICE,
-} from "../actions/constructor";
+} from '../actions/constructor';
 
 const initialState = {
   constructorIngredients: [],

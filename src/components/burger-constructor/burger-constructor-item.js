@@ -1,10 +1,10 @@
 import { bool, number, shape } from 'prop-types';
 import { ingredientType } from '../../utils/types';
-import { useRef } from "react";
+import { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { useDrag, useDrop } from 'react-dnd';
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import { removeIngredient, dragIngredient } from "../../services/actions/constructor";
+import { removeIngredient, dragIngredient } from '../../services/actions/constructor';
 
 import Styles from './burger-constructor.module.scss';
 
@@ -13,7 +13,7 @@ function BurgerConstructorItem({ ingredient, isDraggable, index }) {
   const dispatch = useDispatch();
 
   const [, drop] = useDrop({
-    accept: "CONSTRUCTOR",
+    accept: 'CONSTRUCTOR',
     hover(ingredient) {
       if (!ref.current) {
         return;
@@ -27,7 +27,7 @@ function BurgerConstructorItem({ ingredient, isDraggable, index }) {
   });
 
   const [{ opacity }, drag] = useDrag({
-    type: "CONSTRUCTOR",
+    type: 'CONSTRUCTOR',
     item: { ...ingredient, index },
     collect: (monitor) => ({
       opacity: monitor.isDragging() ? 0.5 : 1,
@@ -42,7 +42,7 @@ function BurgerConstructorItem({ ingredient, isDraggable, index }) {
       ref={ref}
       style={{ opacity }}
     >
-      {isDraggable && <div className='mr-2'><DragIcon type="primary" /></div>}
+      {isDraggable && <div className='mr-2'><DragIcon type='primary' /></div>}
       <ConstructorElement
         text={`${ingredient.name}`}
         isLocked={ingredient.isLocked}

@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 import { useDrop } from 'react-dnd';
 
 import { CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import BurgerConstructorItem from "./burger-constructor-item";
+import BurgerConstructorItem from './burger-constructor-item';
 import Modal from '../modal/modal';
 import OrderDetails from '../order-details/order-details';
 import OrderDetailsLoader from '../order-details/order-details-loader';
@@ -36,11 +36,11 @@ function BurgerConstructor() {
     });
   }, [constructorIngredients]);
 
-  const boxShadowColor = isHover ? "#4c4cff90" : "transparent";
+  const boxShadowColor = isHover ? '#4c4cff90' : 'transparent';
 
   useEffect(() => {
     const totalPrice = constructorIngredients.reduce((acc, element) => {
-      if (element.type === "bun") {
+      if (element.type === 'bun') {
         acc += 2 * element.price;
       } else {
         acc += element.price;
@@ -48,7 +48,7 @@ function BurgerConstructor() {
       return acc;
     }, 0);
     dispatch(setTotalPrice(totalPrice));
-    setWithBun(constructorIngredients.some((ingredient) => ingredient.type === "bun"));
+    setWithBun(constructorIngredients.some((ingredient) => ingredient.type === 'bun'));
   }, [constructorIngredients, dispatch]);
 
   return (
@@ -82,9 +82,9 @@ function BurgerConstructor() {
       <div className={`${Styles.order}`}>
         <div className={`${Styles['price']} mt-10`}>
           <span className='text text_type_digits-medium mr-2'>{totalPrice}</span>
-          <div className={`${Styles['totla-price']}`}><CurrencyIcon type="primary" /></div>
+          <div className={`${Styles['totla-price']}`}><CurrencyIcon type='primary' /></div>
           <div className='ml-10'>
-            <Button type="primary" htmlType='button' size="medium"
+            <Button type='primary' htmlType='button' size='medium'
               onClick={() => {
                 dispatch(getOrder(ingredientsId));
               }}
@@ -103,7 +103,7 @@ function BurgerConstructor() {
             ? <OrderDetailsLoader />
             : <OrderDetails
               orderId={order?.number | 1}
-              status={`Ваш заказ "${name}" начали готовить`}
+              status={`Ваш заказ '${name}' начали готовить`}
             />}
         </Modal>
       </div>

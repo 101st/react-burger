@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Input, Button } from "@ya.praktikum/react-developer-burger-ui-components";
-import { Link, useHistory } from "react-router-dom";
-import { getForgotPassword } from "../../services/actions/auth";
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
+import { Link, useHistory } from 'react-router-dom';
+import { getForgotPassword } from '../../services/actions/auth';
 
-import styles from "./forgot-password.module.scss";
+import styles from './forgot-password.module.scss';
 
 function ForgotPassword() {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ function ForgotPassword() {
   }
   useEffect(() => {
     if (getForgotPasswordResponseMessage === true) {
-      history.push("/reset-password");
+      history.push('/reset-password');
     }
   }, [dispatch, getForgotPasswordResponseMessage, history])
 

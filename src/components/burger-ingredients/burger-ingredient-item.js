@@ -27,7 +27,7 @@ function BurgerIngredientItem({
       dispatch(setCurrentIngredient(ingredient));
       onClick();
     }}>
-      {count > 0 && <Counter count={count} size="default" />}
+      {count > 0 && <Counter count={count} size='default' />}
       <img width={252} height={126} alt={name} src={image} />
       <div className={`${Styles['proteins-container']}`}>
         <div className={`${Styles['proteins']} mt-1 mb-1`}>
