@@ -11,6 +11,9 @@ import {
   GET_REFRESH_TOKEN_REQUEST,
   GET_REFRESH_TOKEN_SUCCESS,
   GET_REFRESH_TOKEN_FAILED,
+  GET_LOGOUT_REQUEST,
+  GET_LOGOUT_SUCCESS,
+  GET_LOGOUT_FAILED,
 } from "../actions/auth";
 
 const initialState = {
@@ -127,6 +130,29 @@ export const authReducer = (state = initialState, action) => {
         ...state,
         getRefreshTokenRequest: false,
         getRefreshTokenFailed: true,
+      };
+    }
+    // Logout
+    case GET_LOGOUT_REQUEST: {
+      return {
+        ...state,
+        getLogoutSuccess: false,
+        getLogoutRequest: true,
+        getLogoutFailed: false,
+      };
+    }
+    case GET_LOGOUT_SUCCESS: {
+      return {
+        ...state,
+        getLogoutSuccess: true,
+        getLogoutRequest: action.message === 'Successful logout',
+      };
+    }
+    case GET_LOGOUT_FAILED: {
+      return {
+        ...state,
+        getLogoutRequest: false,
+        getLogoutFailed: true,
       };
     }
 
