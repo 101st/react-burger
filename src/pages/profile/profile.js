@@ -22,7 +22,7 @@ function Profile() {
           </Link>
         </div>
         <div>
-          <Link to={'/profile'} className={styles.link}>
+          <Link to={'/profile/orders'} className={styles.link}>
             <p className="text text_type_main-medium">
               История заказов
             </p>
