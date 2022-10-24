@@ -23,7 +23,7 @@ const Login = () => {
     if (user !== null && user.hasOwnProperty('name')) {
       history.push('/');
     }
-  }, [user]);
+  }, [user, history]);
 
   return (
     <div className={styles.container + ' mt-20 text_type_main-default'}>
