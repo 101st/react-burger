@@ -208,3 +208,74 @@ export const getLogout = () => {
       });
   };
 };
+
+export const GET_USER_REQUEST = "GET_USER_REQUEST";
+export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
+export const GET_USER_FAILED = "GET_USER_FAILED";
+
+export const getUser = (accessToken) => {
+  return function (dispatch) {
+    dispatch({
+      type: GET_USER_REQUEST,
+    });
+    fetch(`${BASE_URL}/api/auth/user`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        'authorization': accessToken,
+      },
+    })
+      .then(checkResponse)
+      .then((json) => {
+        if (json.success) {
+          dispatch({
+            type: GET_USER_SUCCESS,
+            data: json,
+          });
+        }
+      })
+      .catch((error) => {
+        dispatch({
+          type: GET_USER_FAILED,
+        });
+        console.error(error);
+      });
+  };
+};
+
+export const PATCH_USER_REQUEST = "PATCH_USER_REQUEST";
+export const PATCH_USER_SUCCESS = "PATCH_USER_SUCCESS";
+export const PATCH_USER_FAILED = "PATCH_USER_FAILED";
+
+export const patchUser = (accessToken) => {
+  return function (dispatch) {
+    dispatch({
+      type: PATCH_USER_REQUEST,
+    });
+    fetch(`${BASE_URL}/api/auth/logout`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        'authorization': accessToken,
+      },
+      body: JSON.stringify({
+        token: localStorage.getItem('token'),
+      }),
+    })
+      .then(checkResponse)
+      .then((json) => {
+        if (json.success) {
+          dispatch({
+            type: PATCH_USER_SUCCESS,
+            data: json,
+          });
+        }
+      })
+      .catch((error) => {
+        dispatch({
+          type: PATCH_USER_FAILED,
+        });
+        console.error(error);
+      });
+  };
+};

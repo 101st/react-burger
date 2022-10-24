@@ -14,18 +14,25 @@ import {
   GET_LOGOUT_REQUEST,
   GET_LOGOUT_SUCCESS,
   GET_LOGOUT_FAILED,
+  GET_USER_REQUEST,
+  GET_USER_SUCCESS,
+  GET_USER_FAILED,
+  PATCH_USER_REQUEST,
+  PATCH_USER_SUCCESS,
+  PATCH_USER_FAILED,
 } from "../actions/auth";
 
 const initialState = {
-  getForgotPasswordSuccess: false,
   getForgotPasswordRequest: false,
+  getForgotPasswordSuccess: false,
   getForgotPasswordFailed: false,
 
-  getResetPasswordSuccess: false,
   getResetPasswordRequest: false,
+  getResetPasswordSuccess: false,
   getResetPasswordFailed: false,
 
   getLoginRequest: false,
+  getLoginSuccess: false,
   getLoginFailed: false,
   user: null,
   accessToken: null,
@@ -35,8 +42,16 @@ const initialState = {
   getRefreshTokenFailed: false,
 
   getLogoutRequest: false,
+  getLogoutSuccess: false,
   getLogoutFailed: false,
 
+  getUserRequest: false,
+  getUserSuccess: false,
+  getUserFailed: false,
+
+  patchUserRequest: false,
+  patchUserSuccess: false,
+  patchUserFailed: false,
 };
 
 export const authReducer = (state = initialState, action) => {
@@ -45,8 +60,8 @@ export const authReducer = (state = initialState, action) => {
     case GET_FORGOT_PASSWORD_REQUEST: {
       return {
         ...state,
-        getForgotPasswordSuccess: false,
         getForgotPasswordRequest: true,
+        getForgotPasswordSuccess: false,
         getForgotPasswordFailed: false,
       };
     }
@@ -68,8 +83,8 @@ export const authReducer = (state = initialState, action) => {
     case GET_RESET_PASSWORD_REQUEST: {
       return {
         ...state,
-        getResetPasswordResponse: false,
         getResetPasswordRequest: true,
+        getResetPasswordSuccess: false,
         getResetPasswordFailed: false,
       };
     }
@@ -92,6 +107,7 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         getLoginRequest: true,
+        getLoginSuccess: false,
         getLoginFailed: false,
       };
     }
@@ -100,6 +116,7 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         getLoginRequest: false,
+        getLoginSuccess: true,
         user: action.data?.user,
         accessToken: action.data?.accessToken,
       };
@@ -115,8 +132,8 @@ export const authReducer = (state = initialState, action) => {
     case GET_REFRESH_TOKEN_REQUEST: {
       return {
         ...state,
-        getRefreshTokenSuccess: false,
         getRefreshTokenRequest: true,
+        getRefreshTokenSuccess: false,
         getRefreshTokenFailed: false,
       };
     }
@@ -140,16 +157,16 @@ export const authReducer = (state = initialState, action) => {
     case GET_LOGOUT_REQUEST: {
       return {
         ...state,
-        getLogoutSuccess: false,
         getLogoutRequest: true,
+        getLogoutSuccess: false,
         getLogoutFailed: false,
       };
     }
     case GET_LOGOUT_SUCCESS: {
       return {
         ...state,
-        getLogoutSuccess: true,
-        getLogoutRequest: action.message === 'Successful logout',
+        getLogoutRequest: false,
+        getLogoutSuccess: action.message === 'Successful logout',
       };
     }
     case GET_LOGOUT_FAILED: {
@@ -157,6 +174,55 @@ export const authReducer = (state = initialState, action) => {
         ...state,
         getLogoutRequest: false,
         getLogoutFailed: true,
+      };
+    }
+    // Get User
+    case GET_USER_REQUEST: {
+      return {
+        ...state,
+        getUserRequest: true,
+        getUserSuccess: false,
+        getUserFailed: false,
+      };
+    }
+    case GET_USER_SUCCESS: {
+      return {
+        ...state,
+        getUserRequest: false,
+        user: action.data?.user,
+        getUserSuccess: action.message === 'Successful logout',
+      };
+    }
+    case GET_USER_FAILED: {
+      return {
+        ...state,
+        getUserRequest: false,
+        getUserFailed: true,
+      };
+    }
+
+    // Patch User
+    case PATCH_USER_REQUEST: {
+      return {
+        ...state,
+        patchUserRequest: true,
+        patchUserSuccess: false,
+        patchUserFailed: false,
+      };
+    }
+    case PATCH_USER_SUCCESS: {
+      return {
+        ...state,
+        patchUserRequest: false,
+        user: action.data?.user,
+        patchUserSuccess: action.message === 'Successful logout',
+      };
+    }
+    case PATCH_USER_FAILED: {
+      return {
+        ...state,
+        patchUserRequest: false,
+        patchUserFailed: true,
       };
     }
 
