@@ -1,15 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Input } from "@ya.praktikum/react-developer-burger-ui-components";
+import { getUser } from "../../services/actions/auth";
 
 import styles from "./profile.module.scss";
+import { store } from "../../services/store";
 
 function Profile() {
-  const [form, setValue] = useState({ email: '', password: '', name: '' })
+  const dispatch = useDispatch();
+  const { accessToken, user } = useSelector(store => store.auth);
+  const [form, setValue] = useState({
+    email: user?.email ?? '',
+    password: user?.password ?? '',
+    name: user?.name ?? '',
+  })
 
   const onChange = (e) => {
     setValue({ ...form, [e.target.name]: e.target.value });
   }
+
+  useEffect(() => {
+    dispatch(getUser(accessToken));
+  }, [dispatch, accessToken]);
 
   return (
     <div className={styles.container + ' mt-20'}>
