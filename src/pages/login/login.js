@@ -1,13 +1,15 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { getLogin } from '../../services/actions/auth';
 import styles from './login.module.scss';
 
 const Login = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [form, setValue] = useState({ email: 'potorochinau@ya.ru', password: '' });
+  const user = useSelector(store => store.auth.user);
   const onChange = (e) => {
     setValue({ ...form, [e.target.name]: e.target.value })
   }
@@ -16,6 +18,12 @@ const Login = () => {
     e.preventDefault();
     dispatch(getLogin(form));
   }
+
+  useEffect(() => {
+    if (user !== null && user.hasOwnProperty('name')) {
+      history.push('/');
+    }
+  }, [user]);
 
   return (
     <div className={styles.container + ' mt-20 text_type_main-default'}>
