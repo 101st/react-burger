@@ -174,3 +174,37 @@ export const getRefreshToken = () => {
       });
   };
 };
+
+export const GET_LOGOUT_REQUEST = "GET_LOGOUT_REQUEST";
+export const GET_LOGOUT_SUCCESS = "GET_LOGOUT_SUCCESS";
+export const GET_LOGOUT_FAILED = "GET_LOGOUT_FAILED";
+
+export const getLogout = () => {
+  return function (dispatch) {
+    dispatch({
+      type: GET_LOGOUT_REQUEST,
+    });
+    fetch(`${BASE_URL}/api/auth/logout`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        token: localStorage.getItem('token'),
+      }),
+    })
+      .then(checkResponse)
+      .then((json) => {
+        if (json.success) {
+          dispatch({
+            type: GET_LOGOUT_SUCCESS,
+            data: json,
+          });
+        }
+      })
+      .catch((error) => {
+        dispatch({
+          type: GET_LOGOUT_FAILED,
+        });
+        console.error(error);
+      });
+  };
+};
