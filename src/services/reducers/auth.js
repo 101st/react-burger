@@ -8,6 +8,9 @@ import {
   GET_LOGIN_REQUEST,
   GET_LOGIN_SUCCESS,
   GET_LOGIN_FAILED,
+  GET_REFRESH_TOKEN_REQUEST,
+  GET_REFRESH_TOKEN_SUCCESS,
+  GET_REFRESH_TOKEN_FAILED,
 } from "../actions/auth";
 
 const initialState = {
@@ -19,11 +22,14 @@ const initialState = {
   getResetPasswordRequest: false,
   getResetPasswordFailed: false,
 
-  getLoginResponseMessage: false,
   getLoginRequest: false,
   getLoginFailed: false,
   user: null,
   accessToken: null,
+
+  getRefreshTokenRequest: false,
+  getRefreshTokenFailed: false,
+
 };
 
 export const authReducer = (state = initialState, action) => {
@@ -90,7 +96,6 @@ export const authReducer = (state = initialState, action) => {
         getLoginRequest: false,
         user: action.data?.user,
         accessToken: action.data?.accessToken,
-        getLoginResponseMessage: action.message === 'Reset email sent',
       };
     }
     case GET_LOGIN_FAILED: {
@@ -98,6 +103,30 @@ export const authReducer = (state = initialState, action) => {
         ...state,
         getLoginRequest: false,
         getLoginFailed: true,
+      };
+    }
+    // Refresh token
+    case GET_REFRESH_TOKEN_REQUEST: {
+      return {
+        ...state,
+        getRefreshTokenResponse: false,
+        getRefreshTokenRequest: true,
+        getRefreshTokenFailed: false,
+      };
+    }
+    case GET_REFRESH_TOKEN_SUCCESS: {
+      localStorage.setItem('refreshToken', action.data?.refreshToken);
+      return {
+        ...state,
+        getRefreshTokenRequest: false,
+        accessToken: action.data?.accessToken,
+      };
+    }
+    case GET_REFRESH_TOKEN_FAILED: {
+      return {
+        ...state,
+        getRefreshTokenRequest: false,
+        getRefreshTokenFailed: true,
       };
     }
 

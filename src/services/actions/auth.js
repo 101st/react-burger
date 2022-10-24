@@ -140,3 +140,37 @@ export const getLogin = ({ email, password }) => {
       });
   };
 };
+
+export const GET_REFRESH_TOKEN_REQUEST = "GET_REFRESH_TOKEN_REQUEST";
+export const GET_REFRESH_TOKEN_SUCCESS = "GET_REFRESH_TOKEN_SUCCESS";
+export const GET_REFRESH_TOKEN_FAILED = "GET_REFRESH_TOKEN_FAILED";
+
+export const getRefreshToken = () => {
+  return function (dispatch) {
+    dispatch({
+      type: GET_REFRESH_TOKEN_REQUEST,
+    });
+    fetch(`${BASE_URL}/api/auth/token`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        token: localStorage.getItem('token'),
+      }),
+    })
+      .then(checkResponse)
+      .then((json) => {
+        if (json.success) {
+          dispatch({
+            type: GET_REFRESH_TOKEN_SUCCESS,
+            data: json,
+          });
+        }
+      })
+      .catch((error) => {
+        dispatch({
+          type: GET_REFRESH_TOKEN_FAILED,
+        });
+        console.error(error);
+      });
+  };
+};
