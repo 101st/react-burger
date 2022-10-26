@@ -56,6 +56,7 @@ const initialState = {
 
 export const authReducer = (state = initialState, action) => {
   switch (action.type) {
+
     // Forgot password
     case GET_FORGOT_PASSWORD_REQUEST: {
       return {
@@ -79,6 +80,7 @@ export const authReducer = (state = initialState, action) => {
         getForgotPasswordFailed: true,
       };
     }
+
     // Reset password
     case GET_RESET_PASSWORD_REQUEST: {
       return {
@@ -102,6 +104,7 @@ export const authReducer = (state = initialState, action) => {
         getResetPasswordFailed: true,
       };
     }
+
     // Login
     case GET_LOGIN_REQUEST: {
       return {
@@ -128,6 +131,7 @@ export const authReducer = (state = initialState, action) => {
         getLoginFailed: true,
       };
     }
+
     // Refresh token
     case GET_REFRESH_TOKEN_REQUEST: {
       return {
@@ -153,6 +157,7 @@ export const authReducer = (state = initialState, action) => {
         getRefreshTokenFailed: true,
       };
     }
+
     // Logout
     case GET_LOGOUT_REQUEST: {
       return {
@@ -176,6 +181,7 @@ export const authReducer = (state = initialState, action) => {
         getLogoutFailed: true,
       };
     }
+
     // Get User
     case GET_USER_REQUEST: {
       return {
