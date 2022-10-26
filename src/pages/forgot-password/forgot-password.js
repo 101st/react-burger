@@ -10,8 +10,8 @@ function ForgotPassword() {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const { getForgotPasswordResponseMessage } = useSelector((store) => store.auth);
-  const [form, setValue] = useState({ email: '' });
+  const { getForgotPasswordSuccess } = useSelector((store) => store.auth);
+  const [form, setValue] = useState({ email: 'potorochinau@ya.ru' });
   const onChange = (e) => {
     setValue({ ...form, [e.target.name]: e.target.value })
   }
@@ -20,10 +20,10 @@ function ForgotPassword() {
     dispatch(getForgotPassword(form.email));
   }
   useEffect(() => {
-    if (getForgotPasswordResponseMessage === true) {
+    if (getForgotPasswordSuccess === true) {
       history.push('/reset-password');
     }
-  }, [dispatch, getForgotPasswordResponseMessage, history])
+  }, [dispatch, getForgotPasswordSuccess, history])
 
   return (
     <div className={styles.container + ' mt-20 text_type_main-default'}>

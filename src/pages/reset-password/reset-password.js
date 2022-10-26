@@ -10,7 +10,7 @@ function ResetPassword() {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const { getForgotPasswordResponseMessage } = useSelector((store) => store.auth);
+  const { getResetPasswordSuccess } = useSelector((store) => store.auth);
   const [form, setValue] = useState({ password: '', token: '' });
   const onChange = (e) => {
     setValue({ ...form, [e.target.name]: e.target.value })
@@ -20,10 +20,10 @@ function ResetPassword() {
     dispatch(getResetPassword(form.password, form.token));
   }
   useEffect(() => {
-    if (getForgotPasswordResponseMessage === true) {
-      history.push('/reset-password');
+    if (getResetPasswordSuccess === true) {
+      history.push('/login');
     }
-  }, [dispatch, getForgotPasswordResponseMessage, history])
+  }, [dispatch, getResetPasswordSuccess, history])
 
   return (
     <div className={styles.container + ' mt-20 text_type_main-default'}>

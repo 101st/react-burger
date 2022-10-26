@@ -92,7 +92,7 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         getResetPasswordRequest: false,
-        getResetPasswordSuccess: action.message === 'Reset email sent',
+        getResetPasswordSuccess: action.message === 'Password successfully reset',
       };
     }
     case GET_RESET_PASSWORD_FAILED: {
