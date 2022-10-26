@@ -3,12 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { getUser, patchUser } from '../../services/actions/auth';
+import { getCookie } from '../../utils/cookies';
 
 import styles from './profile.module.scss';
 
 function Profile() {
   const dispatch = useDispatch();
-  const { accessToken, user } = useSelector(store => store.auth);
+  const { user } = useSelector(store => store.auth);
+  const accessToken = getCookie('accessToken');
   const [form, setValue] = useState({
     email: user?.email ?? '',
     password: user?.password ?? '',
@@ -76,12 +78,17 @@ function Profile() {
             placeholder='Пароль'
             onChange={onChange}
             icon='EditIcon'
-            value={form.password}
+            value={form.password || ''}
             name='password'
           />
           <div className={styles['form-buttons']}>
-            <Button type='primary' onClick={() => { dispatch(patchUser(form)) }} htmlType='button' size='medium'>Сохранить</Button>
-            <Button type='primary' onClick={() => { user && setValue(user) }} htmlType='button' size='medium'>Отмена</Button>
+            <Button
+              type='primary'
+              disabled={form?.name === user?.name && form?.email === user?.email && form?.password === ''}
+              onClick={() => { dispatch(patchUser({ name: form.name, email: form.email }, accessToken)) }}
+              htmlType='button'
+              size='medium'>Сохранить</Button>
+            <Button type='primary' onClick={() => { setValue(user) }} htmlType='button' size='medium'>Отмена</Button>
           </div>
         </form>
       </div>
