@@ -2,7 +2,9 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import { getLogin } from '../../services/actions/auth';
+import { getLogin, getRefreshToken } from '../../services/actions/auth';
+import { getCookie } from '../../utils/cookies';
+
 import styles from './login.module.scss';
 
 const Login = () => {
@@ -10,7 +12,7 @@ const Login = () => {
   const history = useHistory();
   const location = useLocation();
   const [form, setValue] = useState({ email: 'potorochinau@ya.ru', password: '1234567qQ' });
-  const user = useSelector(store => store.auth.user);
+  const { user } = useSelector(store => store.auth);
   const from = location.state?.from?.pathname || '/';
 
   const onChange = (e) => {
@@ -23,7 +25,13 @@ const Login = () => {
   }
 
   useEffect(() => {
-    if (user !== null && user.hasOwnProperty('name')) {
+    if (!user?.name) {
+      dispatch(getRefreshToken());
+    }
+  }, [dispatch, user]);
+
+  useEffect(() => {
+    if (getCookie('accessToken')) {
       history.push(from);
     }
   }, [user, history, from]);
