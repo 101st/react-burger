@@ -262,7 +262,8 @@ export const patchUser = (user) => {
         'authorization': getCookie('accessToken'),
       },
       body: JSON.stringify({
-        user,
+        name: user.name,
+        email: user.email,
       }),
     })
       .then(checkResponse)
