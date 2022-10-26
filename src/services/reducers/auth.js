@@ -1,3 +1,4 @@
+import { setCookie } from '../../utils/cookies';
 import {
   GET_FORGOT_PASSWORD_REQUEST,
   GET_FORGOT_PASSWORD_SUCCESS,
@@ -35,7 +36,6 @@ const initialState = {
   getLoginSuccess: false,
   getLoginFailed: false,
   user: null,
-  accessToken: null,
 
   getRefreshTokenRequest: false,
   getRefreshTokenSuccess: false,
@@ -113,12 +113,12 @@ export const authReducer = (state = initialState, action) => {
     }
     case GET_LOGIN_SUCCESS: {
       localStorage.setItem('refreshToken', action.data?.refreshToken);
+      setCookie('accessToken', action.data?.accessToken);
       return {
         ...state,
         getLoginRequest: false,
         getLoginSuccess: true,
         user: action.data?.user,
-        accessToken: action.data?.accessToken,
       };
     }
     case GET_LOGIN_FAILED: {
@@ -139,11 +139,11 @@ export const authReducer = (state = initialState, action) => {
     }
     case GET_REFRESH_TOKEN_SUCCESS: {
       localStorage.setItem('refreshToken', action.data?.refreshToken);
+      setCookie('accessToken', action.data?.accessToken);
       return {
         ...state,
         getRefreshTokenRequest: false,
         getRefreshTokenSuccess: true,
-        accessToken: action.data?.accessToken,
       };
     }
     case GET_REFRESH_TOKEN_FAILED: {

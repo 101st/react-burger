@@ -1,5 +1,6 @@
 import { BASE_URL } from '../../utils/const';
 import { checkResponse } from '../../utils/common';
+import { getCookie } from '../../utils/cookies';
 
 export const GET_FORGOT_PASSWORD_REQUEST = 'GET_FORGOT_PASSWORD_REQUEST';
 export const GET_FORGOT_PASSWORD_SUCCESS = 'GET_FORGOT_PASSWORD_SUCCESS';
@@ -154,7 +155,7 @@ export const getRefreshToken = () => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        token: localStorage.getItem('token'),
+        token: localStorage.getItem('refreshToken'),
       }),
     })
       .then(checkResponse)
@@ -213,7 +214,7 @@ export const GET_USER_REQUEST = 'GET_USER_REQUEST';
 export const GET_USER_SUCCESS = 'GET_USER_SUCCESS';
 export const GET_USER_FAILED = 'GET_USER_FAILED';
 
-export const getUser = (accessToken) => {
+export const getUser = () => {
   return function (dispatch) {
     dispatch({
       type: GET_USER_REQUEST,
@@ -222,7 +223,7 @@ export const getUser = (accessToken) => {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'authorization': accessToken,
+        'authorization': getCookie('accessToken'),
       },
     })
       .then(checkResponse)
@@ -247,19 +248,19 @@ export const PATCH_USER_REQUEST = 'PATCH_USER_REQUEST';
 export const PATCH_USER_SUCCESS = 'PATCH_USER_SUCCESS';
 export const PATCH_USER_FAILED = 'PATCH_USER_FAILED';
 
-export const patchUser = (accessToken) => {
+export const patchUser = (user) => {
   return function (dispatch) {
     dispatch({
       type: PATCH_USER_REQUEST,
     });
-    fetch(`${BASE_URL}/api/auth/logout`, {
+    fetch(`${BASE_URL}/api/auth/user`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
-        'authorization': accessToken,
+        'authorization': getCookie('accessToken'),
       },
       body: JSON.stringify({
-        token: localStorage.getItem('token'),
+        user,
       }),
     })
       .then(checkResponse)
