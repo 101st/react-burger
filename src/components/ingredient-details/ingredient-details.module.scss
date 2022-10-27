@@ -1,3 +1,11 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  align-items: center;
+  margin: 0 auto;
+}
+
 .image {
   width: 100%;
   display: flex;
