@@ -2,6 +2,7 @@ import { number, func, shape } from 'prop-types';
 import { ingredientType } from '../../utils/types';
 import { useDispatch } from 'react-redux';
 import { useDrag } from 'react-dnd';
+import { useLocation, Link } from 'react-router-dom';
 
 import { setCurrentIngredient } from '../../services/actions/ingredients';
 
@@ -15,7 +16,8 @@ function BurgerIngredientItem({
   count,
 }) {
   const dispatch = useDispatch();
-  const { name, image, proteins } = ingredient;
+  const location = useLocation();
+  const { name, image, proteins, _id } = ingredient;
   const [, ref] = useDrag({
     type: 'INGREDIENT',
     item: ingredient,
@@ -28,7 +30,12 @@ function BurgerIngredientItem({
       onClick();
     }}>
       {count > 0 && <Counter count={count} size='default' />}
-      <img width={252} height={126} alt={name} src={image} />
+      <Link to={{
+        pathname: `/ingredients/${_id}`,
+        state: { background: location },
+      }}>
+        <img width={252} height={126} alt={name} src={image} />
+      </Link>
       <div className={`${Styles['proteins-container']}`}>
         <div className={`${Styles['proteins']} mt-1 mb-1`}>
           <span className='text text_type_digits-default'>{proteins}</span>
@@ -38,7 +45,6 @@ function BurgerIngredientItem({
       <div className={`${Styles['name']}`}>
         {name}
       </div>
-
     </div>
   )
 }
