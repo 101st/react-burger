@@ -96,13 +96,12 @@ function BurgerIngredients() {
             )
           })}
       </div>
-      <Modal
+      {isOpen && <Modal
         title={'Детали ингредиента'}
-        isOpen={isOpen}
         onClose={() => dispatch(clearIngredientDetails())}
       >
         <IngredientDetails />
-      </Modal>
+      </Modal>}
     </div>
   )
 }

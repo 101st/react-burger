@@ -16,7 +16,7 @@ import Styles from './burger-constructor.module.scss';
 function BurgerConstructor() {
   const dispatch = useDispatch();
   const { constructorIngredients, bun, totalPrice } = useSelector(store => store.constructors);
-  const { getOrderRequest, isOpen: isOrderModalOpen, name, order } = useSelector((store) => store.order);
+  const { getOrderRequest, isOpen, name, order } = useSelector((store) => store.order);
 
   const [withBun, setWithBun] = useState(null);
 
@@ -94,9 +94,8 @@ function BurgerConstructor() {
             </Button>
           </div>
         </div>
-        <Modal
+        {isOpen && <Modal
           title={''}
-          isOpen={isOrderModalOpen}
           onClose={() => dispatch({ type: CLEAR_ORDER })}
         >
           {getOrderRequest
@@ -105,7 +104,7 @@ function BurgerConstructor() {
               orderId={order?.number | 1}
               status={`Ваш заказ '${name}' начали готовить`}
             />}
-        </Modal>
+        </Modal>}
       </div>
     </div >
   )

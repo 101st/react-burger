@@ -37,7 +37,6 @@ function App() {
     getIngredientsRequest,
     getIngredientsFailed,
   } = useSelector((store) => store.ingredients);
-  const { isOpen } = useSelector(store => store.ingredientDetails);
 
   const handleModalClose = () => {
     dispatch(clearIngredientDetails());
@@ -86,7 +85,6 @@ function App() {
         <Route path='/ingredients/:_id'>
           <Modal
             title='Детали ингредиента'
-            isOpen={isOpen}
             onClose={handleModalClose}>
             <IngredientDetails />
           </Modal>
