@@ -174,6 +174,7 @@ export const authReducer = (state = initialState, action) => {
         ...state,
         getLogoutRequest: false,
         getLogoutSuccess: action.message === 'Successful logout',
+        getLoginSuccess: false,
       };
     }
     case GET_LOGOUT_FAILED: {
