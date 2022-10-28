@@ -1,4 +1,5 @@
 import { Route, Redirect } from "react-router-dom";
+import { element, any } from 'prop-types';
 import { getCookie } from '../../utils/cookies';
 
 function ProtectedRoute({ children, ...rest }) {
@@ -15,5 +16,12 @@ function ProtectedRoute({ children, ...rest }) {
     />
   );
 }
+
+
+ProtectedRoute.propTypes = {
+  children: element.isRequired,
+  rest: any,
+};
+
 
 export default ProtectedRoute;
