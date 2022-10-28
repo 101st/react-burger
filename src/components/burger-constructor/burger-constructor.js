@@ -90,8 +90,10 @@ function BurgerConstructor() {
           <div className='ml-10'>
             <Button type='primary' htmlType='button' size='medium'
               onClick={() => {
-                if (getLoginSuccess === false) history.push('/login');
-                dispatch(getOrder(ingredientsId));
+                if (getLoginSuccess === false)
+                  history.push('/login');
+                else
+                  dispatch(getOrder(ingredientsId));
               }}
               disabled={!withBun}
             >
