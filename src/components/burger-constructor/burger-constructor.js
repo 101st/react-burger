@@ -11,6 +11,7 @@ import OrderDetailsLoader from '../order-details/order-details-loader';
 import { addIngredient, setTotalPrice } from '../../services/actions/constructor';
 import { getOrder } from '../../services/actions/order';
 import { CLEAR_ORDER } from '../../services/actions/order';
+import { getCookie } from '../../utils/cookies';
 
 import Styles from './burger-constructor.module.scss';
 
@@ -20,7 +21,6 @@ function BurgerConstructor() {
 
   const { constructorIngredients, bun, totalPrice } = useSelector(store => store.constructors);
   const { getOrderRequest, isOpen, name, order } = useSelector((store) => store.order);
-  const { getLoginSuccess } = useSelector((store) => store.auth);
 
   const [withBun, setWithBun] = useState(null);
 
@@ -90,7 +90,7 @@ function BurgerConstructor() {
           <div className='ml-10'>
             <Button type='primary' htmlType='button' size='medium'
               onClick={() => {
-                if (getLoginSuccess === false)
+                if (!getCookie('accessToken'))
                   history.push('/login');
                 else
                   dispatch(getOrder(ingredientsId));

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { getUser, patchUser, getLogout } from '../../services/actions/auth';
 
@@ -8,6 +8,7 @@ import styles from './profile.module.scss';
 
 function Profile() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const { user } = useSelector(store => store.auth);
   const [form, setValue] = useState({
     email: user?.email ?? '',
@@ -40,7 +41,10 @@ function Profile() {
             </p>
           </Link>
         </div>
-        <div onClick={() => dispatch(getLogout())}>
+        <div onClick={() => {
+          dispatch(getLogout());
+          history.push('/');
+        }}>
           <Link to={'/profile'} className={styles.link}>
             <p className='text text_type_main-medium'>
               Выход

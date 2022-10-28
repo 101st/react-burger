@@ -1,4 +1,4 @@
-import { setCookie } from '../../utils/cookies';
+import { setCookie, removeCookie } from '../../utils/cookies';
 import {
   GET_FORGOT_PASSWORD_REQUEST,
   GET_FORGOT_PASSWORD_SUCCESS,
@@ -168,6 +168,8 @@ export const authReducer = (state = initialState, action) => {
       };
     }
     case GET_LOGOUT_SUCCESS: {
+      localStorage.removeItem('refreshToken');
+      removeCookie('accessToken');
       return {
         ...state,
         getLogoutRequest: false,
