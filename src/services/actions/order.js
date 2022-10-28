@@ -1,6 +1,7 @@
 import { BASE_URL } from '../../utils/const';
 import { checkResponse } from '../../utils/common';
 import { clearConstructor } from './constructor';
+import { getCookie } from '../../utils/cookies';
 
 export const CLEAR_ORDER = 'CLEAR_ORDER';
 export const GET_ORDER_REQUEST = 'GET_ORDER_REQUEST';
@@ -14,7 +15,10 @@ export const getOrder = (ingredientsId) => {
     });
     fetch(`${BASE_URL}/api/orders`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'authorization': getCookie('accessToken'),
+      },
       body: JSON.stringify({
         ingredients: ingredientsId,
       }),
