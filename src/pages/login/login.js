@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { getLogin, getRefreshToken } from '../../services/actions/auth';
-import { getCookie } from '../../utils/cookies';
 
 import styles from './login.module.scss';
 
@@ -12,7 +11,7 @@ const Login = () => {
   const history = useHistory();
   const location = useLocation();
   const [form, setValue] = useState({ email: 'potorochinau@ya.ru', password: '1234567qQ' });
-  const { user } = useSelector(store => store.auth);
+  const { getLoginSuccess } = useSelector(store => store.auth);
   const from = location.state?.from?.pathname || '/';
 
   const onChange = (e) => {
@@ -25,16 +24,16 @@ const Login = () => {
   }
 
   useEffect(() => {
-    if (!user?.name) {
+    if (!getLoginSuccess) {
       dispatch(getRefreshToken());
     }
-  }, [dispatch, user]);
+  }, [dispatch, getLoginSuccess]);
 
   useEffect(() => {
-    if (getCookie('accessToken')) {
+    if (getLoginSuccess) {
       history.push(from);
     }
-  }, [user, history, from]);
+  }, [getLoginSuccess, history, from]);
 
   return (
     <div className={styles.container + ' mt-20 text_type_main-default'}>
