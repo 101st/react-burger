@@ -78,7 +78,7 @@ function App() {
         <Route exact path='/register'><Register /></Route>
         <Route exact path='/forgot-password'><ForgotPassword /></Route>
         <Route exact path='/reset-password'><ResetPassword /></Route>
-        <ProtectedRoute exect path='/profile/orders'><div>FEED</div></ProtectedRoute>
+        <ProtectedRoute exect path='/profile/orders'><div></div></ProtectedRoute>
         <ProtectedRoute exect path='/profile'><Profile /></ProtectedRoute>
       </Switch>
       {background && (

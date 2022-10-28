@@ -20,9 +20,9 @@ function IngredientDetails() {
   }, [ingredients, _id]);
 
   return (
-    <div className={`${Styles.container}`}>
+    <div className={`${Styles.container} pt-20`}>
       <div className={`${Styles.image}`}>
-        <img width={'100%'} alt={currentIngredient?.name} src={currentIngredient?.image_large} />
+        <img alt={currentIngredient?.name} src={currentIngredient?.image_large} />
       </div>
       <div className={`${Styles.title} mt-4 mb-8 text text_type_main-default`}>{currentIngredient?.name}</div>
       <div className={`${Styles.details}`}>
