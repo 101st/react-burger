@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useDrop } from 'react-dnd';
+import { useHistory } from 'react-router-dom';
 
 import { CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import BurgerConstructorItem from './burger-constructor-item';
@@ -15,8 +16,11 @@ import Styles from './burger-constructor.module.scss';
 
 function BurgerConstructor() {
   const dispatch = useDispatch();
+  const history = useHistory();
+
   const { constructorIngredients, bun, totalPrice } = useSelector(store => store.constructors);
   const { getOrderRequest, isOpen, name, order } = useSelector((store) => store.order);
+  const { getLoginSuccess } = useSelector((store) => store.auth);
 
   const [withBun, setWithBun] = useState(null);
 
@@ -86,6 +90,7 @@ function BurgerConstructor() {
           <div className='ml-10'>
             <Button type='primary' htmlType='button' size='medium'
               onClick={() => {
+                if (getLoginSuccess === false) history.push('/login');
                 dispatch(getOrder(ingredientsId));
               }}
               disabled={!withBun}
