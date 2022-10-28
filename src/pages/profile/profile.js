@@ -43,7 +43,7 @@ function Profile() {
         </div>
         <div onClick={() => {
           dispatch(getLogout());
-          history.push('/');
+          history.push('/login');
         }}>
           <Link to={'/profile'} className={styles.link}>
             <p className='text text_type_main-medium'>
@@ -89,7 +89,12 @@ function Profile() {
               htmlType='submit'
               disabled={form?.name === user?.name && form?.email === user?.email && form?.password === ''}
               size='medium'>Сохранить</Button>
-            <Button type='primary' onClick={() => { setValue(user) }} htmlType='button' size='medium'>Отмена</Button>
+            <Button 
+            type='primary' 
+            onClick={() => { setValue(user) }} 
+            disabled={form?.name === user?.name && form?.email === user?.email && form?.password === ''}
+            htmlType='button' 
+            size='medium'>Отмена</Button>
           </div>
         </form>
       </div>
