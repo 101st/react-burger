@@ -11,7 +11,7 @@
   margin-top: 30px;
 }
 
-.menu > div {
+.menu>div {
   height: 64px;
   display: flex;
   flex-direction: column;
@@ -22,7 +22,7 @@
   color: #8585ad;
 }
 
-.fields > form > div {
+.fields>form>div {
   margin-top: 24px;
 }
 
@@ -34,6 +34,11 @@
   opacity: 0.4;
 }
 
-.form-buttons > button {
+.form-buttons>button {
   margin-right: 10px;
+}
+
+
+.orders {
+  width: 480px;
 }

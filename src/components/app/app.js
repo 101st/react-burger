@@ -25,6 +25,8 @@ import Register from '../../pages/register/register';
 import ForgotPassword from '../../pages/forgot-password/forgot-password';
 import ResetPassword from '../../pages/reset-password/reset-password';
 import Profile from '../../pages/profile/profile';
+import ProfileForm from '../../pages/profile/profile-form';
+import ProfileOrders from '../../pages/profile/profile-orders';
 import ProtectedRoute from '../protected-route/protected-route';
 
 function App() {
@@ -78,8 +80,18 @@ function App() {
         <Route exact path='/register'><Register /></Route>
         <Route exact path='/forgot-password'><ForgotPassword /></Route>
         <Route exact path='/reset-password'><ResetPassword /></Route>
-        <Route exect path='/profile/orders'><div></div></Route>
-        <ProtectedRoute exect path='/profile'><Profile /></ProtectedRoute>
+        <Route exect path='/orders-feed'><div></div></Route>
+        <ProtectedRoute exect path='/profile/orders/:id'><div></div></ProtectedRoute>
+        <ProtectedRoute exect path='/profile/orders'>
+          <Profile>
+            <ProfileOrders />
+          </Profile>
+        </ProtectedRoute>
+        <ProtectedRoute exect path='/profile'>
+          <Profile>
+            <ProfileForm />
+          </Profile>
+        </ProtectedRoute>
       </Switch>
       {background && (
         <Route path='/ingredients/:_id'>
