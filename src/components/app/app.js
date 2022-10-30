@@ -77,10 +77,10 @@ function App() {
         <Route path='/ingredients/:_id' exact>
           <IngredientDetails />
         </Route>
-        <Route exact path='/login'><Login /></Route>
-        <Route exact path='/register'><Register /></Route>
-        <Route exact path='/forgot-password'><ForgotPassword /></Route>
-        <Route exact path='/reset-password'><ResetPassword /></Route>
+        <ProtectedRoute auth exact path='/login'><Login /></ProtectedRoute>
+        <ProtectedRoute auth exact path='/register'><Register /></ProtectedRoute>
+        <ProtectedRoute auth exact path='/forgot-password'><ForgotPassword /></ProtectedRoute>
+        <ProtectedRoute auth exact path='/reset-password'><ResetPassword /></ProtectedRoute>
         <Route exect path='/orders-feed'><div></div></Route>
         <ProtectedRoute exect path='/profile/orders/:id'><div></div></ProtectedRoute>
         <ProtectedRoute exect path='/profile/orders'>
