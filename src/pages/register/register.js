@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './register.module.scss';
 
@@ -8,7 +8,10 @@ import { getRegister } from '../../services/actions/auth';
 
 function Register() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [form, setValue] = useState({ name: '', email: '', password: '' });
+  const { getRegisterSuccess } = useSelector(store => store.auth);
+
   const onChange = (e) => {
     setValue({ ...form, [e.target.name]: e.target.value });
   }
@@ -16,6 +19,13 @@ function Register() {
     e.preventDefault();
     dispatch(getRegister(form));
   }
+
+  useEffect(() => {
+    if (getRegisterSuccess) {
+      history.push('/');
+    }
+  }, [getRegisterSuccess, history]);
+
   return (
     <div className={styles.container + ' mt-20 text_type_main-default'}>
       <h1 className='mb-6'>Регистрация</h1>

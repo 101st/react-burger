@@ -9,6 +9,9 @@ import {
   GET_LOGIN_REQUEST,
   GET_LOGIN_SUCCESS,
   GET_LOGIN_FAILED,
+  GET_REGISTER_REQUEST,
+  GET_REGISTER_SUCCESS,
+  GET_REGISTER_FAILED,
   GET_REFRESH_TOKEN_REQUEST,
   GET_REFRESH_TOKEN_SUCCESS,
   GET_REFRESH_TOKEN_FAILED,
@@ -32,6 +35,9 @@ const initialState = {
   getResetPasswordSuccess: false,
   getResetPasswordFailed: false,
 
+  getRegisterRequest: false,
+  getRegisterSuccess: false,
+  getRegisterFailed: false,
   getLoginRequest: false,
   getLoginSuccess: false,
   getLoginFailed: false,
@@ -129,6 +135,33 @@ export const authReducer = (state = initialState, action) => {
         ...state,
         getLoginRequest: false,
         getLoginFailed: true,
+      };
+    }
+
+    // Register
+    case GET_REGISTER_REQUEST: {
+      return {
+        ...state,
+        getRegisterRequest: true,
+        getRegisterSuccess: false,
+        getRegisterFailed: false,
+      };
+    }
+    case GET_REGISTER_SUCCESS: {
+      localStorage.setItem('refreshToken', action.data?.refreshToken);
+      setCookie('accessToken', action.data?.accessToken);
+      return {
+        ...state,
+        getRegisterRequest: false,
+        getRegisterSuccess: true,
+        user: action.data?.user,
+      };
+    }
+    case GET_REGISTER_FAILED: {
+      return {
+        ...state,
+        getRegisterRequest: false,
+        getRegisterFailed: true,
       };
     }
 
