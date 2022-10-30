@@ -11,16 +11,23 @@ import Styles from './app-header.module.scss';
 function AppHeader() {
   const { pathname } = useLocation();
 
+  const isActive = (path) => {
+    if (pathname !== path)
+      return 'text_color_inactive';
+    else
+      return Styles['text_color_active'];
+  }
+
   return (
     <header className={`${Styles.container} text text_type_main-default`}>
       <div className='mt-4 mb-4'>
         <nav className='pl-5 pr-5 mr-2'>
           <BurgerIcon type={pathname === '/' ? 'primary' : 'secondary'} />
-          <Link to='/' className={`ml-2 ${pathname !== '/' && 'text_color_inactive'}`}>Конструктор</Link>
+          <Link to='/' className={`ml-2 ${isActive('/')}`}>Конструктор</Link>
         </nav>
         <nav className='pl-5 pr-5 mr-2'>
           <ListIcon type={pathname === '/profile/orders' ? 'primary' : 'secondary'} />
-          <Link to='/profile/orders' className={`ml-2 ${pathname !== '/profile/orders' && 'text_color_inactive'}`}>Лента заказов</Link>
+          <Link to='/profile/orders' className={`ml-2 ${isActive('/profile/orders')}`}>Лента заказов</Link>
         </nav>
       </div>
       <div className={Styles.logo}>
@@ -29,7 +36,7 @@ function AppHeader() {
       <div className='mt-4 mb-4'>
         <nav className='pl-5 pr-5 mr-2'>
           <ProfileIcon type={pathname === '/profile' ? 'primary' : 'secondary'} />
-          <Link to='/profile' className={`ml-2 ${pathname !== '/profile' && 'text_color_inactive'}`}>Личный кабинет</Link>
+          <Link to='/profile' className={`ml-2 ${isActive('/profile')}`}>Личный кабинет</Link>
         </nav>
       </div>
     </header>
