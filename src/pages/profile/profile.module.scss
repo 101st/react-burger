@@ -18,10 +18,6 @@
   justify-content: center;
 }
 
-.link {
-  color: #8585ad;
-}
-
 .fields>form>div {
   margin-top: 24px;
 }
@@ -41,4 +37,8 @@
 
 .orders {
   width: 480px;
+}
+
+a.text_color_active {
+  color: white;
 }
