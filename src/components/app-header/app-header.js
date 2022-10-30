@@ -11,26 +11,26 @@ import Styles from './app-header.module.scss';
 function AppHeader() {
   const { pathname } = useLocation();
   const isActive = (path) => {
-    if (pathname.indexOf('profile') !== -1) {
-      if (path === '/profile')
-        return Styles['text_color_active'];
+    if ((pathname.indexOf('profile') !== -1 && path === '/profile')
+      || (pathname.indexOf('ingredients') !== -1 && path === '/ingredients')) {
+      return true;
     } else {
       if (pathname === path)
-        return Styles['text_color_active'];
+        return true;
     }
-    return 'text_color_inactive';
+    return false;
   }
 
   return (
     <header className={`${Styles.container} text text_type_main-default`}>
       <div className='mt-4 mb-4'>
         <nav className='pl-5 pr-5 mr-2'>
-          <BurgerIcon type={pathname === '/' ? 'primary' : 'secondary'} />
-          <Link to='/' className={`ml-2 ${isActive('/')}`}>Конструктор</Link>
+          <BurgerIcon type={isActive('/') || isActive('/ingredients') ? 'primary' : 'secondary'} />
+          <Link to='/' className={`ml-2 ${isActive('/') || isActive('/ingredients') ? Styles['text_color_active'] : 'text_color_inactive'}`}>Конструктор</Link>
         </nav>
         <nav className='pl-5 pr-5 mr-2'>
-          <ListIcon type={pathname === '/orders-feed' ? 'primary' : 'secondary'} />
-          <Link to='/orders-feed' className={`ml-2 ${isActive('/orders-feed')}`}>Лента заказов</Link>
+          <ListIcon type={isActive('/orders-feed') ? 'primary' : 'secondary'} />
+          <Link to='/orders-feed' className={`ml-2 ${isActive('/orders-feed') ? Styles['text_color_active'] : 'text_color_inactive'}`}>Лента заказов</Link>
         </nav>
       </div>
       <div className={Styles.logo}>
@@ -38,8 +38,8 @@ function AppHeader() {
       </div>
       <div className='mt-4 mb-4'>
         <nav className='pl-5 pr-5 mr-2'>
-          <ProfileIcon type={pathname.indexOf('profile') !== -1 ? 'primary' : 'secondary'} />
-          <Link to='/profile' className={`ml-2 ${isActive('/profile')}`}>Личный кабинет</Link>
+          <ProfileIcon type={isActive('/profile') ? 'primary' : 'secondary'} />
+          <Link to='/profile' className={`ml-2 ${isActive('/profile') ? Styles['text_color_active'] : 'text_color_inactive'}`}>Личный кабинет</Link>
         </nav>
       </div>
     </header>
