@@ -11,7 +11,6 @@ import Styles from './app-header.module.scss';
 function AppHeader() {
   const { pathname } = useLocation();
   const isActive = (path) => {
-    console.log(pathname.indexOf('profile'));
     if (pathname.indexOf('profile') !== -1) {
       if (path === '/profile')
         return Styles['text_color_active'];
