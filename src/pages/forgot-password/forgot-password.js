@@ -20,7 +20,7 @@ function ForgotPassword() {
     dispatch(getForgotPassword(form.email));
   }
   useEffect(() => {
-    if (getForgotPasswordSuccess === true) {
+    if (getForgotPasswordSuccess) {
       history.push('/reset-password');
     }
   }, [dispatch, getForgotPasswordSuccess, history])
