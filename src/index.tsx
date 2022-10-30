@@ -1,3 +1,4 @@
+import React from 'react';
 import { render } from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
@@ -9,11 +10,13 @@ import App from './components/app/app';
 import { store } from './services/store';
 
 const app = (
-  <Provider store={store}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </Provider>
+  <React.StrictMode>
+    <Provider store={store}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>
+  </React.StrictMode>
 );
 
 render(app, document.getElementById('root'));
