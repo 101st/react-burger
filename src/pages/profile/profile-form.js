@@ -24,7 +24,10 @@ function ProfileForm() {
 
   return (
     <div className={styles.fields}>
-      <form onSubmit={() => { dispatch(patchUser({ name: form.name, email: form.email })) }}>
+      <form onSubmit={e => {
+        e.preventDefault();
+        dispatch(patchUser({ name: form.name, email: form.email }))
+      }}>
         <Input
           type='text'
           placeholder='Имя'
