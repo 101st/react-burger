@@ -28,6 +28,7 @@ import Profile from '../../pages/profile/profile';
 import ProfileForm from '../../pages/profile/profile-form';
 import ProfileOrders from '../../pages/profile/profile-orders';
 import ProtectedRoute from '../protected-route/protected-route';
+import NotFound from '../../pages/not-found/not-found';
 
 function App() {
   const dispatch = useDispatch();
@@ -92,6 +93,7 @@ function App() {
             <ProfileForm />
           </Profile>
         </ProtectedRoute>
+        <Route><NotFound /></Route>
       </Switch>
       {background && (
         <Route path='/ingredients/:_id'>
