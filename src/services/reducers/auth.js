@@ -126,7 +126,7 @@ export const authReducer = (state = initialState, action) => {
     }
     case GET_LOGIN_SUCCESS: {
       localStorage.setItem('refreshToken', action.data?.refreshToken);
-      setCookie('accessToken', action.data?.accessToken);
+      setCookie('accessToken', action.data?.accessToken, { expires: 86400 });
       return {
         ...state,
         getLoginRequest: false,
@@ -153,7 +153,7 @@ export const authReducer = (state = initialState, action) => {
     }
     case GET_REGISTER_SUCCESS: {
       localStorage.setItem('refreshToken', action.data?.refreshToken);
-      setCookie('accessToken', action.data?.accessToken);
+      setCookie('accessToken', action.data?.accessToken, { expires: 86400 });
       return {
         ...state,
         getRegisterRequest: false,
@@ -180,7 +180,7 @@ export const authReducer = (state = initialState, action) => {
     }
     case GET_REFRESH_TOKEN_SUCCESS: {
       localStorage.setItem('refreshToken', action.data?.refreshToken);
-      setCookie('accessToken', action.data?.accessToken);
+      setCookie('accessToken', action.data?.accessToken, { expires: 86400 });
       return {
         ...state,
         getRefreshTokenRequest: false,
