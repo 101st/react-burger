@@ -8,7 +8,7 @@ import { getRegister } from '../../services/actions/auth';
 
 function Register() {
   const dispatch = useDispatch();
-  const [form, setValue] = useState({ name: 'Username', email: 'test-data@yandex.ru', password: 'password' });
+  const [form, setValue] = useState({ name: '', email: '', password: '' });
   const onChange = (e) => {
     setValue({ ...form, [e.target.name]: e.target.value });
   }

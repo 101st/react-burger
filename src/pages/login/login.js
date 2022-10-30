@@ -10,7 +10,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
-  const [form, setValue] = useState({ email: 'potorochinau@ya.ru', password: '1234567qQ' });
+  const [form, setValue] = useState({ email: '', password: '' });
   const { getLoginSuccess } = useSelector(store => store.auth);
   const from = location.state?.from?.pathname || '/';
 

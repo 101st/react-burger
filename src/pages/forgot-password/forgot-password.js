@@ -11,7 +11,7 @@ function ForgotPassword() {
   const history = useHistory();
 
   const { getForgotPasswordSuccess } = useSelector((store) => store.auth);
-  const [form, setValue] = useState({ email: 'potorochinau@ya.ru' });
+  const [form, setValue] = useState({ email: '' });
   const onChange = (e) => {
     setValue({ ...form, [e.target.name]: e.target.value })
   }
