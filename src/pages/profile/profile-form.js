@@ -8,14 +8,20 @@ import styles from './profile.module.scss';
 function ProfileForm() {
   const dispatch = useDispatch();
   const { user } = useSelector(store => store.auth);
+  const [showButtons, setShowButtons] = useState(false);
   const [form, setValue] = useState({
     email: user?.email ?? '',
-    password: user?.password ?? '',
     name: user?.name ?? '',
+    password: '',
   })
 
   const onChange = (e) => {
-    setValue({ ...form, [e.target.name]: e.target.value });
+    const newData = { ...form, [e.target.name]: e.target.value };
+    if (JSON.stringify(newData) !== JSON.stringify({ ...user, password: '' }))
+      setShowButtons(true);
+    else
+      setShowButtons(false);
+    setValue(newData);
   }
 
   useEffect(() => {
@@ -53,17 +59,20 @@ function ProfileForm() {
           name='password'
         />
         <div className={styles['form-buttons']}>
-          <Button
-            type='primary'
-            htmlType='submit'
-            disabled={form?.name === user?.name && form?.email === user?.email && form?.password === ''}
-            size='medium'>Сохранить</Button>
-          <Button
-            type='primary'
-            onClick={() => { setValue(user) }}
-            disabled={form?.name === user?.name && form?.email === user?.email && form?.password === ''}
-            htmlType='button'
-            size='medium'>Отмена</Button>
+          {showButtons && [
+            <Button
+              key='1'
+              type='primary'
+              htmlType='submit'
+              size='medium'>Сохранить</Button>,
+            <Button
+              key='2'
+              type='primary'
+              onClick={() => {
+                setValue({ ...user, password: '' }); setShowButtons(false);
+              }}
+              htmlType='button'
+              size='medium'>Отмена</Button>]}
         </div>
       </form>
     </div>
