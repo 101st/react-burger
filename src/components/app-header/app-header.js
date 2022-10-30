@@ -10,12 +10,16 @@ import Styles from './app-header.module.scss';
 
 function AppHeader() {
   const { pathname } = useLocation();
-
   const isActive = (path) => {
-    if (pathname !== path)
-      return 'text_color_inactive';
-    else
-      return Styles['text_color_active'];
+    console.log(pathname.indexOf('profile'));
+    if (pathname.indexOf('profile') !== -1) {
+      if (path === '/profile')
+        return Styles['text_color_active'];
+    } else {
+      if (pathname === path)
+        return Styles['text_color_active'];
+    }
+    return 'text_color_inactive';
   }
 
   return (
@@ -26,8 +30,8 @@ function AppHeader() {
           <Link to='/' className={`ml-2 ${isActive('/')}`}>Конструктор</Link>
         </nav>
         <nav className='pl-5 pr-5 mr-2'>
-          <ListIcon type={pathname === '/profile/orders' ? 'primary' : 'secondary'} />
-          <Link to='/profile/orders' className={`ml-2 ${isActive('/profile/orders')}`}>Лента заказов</Link>
+          <ListIcon type={pathname === '/orders-feed' ? 'primary' : 'secondary'} />
+          <Link to='/orders-feed' className={`ml-2 ${isActive('/orders-feed')}`}>Лента заказов</Link>
         </nav>
       </div>
       <div className={Styles.logo}>
@@ -35,7 +39,7 @@ function AppHeader() {
       </div>
       <div className='mt-4 mb-4'>
         <nav className='pl-5 pr-5 mr-2'>
-          <ProfileIcon type={pathname === '/profile' ? 'primary' : 'secondary'} />
+          <ProfileIcon type={pathname.indexOf('profile') !== -1 ? 'primary' : 'secondary'} />
           <Link to='/profile' className={`ml-2 ${isActive('/profile')}`}>Личный кабинет</Link>
         </nav>
       </div>
