@@ -16,7 +16,6 @@ function Profile({ children }) {
     return 'text_color_inactive';
   }
 
-
   useEffect(() => {
     dispatch(getUser());
   }, [dispatch]);

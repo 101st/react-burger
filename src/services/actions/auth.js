@@ -1,6 +1,6 @@
 import { BASE_URL } from '../../utils/const';
 import { checkResponse } from '../../utils/common';
-import { getCookie } from '../../utils/cookies';
+import { getCookie, removeCookie } from '../../utils/cookies';
 
 export const GET_FORGOT_PASSWORD_REQUEST = 'GET_FORGOT_PASSWORD_REQUEST';
 export const GET_FORGOT_PASSWORD_SUCCESS = 'GET_FORGOT_PASSWORD_SUCCESS';
@@ -169,6 +169,8 @@ export const getRefreshToken = (afterRefresh) => {
         }
       })
       .catch((error) => {
+        removeCookie('accessToken');
+        localStorage.removeItem('refreshToken');
         dispatch({
           type: GET_REFRESH_TOKEN_FAILED,
         });

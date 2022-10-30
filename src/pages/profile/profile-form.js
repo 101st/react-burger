@@ -10,14 +10,15 @@ function ProfileForm() {
   const { user } = useSelector(store => store.auth);
   const [showButtons, setShowButtons] = useState(false);
   const [form, setValue] = useState({
-    email: user?.email ?? '',
-    name: user?.name ?? '',
+    email: '',
+    name: '',
     password: '',
   })
 
   const onChange = (e) => {
     const newData = { ...form, [e.target.name]: e.target.value };
-    if (JSON.stringify(newData) !== JSON.stringify({ ...user, password: '' }))
+    console.log(JSON.stringify(newData), JSON.stringify(user));
+    if (JSON.stringify(newData) !== JSON.stringify(user))
       setShowButtons(true);
     else
       setShowButtons(false);
@@ -25,8 +26,9 @@ function ProfileForm() {
   }
 
   useEffect(() => {
-    dispatch(getUser());
-  }, [dispatch]);
+    if (user && form.email === '')
+      setValue(user);
+  }, [user])
 
   return (
     <div className={styles.fields}>
@@ -69,7 +71,7 @@ function ProfileForm() {
               key='2'
               type='primary'
               onClick={() => {
-                setValue({ ...user, password: '' }); setShowButtons(false);
+                setValue(user); setShowButtons(false);
               }}
               htmlType='button'
               size='medium'>Отмена</Button>]}

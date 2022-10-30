@@ -41,7 +41,11 @@ const initialState = {
   getLoginRequest: false,
   getLoginSuccess: false,
   getLoginFailed: false,
-  user: null,
+  user: {
+    name: '',
+    email: '',
+    password: ''
+  },
 
   getRefreshTokenRequest: false,
   getRefreshTokenSuccess: false,
@@ -127,7 +131,7 @@ export const authReducer = (state = initialState, action) => {
         ...state,
         getLoginRequest: false,
         getLoginSuccess: true,
-        user: action.data?.user,
+        user: { ...state.user, ...action.data?.user },
       };
     }
     case GET_LOGIN_FAILED: {
@@ -154,7 +158,7 @@ export const authReducer = (state = initialState, action) => {
         ...state,
         getRegisterRequest: false,
         getRegisterSuccess: true,
-        user: action.data?.user,
+        user: { ...state.user, ...action.data?.user },
       };
     }
     case GET_REGISTER_FAILED: {
@@ -231,7 +235,7 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         getUserRequest: false,
-        user: action.data?.user,
+        user: { ...state.user, ...action.data?.user },
         getUserSuccess: action.message === 'Successful logout',
       };
     }
@@ -256,7 +260,7 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         patchUserRequest: false,
-        user: action.data?.user,
+        user: { ...state.user, ...action.data?.user },
         patchUserSuccess: action.message === 'Successful logout',
       };
     }
