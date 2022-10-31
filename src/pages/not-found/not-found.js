@@ -1,8 +1,8 @@
-import styles from "./not-found.module.scss"
+import Styles from "./not-found.module.scss"
 
 function NotFound() {
   return (
-    <h1 className={`${styles['not-found']} text text_type_main-large mt-20`}>
+    <h1 className={`${Styles['not-found']} text text_type_main-large mt-20`}>
       Страница не найдена
     </h1>
   )

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import styles from './register.module.scss';
+import Styles from './register.module.scss';
 
 import { getRegister } from '../../services/actions/auth';
 
@@ -27,9 +27,9 @@ function Register() {
   }, [getRegisterSuccess, history]);
 
   return (
-    <div className={styles.container + ' mt-20 text_type_main-default'}>
+    <div className={Styles.container + ' mt-20 text_type_main-default'}>
       <h1 className='mb-6'>Регистрация</h1>
-      <form className={styles.form} onSubmit={onSubmit}>
+      <form className={Styles.form} onSubmit={onSubmit}>
         <Input
           type='text'
           placeholder='Имя'
@@ -54,7 +54,7 @@ function Register() {
         />
         <Button type='primary' htmlType='submit' size='medium'>Зарегистрироваться</Button>
       </form>
-      <div className={styles.links + ' text_color_inactive mt-20'}>
+      <div className={Styles.links + ' text_color_inactive mt-20'}>
         <p className='text text_type_main-small'>
           Уже зарегистрированы? <Link to={'/login'}>Войти</Link>
         </p>

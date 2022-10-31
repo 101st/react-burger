@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { patchUser } from '../../services/actions/auth';
 
-import styles from './profile.module.scss';
+import Styles from './profile.module.scss';
 
 function ProfileForm() {
   const dispatch = useDispatch();
@@ -30,7 +30,7 @@ function ProfileForm() {
   }, [user, form.email]);
 
   return (
-    <div className={styles.fields}>
+    <div className={Styles.fields}>
       <form onSubmit={e => {
         e.preventDefault();
         dispatch(patchUser({ name: form.name, email: form.email }))
@@ -59,7 +59,7 @@ function ProfileForm() {
           value={form.password || ''}
           name='password'
         />
-        <div className={styles['form-buttons']}>
+        <div className={Styles['form-buttons']}>
           {showButtons && [
             <Button
               key='1'

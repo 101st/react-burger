@@ -4,7 +4,7 @@ import { Link, useHistory, useLocation } from 'react-router-dom';
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { getLogin, getRefreshToken } from '../../services/actions/auth';
 
-import styles from './login.module.scss';
+import Styles from './login.module.scss';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -36,9 +36,9 @@ const Login = () => {
   }, [getLoginSuccess, history, from]);
 
   return (
-    <div className={styles.container + ' mt-20 text_type_main-default'}>
+    <div className={Styles.container + ' mt-20 text_type_main-default'}>
       <h1 className='mb-6'>Вход</h1>
-      <form className={styles.form} onSubmit={onSubmit}>
+      <form className={Styles.form} onSubmit={onSubmit}>
         <Input
           type='email'
           placeholder='E-mail'
@@ -55,7 +55,7 @@ const Login = () => {
         />
         <Button type='primary' htmlType='submit' size='medium'>Войти</Button>
       </form>
-      <div className={styles.links + ' text_color_inactive mt-20'}>
+      <div className={Styles.links + ' text_color_inactive mt-20'}>
         <div className='mb-4'>
           <span>Вы - новый пользователь?</span>
           <Link to='/register' className='ml-1'>Зарегистрироваться</Link>

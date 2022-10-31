@@ -1,8 +1,8 @@
-import styles from './profile.module.scss';
+import Styles from './profile.module.scss';
 
 function ProfileOrders() {
   return (
-    <div className={`${styles.orders} mt-10`}>Cooming soon...</div>
+    <div className={`${Styles.orders} mt-10`}>Cooming soon...</div>
   )
 }
 
