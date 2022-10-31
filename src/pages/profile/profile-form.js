@@ -27,7 +27,7 @@ function ProfileForm() {
   useEffect(() => {
     if (user && form.email === '')
       setValue(user);
-  }, [user])
+  }, [user, form.email]);
 
   return (
     <div className={styles.fields}>
