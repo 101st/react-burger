@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import { getUser, patchUser } from '../../services/actions/auth';
+import { patchUser } from '../../services/actions/auth';
 
 import styles from './profile.module.scss';
 
@@ -17,7 +17,6 @@ function ProfileForm() {
 
   const onChange = (e) => {
     const newData = { ...form, [e.target.name]: e.target.value };
-    console.log(JSON.stringify(newData), JSON.stringify(user));
     if (JSON.stringify(newData) !== JSON.stringify(user))
       setShowButtons(true);
     else
