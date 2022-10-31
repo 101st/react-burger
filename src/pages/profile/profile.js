@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { element } from 'prop-types';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { getUser, getLogout } from '../../services/actions/auth';
 
@@ -57,5 +58,9 @@ function Profile({ children }) {
     </div >
   )
 }
+
+Profile.propTypes = {
+  children: element.isRequired,
+};
 
 export default Profile;
