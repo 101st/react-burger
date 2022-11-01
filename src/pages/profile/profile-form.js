@@ -33,7 +33,7 @@ function ProfileForm() {
     <div className={Styles.fields}>
       <form onSubmit={e => {
         e.preventDefault();
-        dispatch(patchUser({ name: form.name, email: form.email }))
+        dispatch(patchUser({ name: form.name, email: form.email, password: form.password }));
       }}>
         <Input
           type='text'

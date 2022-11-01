@@ -266,6 +266,7 @@ export const patchUser = (user) => {
       body: JSON.stringify({
         name: user.name,
         email: user.email,
+        password: user.password,
       }),
     })
       .then(checkResponse)
