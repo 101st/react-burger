@@ -183,7 +183,7 @@ export const GET_LOGOUT_REQUEST = 'GET_LOGOUT_REQUEST';
 export const GET_LOGOUT_SUCCESS = 'GET_LOGOUT_SUCCESS';
 export const GET_LOGOUT_FAILED = 'GET_LOGOUT_FAILED';
 
-export const getLogout = () => {
+export const getLogout = (cb) => {
   return function (dispatch) {
     dispatch({
       type: GET_LOGOUT_REQUEST,
@@ -202,6 +202,7 @@ export const getLogout = () => {
             type: GET_LOGOUT_SUCCESS,
             data: json,
           });
+          if (cb) cb();
         }
       })
       .catch((error) => {

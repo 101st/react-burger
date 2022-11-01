@@ -39,8 +39,9 @@ function Profile({ children }) {
           </Link>
         </div>
         <div onClick={() => {
-          dispatch(getLogout());
-          history.push('/login');
+          dispatch(getLogout(() => {
+            history.push('/login');
+          }));
         }}>
           <Link to={'/profile'} className={`${Styles.link}  text_color_inactive`}>
             <p className='text text_type_main-medium'>
