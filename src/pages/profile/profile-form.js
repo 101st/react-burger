@@ -27,13 +27,18 @@ function ProfileForm() {
   useEffect(() => {
     if (user && form.email === '')
       setValue(user);
-  }, [user, form.email]);
+    if (form.email !== '' && JSON.stringify(form) !== JSON.stringify(user))
+      setShowButtons(true);
+    else
+      setShowButtons(false);
+  }, [user, form]);
 
   return (
     <div className={Styles.fields}>
       <form onSubmit={e => {
         e.preventDefault();
         dispatch(patchUser({ name: form.name, email: form.email, password: form.password }));
+        setValue({ ...form, password: '' });
       }}>
         <Input
           type='text'
@@ -60,7 +65,7 @@ function ProfileForm() {
           name='password'
         />
         <div className={Styles['form-buttons']}>
-          {showButtons && <>
+          {showButtons && (<>
             <Button
               type='primary'
               htmlType='submit'
@@ -72,7 +77,7 @@ function ProfileForm() {
               }}
               htmlType='button'
               size='medium'>Отмена</Button>
-          </>}
+          </>)}
         </div>
       </form>
     </div>
