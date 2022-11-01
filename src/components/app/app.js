@@ -81,14 +81,14 @@ function App() {
         <ProtectedRoute auth exact path='/register'><Register /></ProtectedRoute>
         <ProtectedRoute auth exact path='/forgot-password'><ForgotPassword /></ProtectedRoute>
         <ProtectedRoute auth exact path='/reset-password'><ResetPassword /></ProtectedRoute>
-        <Route exect path='/orders-feed'><div></div></Route>
-        <ProtectedRoute exect path='/profile/orders/:id'><div></div></ProtectedRoute>
-        <ProtectedRoute exect path='/profile/orders'>
+        <Route exact path='/orders-feed'><div></div></Route>
+        <ProtectedRoute exact path='/profile/orders/:id'><div></div></ProtectedRoute>
+        <ProtectedRoute exact path='/profile/orders'>
           <Profile>
             <ProfileOrders />
           </Profile>
         </ProtectedRoute>
-        <ProtectedRoute exect path='/profile'>
+        <ProtectedRoute exact path='/profile'>
           <Profile>
             <ProfileForm />
           </Profile>
