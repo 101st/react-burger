@@ -17,7 +17,7 @@ function ProfileForm() {
 
   const onChange = (e) => {
     const newData = { ...form, [e.target.name]: e.target.value };
-    if (JSON.stringify(newData) !== JSON.stringify(user) && form.password.length > 8)
+    if (JSON.stringify(newData) !== JSON.stringify(user))
       setShowButtons(true);
     else
       setShowButtons(false);
