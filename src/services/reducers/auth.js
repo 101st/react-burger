@@ -26,6 +26,8 @@ import {
   PATCH_USER_FAILED,
 } from '../actions/auth';
 
+import { EXPIRES_AUTH_TIME } from '../../utils/const';
+
 const initialState = {
   getForgotPasswordRequest: false,
   getForgotPasswordSuccess: false,
@@ -126,7 +128,7 @@ export const authReducer = (state = initialState, action) => {
     }
     case GET_LOGIN_SUCCESS: {
       localStorage.setItem('refreshToken', action.data?.refreshToken);
-      setCookie('accessToken', action.data?.accessToken, { expires: 86400 });
+      setCookie('accessToken', action.data?.accessToken, { expires: EXPIRES_AUTH_TIME });
       return {
         ...state,
         getLoginRequest: false,
@@ -153,7 +155,7 @@ export const authReducer = (state = initialState, action) => {
     }
     case GET_REGISTER_SUCCESS: {
       localStorage.setItem('refreshToken', action.data?.refreshToken);
-      setCookie('accessToken', action.data?.accessToken, { expires: 86400 });
+      setCookie('accessToken', action.data?.accessToken, { expires: EXPIRES_AUTH_TIME });
       return {
         ...state,
         getRegisterRequest: false,
@@ -180,7 +182,7 @@ export const authReducer = (state = initialState, action) => {
     }
     case GET_REFRESH_TOKEN_SUCCESS: {
       localStorage.setItem('refreshToken', action.data?.refreshToken);
-      setCookie('accessToken', action.data?.accessToken, { expires: 86400 });
+      setCookie('accessToken', action.data?.accessToken, { expires: EXPIRES_AUTH_TIME });
       return {
         ...state,
         getRefreshTokenRequest: false,
