@@ -60,20 +60,19 @@ function ProfileForm() {
           name='password'
         />
         <div className={Styles['form-buttons']}>
-          {showButtons && [
+          {showButtons && <>
             <Button
-              key='1'
               type='primary'
               htmlType='submit'
-              size='medium'>Сохранить</Button>,
+              size='medium'>Сохранить</Button>
             <Button
-              key='2'
               type='primary'
               onClick={() => {
                 setValue(user); setShowButtons(false);
               }}
               htmlType='button'
-              size='medium'>Отмена</Button>]}
+              size='medium'>Отмена</Button>
+          </>}
         </div>
       </form>
     </div>
