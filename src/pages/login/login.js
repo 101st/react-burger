@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { getLogin, getRefreshToken } from '../../services/actions/auth';
+import { getCookie } from '../../utils/cookies';
 
 import Styles from './login.module.scss';
 
@@ -24,7 +25,7 @@ const Login = () => {
   }
 
   useEffect(() => {
-    if (!getLoginSuccess) {
+    if (!getLoginSuccess && getCookie('refreshToken')) {
       dispatch(getRefreshToken());
     }
   }, [dispatch, getLoginSuccess]);

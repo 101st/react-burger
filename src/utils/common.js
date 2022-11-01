@@ -1,4 +1,5 @@
 export const checkResponse = (response) => {
+    if (response?.status === 401) window.location.replace('/login');
     if (response.ok) {
         return response.json();
     }
