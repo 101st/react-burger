@@ -17,7 +17,7 @@ function BurgerIngredientItem({
 }) {
   const dispatch = useDispatch();
   const location = useLocation();
-  const { name, image, proteins, _id } = ingredient;
+  const { name, image, price, _id } = ingredient;
   const [, ref] = useDrag({
     type: 'INGREDIENT',
     item: ingredient,
@@ -36,9 +36,9 @@ function BurgerIngredientItem({
       }}>
         <img width={252} height={126} alt={name} src={image} />
       </Link>
-      <div className={`${Styles['proteins-container']}`}>
-        <div className={`${Styles['proteins']} mt-1 mb-1`}>
-          <span className='text text_type_digits-default'>{proteins}</span>
+      <div className={`${Styles['price-container']}`}>
+        <div className={`${Styles['price']} mt-1 mb-1`}>
+          <span className='text text_type_digits-default mr-1'>{price}</span>
           <CurrencyIcon />
         </div>
       </div>
