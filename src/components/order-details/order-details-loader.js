@@ -1,6 +1,6 @@
 import loader from '../../images/bean-eater-1s-200px.svg';
 
-import Styles from './style.module.scss';
+import Styles from './order-details.module.scss';
 
 function OrderDetails() {
   return (

@@ -3,7 +3,7 @@ import {
   GET_ORDER_SUCCESS,
   GET_ORDER_FAILED,
   CLEAR_ORDER,
-} from "../actions/order";
+} from '../actions/order';
 
 const initialState = {
   order: null,

@@ -1,22 +1,26 @@
 import { useEffect, useMemo, useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 import { useDrop } from 'react-dnd';
+import { useHistory } from 'react-router-dom';
 
 import { CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import BurgerConstructorItem from "./burger-constructor-item";
+import BurgerConstructorItem from './burger-constructor-item';
 import Modal from '../modal/modal';
 import OrderDetails from '../order-details/order-details';
 import OrderDetailsLoader from '../order-details/order-details-loader';
 import { addIngredient, setTotalPrice } from '../../services/actions/constructor';
 import { getOrder } from '../../services/actions/order';
 import { CLEAR_ORDER } from '../../services/actions/order';
+import { getCookie } from '../../utils/cookies';
 
-import Styles from './style.module.scss';
+import Styles from './burger-constructor.module.scss';
 
 function BurgerConstructor() {
   const dispatch = useDispatch();
+  const history = useHistory();
+
   const { constructorIngredients, bun, totalPrice } = useSelector(store => store.constructors);
-  const { getOrderRequest, isOpen: isOrderModalOpen, name, order } = useSelector((store) => store.order);
+  const { getOrderRequest, isOpen, name, order } = useSelector((store) => store.order);
 
   const [withBun, setWithBun] = useState(null);
 
@@ -36,11 +40,11 @@ function BurgerConstructor() {
     });
   }, [constructorIngredients]);
 
-  const boxShadowColor = isHover ? "#4c4cff90" : "transparent";
+  const boxShadowColor = isHover ? '#4c4cff90' : 'transparent';
 
   useEffect(() => {
     const totalPrice = constructorIngredients.reduce((acc, element) => {
-      if (element.type === "bun") {
+      if (element.type === 'bun') {
         acc += 2 * element.price;
       } else {
         acc += element.price;
@@ -48,7 +52,7 @@ function BurgerConstructor() {
       return acc;
     }, 0);
     dispatch(setTotalPrice(totalPrice));
-    setWithBun(constructorIngredients.some((ingredient) => ingredient.type === "bun"));
+    setWithBun(constructorIngredients.some((ingredient) => ingredient.type === 'bun'));
   }, [constructorIngredients, dispatch]);
 
   return (
@@ -82,11 +86,14 @@ function BurgerConstructor() {
       <div className={`${Styles.order}`}>
         <div className={`${Styles['price']} mt-10`}>
           <span className='text text_type_digits-medium mr-2'>{totalPrice}</span>
-          <div className={`${Styles['totla-price']}`}><CurrencyIcon type="primary" /></div>
+          <div className={`${Styles['totla-price']}`}><CurrencyIcon type='primary' /></div>
           <div className='ml-10'>
-            <Button type="primary" size="medium"
+            <Button type='primary' htmlType='button' size='medium'
               onClick={() => {
-                dispatch(getOrder(ingredientsId));
+                if (!getCookie('accessToken'))
+                  history.push('/login');
+                else
+                  dispatch(getOrder(ingredientsId));
               }}
               disabled={!withBun}
             >
@@ -94,18 +101,17 @@ function BurgerConstructor() {
             </Button>
           </div>
         </div>
-        <Modal
+        {isOpen && <Modal
           title={''}
-          isOpen={isOrderModalOpen}
           onClose={() => dispatch({ type: CLEAR_ORDER })}
         >
           {getOrderRequest
             ? <OrderDetailsLoader />
             : <OrderDetails
               orderId={order?.number | 1}
-              status={`Ваш заказ "${name}" начали готовить`}
+              status={`Ваш заказ '${name}' начали готовить`}
             />}
-        </Modal>
+        </Modal>}
       </div>
     </div >
   )

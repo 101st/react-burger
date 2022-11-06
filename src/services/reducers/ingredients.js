@@ -3,13 +3,15 @@ import {
   GET_INGRIDIENTS_SUCCESS,
   GET_INGRIDIENTS_FAILED,
   SET_CURRENT_INGREDIENT,
-} from "../actions/ingredients";
+} from '../actions/ingredients';
 
 const initialState = {
   ingredients: [],
   getIngredientsRequest: false,
   getIngredientsFailed: false,
-  currentIngredient: null
+  currentIngredient: {
+    name: ''
+  }
 };
 
 export const ingredientsReducer = (state = initialState, action) => {

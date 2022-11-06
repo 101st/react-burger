@@ -1,0 +1,44 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.menu>div {
+  height: 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.fields>form>div {
+  margin-top: 24px;
+}
+
+.add-info {
+  width: 320px;
+  font-size: 16px;
+  line-height: 24px;
+  color: #8585ad;
+  opacity: 0.4;
+}
+
+.form-buttons>button {
+  margin-right: 10px;
+}
+
+
+.orders {
+  width: 480px;
+}
+
+a.text_color_active {
+  color: white;
+}
