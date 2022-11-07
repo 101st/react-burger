@@ -6,8 +6,8 @@ import { patchUser } from '../../services/actions/auth';
 import Styles from './profile.module.scss';
 
 function ProfileForm() {
-  const dispatch = useDispatch();
-  const { user } = useSelector(store => store.auth);
+  const dispatch = useDispatch<any>();
+  const { user } = useSelector((store: any) => store.auth);
   const [showButtons, setShowButtons] = useState(false);
   const [form, setValue] = useState({
     email: '',
@@ -15,7 +15,7 @@ function ProfileForm() {
     password: '',
   })
 
-  const onChange = (e) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newData = { ...form, [e.target.name]: e.target.value };
     if (JSON.stringify(newData) !== JSON.stringify(user))
       setShowButtons(true);

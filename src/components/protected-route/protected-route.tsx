@@ -1,12 +1,18 @@
 import { Route, Redirect } from "react-router-dom";
-import { element, any } from 'prop-types';
 import { getCookie } from '../../utils/cookies';
 
 import NotFound from "../../pages/not-found/not-found";
 
-function ProtectedRoute({ children, ...rest }) {
+interface IProtectedRoute {
+  children: React.ReactElement;
+  auth?: boolean;
+  exact?: boolean;
+  path?: string;
+}
+
+function ProtectedRoute({ children, auth, ...rest }: IProtectedRoute): React.ReactElement {
   const accessToken = getCookie('accessToken');
-  if (rest?.auth) {
+  if (auth) {
     if (accessToken !== undefined)
       return <NotFound />
     return children;
@@ -25,12 +31,5 @@ function ProtectedRoute({ children, ...rest }) {
     );
   }
 }
-
-
-ProtectedRoute.propTypes = {
-  children: element.isRequired,
-  rest: any,
-};
-
 
 export default ProtectedRoute;

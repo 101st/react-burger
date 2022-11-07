@@ -8,17 +8,18 @@ export const GET_ORDER_REQUEST = 'GET_ORDER_REQUEST';
 export const GET_ORDER_SUCCESS = 'GET_ORDER_SUCCESS';
 export const GET_ORDER_FAILED = 'GET_ORDER_FAILED';
 
-export const getOrder = (ingredientsId) => {
-  return function (dispatch) {
+export const getOrder = (ingredientsId: number) => {
+  return function (dispatch: Function) {
+    const requestHeaders: HeadersInit = new Headers();
+    requestHeaders.set('Content-Type', 'application/json');
+    requestHeaders.set('authorization', getCookie('accessToken') || '');
+
     dispatch({
       type: GET_ORDER_REQUEST,
     });
     fetch(`${BASE_URL}/api/orders`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'authorization': getCookie('accessToken'),
-      },
+      headers: requestHeaders,
       body: JSON.stringify({
         ingredients: ingredientsId,
       }),

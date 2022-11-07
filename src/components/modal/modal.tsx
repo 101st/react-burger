@@ -1,14 +1,20 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import * as ReactDOM from 'react-dom';
-import { func, string, node } from 'prop-types';
 import ModalHeader from './modal-header/modal-header';
 import ModalBackDrop from '../modal-overlay/modal-overlay';
 
 import Styles from './modal.module.scss';
-function Modal({ title, onClose, children }) {
+
+interface IModal {
+  title: string;
+  onClose: () => void;
+  children: React.ReactNode;
+}
+
+function Modal({ title, onClose, children }: IModal) {
 
   useEffect(() => {
-    function closeByEscape(e) {
+    function closeByEscape(e: KeyboardEvent) {
       if (e.key === 'Escape') onClose();
     }
 
@@ -27,14 +33,8 @@ function Modal({ title, onClose, children }) {
       </div>
       <ModalBackDrop onClose={onClose} />
     </div>,
-    document.getElementById('react-modals')
+    document.getElementById('react-modals') as HTMLElement
   );
-}
-
-Modal.propTypes = {
-  title: string,
-  onClose: func.isRequired,
-  children: node.isRequired,
 }
 
 export default Modal;

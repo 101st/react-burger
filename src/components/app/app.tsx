@@ -31,15 +31,15 @@ import ProtectedRoute from '../protected-route/protected-route';
 import NotFound from '../../pages/not-found/not-found';
 
 function App() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
   const history = useHistory();
   const location = useLocation();
-  const background = location.state && location.state.background;
+  const background = (location.state as any)?.background;
   const {
     ingredients,
     getIngredientsRequest,
     getIngredientsFailed,
-  } = useSelector((store) => store.ingredients);
+  } = useSelector((store: any) => store.ingredients);
 
   const handleModalClose = () => {
     dispatch(clearIngredientDetails());

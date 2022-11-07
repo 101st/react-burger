@@ -1,5 +1,7 @@
 /*eslint no-useless-escape: "error"*/
-export const setCookie = (name, value, options = {}) => {
+export const setCookie = (name: string, value: string, options: {
+  [name: string]: any;
+} = {}) => {
   options = {
     path: '/',
     ...options
@@ -28,14 +30,14 @@ export const setCookie = (name, value, options = {}) => {
   document.cookie = updatedCookie;
 }
 
-export const getCookie = (name) => {
+export const getCookie = (name: string) => {
   let matches = document.cookie.match(new RegExp(
     "(?:^|; )" + name.replace(/([\\.$?*|{}\\(\\)\\[\]\\\\/\\+^])/g, '\\$1') + "=([^;]*)"
   ));
   return matches ? decodeURIComponent(matches[1]) : undefined;
 }
 
-export const removeCookie = (name) => {
+export const removeCookie = (name: string) => {
   setCookie(name, '', {
     'max-age': -1
   });

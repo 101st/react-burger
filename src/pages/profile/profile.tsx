@@ -1,17 +1,16 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { element } from 'prop-types';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { getUser, getLogout } from '../../services/actions/auth';
 
 import Styles from './profile.module.scss';
 
-function Profile({ children }) {
-  const dispatch = useDispatch();
+function Profile({ children }: { children: React.ReactElement }) {
+  const dispatch = useDispatch<any>();
   const { pathname } = useLocation();
   const history = useHistory();
 
-  const isActive = (path) => {
+  const isActive = (path: string) => {
     if (pathname === path)
       return Styles['text_color_active'];
     return 'text_color_inactive';
@@ -59,9 +58,5 @@ function Profile({ children }) {
     </div >
   )
 }
-
-Profile.propTypes = {
-  children: element.isRequired,
-};
 
 export default Profile;

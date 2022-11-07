@@ -10,7 +10,7 @@ import Styles from './app-header.module.scss';
 
 function AppHeader() {
   const { pathname } = useLocation();
-  const isActive = (path) => {
+  const isActive = (path: string) => {
     if ((pathname.indexOf('profile') !== -1 && path === '/profile')
       || (pathname.indexOf('ingredients') !== -1 && path === '/ingredients')) {
       return true;
