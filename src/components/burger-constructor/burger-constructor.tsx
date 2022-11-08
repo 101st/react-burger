@@ -71,7 +71,7 @@ function BurgerConstructor() {
           if (item.type === 'bun') return null;
           return (
             <BurgerConstructorItem
-              key={item._id}
+              key={item.id}
               ingredient={item}
               index={index}
               isDraggable={true}
