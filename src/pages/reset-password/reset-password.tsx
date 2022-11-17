@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, FormEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Link, useHistory } from 'react-router-dom';
@@ -7,15 +7,15 @@ import { getResetPassword } from '../../services/actions/auth';
 import Styles from './reset-password.module.scss';
 
 function ResetPassword() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
   const history = useHistory();
 
-  const { getResetPasswordSuccess, getForgotPasswordSuccess } = useSelector((store) => store.auth);
+  const { getResetPasswordSuccess, getForgotPasswordSuccess } = useSelector((store: any) => store.auth);
   const [form, setValue] = useState({ password: '', token: '' });
-  const onChange = (e) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue({ ...form, [e.target.name]: e.target.value })
   }
-  const onSubmit = (e) => {
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(getResetPassword(form.password, form.token));
   }

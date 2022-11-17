@@ -1,12 +1,13 @@
 import { BASE_URL } from '../../utils/const';
 import { checkResponse } from '../../utils/common';
+import { IIngredient } from '../../interfaces/common';
 
 export const GET_INGRIDIENTS_REQUEST = 'GET_INGRIDIENTS_REQUEST';
 export const GET_INGRIDIENTS_SUCCESS = 'GET_INGRIDIENTS_SUCCESS';
 export const GET_INGRIDIENTS_FAILED = 'GET_INGRIDIENTS_FAILED';
 
 export function getIngredients() {
-  return function (dispatch) {
+  return function (dispatch: Function) {
     dispatch({
       type: GET_INGRIDIENTS_REQUEST,
     });
@@ -31,14 +32,14 @@ export function getIngredients() {
 
 export const SET_CURRENT_INGREDIENT = 'SET_CURRENT_INGREDIENT';
 
-export const setCurrentIngredient = (currentIngredient) => ({
+export const setCurrentIngredient = (currentIngredient: IIngredient) => ({
   type: SET_CURRENT_INGREDIENT,
   currentIngredient
 });
 
 export const SET_INGRIDIENTS_STORE = 'SET_INGRIDIENTS_STORE';
 
-export const setIngredientsStore = (currentIngredientType) => ({
+export const setIngredientsStore = (currentIngredientType: string) => ({
   type: SET_INGRIDIENTS_STORE,
   currentIngredientType,
 });

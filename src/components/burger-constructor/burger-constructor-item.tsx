@@ -1,20 +1,27 @@
-import { bool, number, shape } from 'prop-types';
-import { ingredientType } from '../../utils/types';
 import { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { useDrag, useDrop } from 'react-dnd';
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { removeIngredient, dragIngredient } from '../../services/actions/constructor';
 
+import { IIngredient } from '../../interfaces/common';
+
 import Styles from './burger-constructor.module.scss';
 
-function BurgerConstructorItem({ ingredient, isDraggable, index }) {
+interface IBurgerConstructorItem {
+  ingredient: IIngredient;
+  isDraggable: boolean;
+  position?: 'top' | 'bottom' | undefined;
+  index: number;
+}
+
+function BurgerConstructorItem({ ingredient, isDraggable, position, index }: IBurgerConstructorItem) {
   const ref = useRef(null);
   const dispatch = useDispatch();
 
   const [, drop] = useDrop({
     accept: 'CONSTRUCTOR',
-    hover(ingredient) {
+    hover(ingredient: IIngredient) {
       if (!ref.current) {
         return;
       }
@@ -46,7 +53,7 @@ function BurgerConstructorItem({ ingredient, isDraggable, index }) {
       <ConstructorElement
         text={`${ingredient.name}`}
         isLocked={ingredient.isLocked}
-        type={ingredient.type}
+        type={position}
         price={ingredient.price}
         thumbnail={ingredient.image_mobile}
         handleClose={() => dispatch(removeIngredient(ingredient))}
@@ -54,11 +61,5 @@ function BurgerConstructorItem({ ingredient, isDraggable, index }) {
     </div>
   )
 }
-
-BurgerConstructorItem.propTypes = {
-  ingredient: shape(ingredientType).isRequired,
-  isDraggable: bool,
-  index: number,
-};
 
 export default BurgerConstructorItem;

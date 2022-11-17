@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, FormEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -8,18 +8,18 @@ import { getCookie } from '../../utils/cookies';
 import Styles from './login.module.scss';
 
 const Login = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
   const history = useHistory();
   const location = useLocation();
   const [form, setValue] = useState({ email: '', password: '' });
-  const { getLoginSuccess } = useSelector(store => store.auth);
-  const from = location.state?.from?.pathname || '/';
+  const { getLoginSuccess } = useSelector((store: any) => store.auth);
+  const from = (location.state as any)?.from?.pathname || '/';
 
-  const onChange = (e) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue({ ...form, [e.target.name]: e.target.value })
   }
 
-  const onSubmit = (e) => {
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(getLogin(form));
   }

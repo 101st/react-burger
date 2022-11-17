@@ -1,9 +1,13 @@
-import { string, number, oneOfType } from 'prop-types';
 import Done from '../../images/done.svg';
 
 import Styles from './order-details.module.scss';
 
-function OrderDetails({ orderId, status }) {
+interface IOrderDetails {
+  orderId: number;
+  status: string;
+}
+
+function OrderDetails({ orderId, status }: IOrderDetails) {
   return (
     <>
       <div className={`${Styles['order-id']} mt-16 text text_type_main-large`}>{orderId}</div>
@@ -16,10 +20,5 @@ function OrderDetails({ orderId, status }) {
     </>
   )
 }
-
-OrderDetails.propTypes = {
-  orderId: oneOfType([string, number]).isRequired,
-  status: string,
-};
 
 export default OrderDetails;

@@ -1,5 +1,3 @@
-import { number, func, shape } from 'prop-types';
-import { ingredientType } from '../../utils/types';
 import { useDispatch } from 'react-redux';
 import { useDrag } from 'react-dnd';
 import { useLocation, Link } from 'react-router-dom';
@@ -8,13 +6,17 @@ import { setCurrentIngredient } from '../../services/actions/ingredients';
 
 import { CurrencyIcon, Counter } from '@ya.praktikum/react-developer-burger-ui-components';
 
+import { IIngredient } from '../../interfaces/common';
+
 import Styles from './burger-ingredients.module.scss';
 
-function BurgerIngredientItem({
-  ingredient,
-  onClick,
-  count,
-}) {
+interface IBurgerIngredientItem {
+  ingredient: IIngredient;
+  onClick: Function;
+  count: number;
+}
+
+function BurgerIngredientItem({ ingredient, onClick, count }: IBurgerIngredientItem) {
   const dispatch = useDispatch();
   const location = useLocation();
   const { name, image, price, _id } = ingredient;
@@ -39,7 +41,7 @@ function BurgerIngredientItem({
       <div className={`${Styles['price-container']}`}>
         <div className={`${Styles['price']} mt-1 mb-1`}>
           <span className='text text_type_digits-default mr-1'>{price}</span>
-          <CurrencyIcon />
+          <CurrencyIcon type={'primary'} />
         </div>
       </div>
       <div className={`${Styles['name']}`}>
@@ -47,12 +49,6 @@ function BurgerIngredientItem({
       </div>
     </div>
   )
-}
-
-BurgerIngredientItem.propTypes = {
-  ingredient: shape(ingredientType).isRequired,
-  onClick: func.isRequired,
-  count: number,
 }
 
 export default BurgerIngredientItem;
