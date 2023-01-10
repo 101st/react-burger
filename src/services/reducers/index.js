@@ -7,7 +7,7 @@ import { authReducer } from './auth';
 
 export const rootReducer = combineReducers({
   ingredients: ingredientsReducer,
-  constructors: constructorReducer, // 's потосу что слово constructor зарезервировано
+  constructors: constructorReducer, // 's потому что слово constructor зарезервировано
   ingredientDetails: ingredientDetailsReducer,
   order: orderReducer,
   auth: authReducer,
