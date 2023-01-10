@@ -5,7 +5,17 @@ import { ingredientDetailsReducer } from './ingredient-details';
 import { orderReducer } from './order';
 import { authReducer } from './auth';
 
-export const rootReducer = combineReducers({
+import { TAuthState } from './auth';
+
+export interface TRootReducer {
+  ingredients: any,
+  constructors: any,
+  ingredientDetails: any,
+  order: any,
+  auth: TAuthState,
+}
+
+export const rootReducer = combineReducers<TRootReducer>({
   ingredients: ingredientsReducer,
   constructors: constructorReducer, // 's потому что слово constructor зарезервировано
   ingredientDetails: ingredientDetailsReducer,
