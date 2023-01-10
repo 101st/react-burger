@@ -28,7 +28,49 @@ import {
 
 import { EXPIRES_AUTH_TIME } from '../../utils/const';
 
-const initialState = {
+import { TAuthActions } from './auth.types';
+
+interface IUser {
+  name: String,
+  email: String,
+  password: String
+}
+
+export interface TAuthState {
+  getForgotPasswordRequest: boolean,
+  getForgotPasswordSuccess: boolean,
+  getForgotPasswordFailed: boolean,
+
+  getResetPasswordRequest: boolean,
+  getResetPasswordSuccess: boolean,
+  getResetPasswordFailed: boolean,
+
+  getRegisterRequest: boolean,
+  getRegisterSuccess: boolean,
+  getRegisterFailed: boolean,
+  getLoginRequest: boolean,
+  getLoginSuccess: boolean,
+  getLoginFailed: boolean,
+  user: IUser,
+
+  getRefreshTokenRequest: boolean,
+  getRefreshTokenSuccess: boolean,
+  getRefreshTokenFailed: boolean,
+
+  getLogoutRequest: boolean,
+  getLogoutSuccess: boolean,
+  getLogoutFailed: boolean,
+
+  getUserRequest: boolean,
+  getUserSuccess: boolean,
+  getUserFailed: boolean,
+
+  patchUserRequest: boolean,
+  patchUserSuccess: boolean,
+  patchUserFailed: boolean,
+}
+
+const initialState: TAuthState = {
   getForgotPasswordRequest: false,
   getForgotPasswordSuccess: false,
   getForgotPasswordFailed: false,
@@ -66,7 +108,7 @@ const initialState = {
   patchUserFailed: false,
 };
 
-export const authReducer = (state = initialState, action) => {
+export const authReducer = (state: TAuthState = initialState, action: TAuthActions) => {
   switch (action.type) {
 
     // Forgot password
