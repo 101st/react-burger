@@ -1,6 +1,6 @@
 import { BASE_URL } from '../../utils/const';
 import { checkResponse } from '../../utils/common';
-import { IIngredient } from '../../interfaces/common';
+import { IIngredient } from '../reducers/constructor.types';
 
 export const GET_INGRIDIENTS_REQUEST = 'GET_INGRIDIENTS_REQUEST';
 export const GET_INGRIDIENTS_SUCCESS = 'GET_INGRIDIENTS_SUCCESS';

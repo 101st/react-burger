@@ -1,4 +1,4 @@
-import { IIngredient } from "../../interfaces/common";
+import { IIngredient } from "../reducers/constructor.types";
 
 export const SET_INGREDIENT_DETAILS = 'SET_INGREDIENT_DETAILS';
 export const CLEAR_INGREDIENT_DETAILS = 'CLEAR_INGREDIENT_DETAILS';

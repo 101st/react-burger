@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
 import Styles from './ingredient-details.module.scss';
 
-import { IIngredient } from '../../interfaces/common';
+import { IIngredient } from '../../services/reducers/constructor.types';
 
 interface IUseParam {
   _id: string

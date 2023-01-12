@@ -13,7 +13,7 @@ import { getOrder } from '../../services/actions/order';
 import { CLEAR_ORDER } from '../../services/actions/order';
 import { getCookie } from '../../utils/cookies';
 
-import { IIngredient } from '../../interfaces/common';
+import { IIngredient } from '../../services/reducers/constructor.types';
 
 import Styles from './burger-constructor.module.scss';
 

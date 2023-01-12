@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid';
-import { IIngredient } from '../../interfaces/common';
+import { IIngredient } from '../reducers/constructor.types';
 
 export const ADD_INGREDIENT = 'ADD_INGREDIENT';
 export const REMOVE_INGREDIENT = 'REMOVE_INGREDIENT';

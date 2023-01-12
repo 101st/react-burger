@@ -8,7 +8,7 @@ import { setIngredientDetails, clearIngredientDetails } from '../../services/act
 import { useInView } from 'react-intersection-observer';
 
 import Styles from './burger-ingredients.module.scss';
-import { IIngredient } from '../../interfaces/common';
+import { IIngredient } from '../../services/reducers/constructor.types';
 
 const INGREDIENTS_TITLE_MAPPING: { [key: string]: string } = {
   'bun': 'Булки',
