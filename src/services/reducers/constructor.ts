@@ -6,7 +6,13 @@ import {
   SET_TOTAL_PRICE,
 } from '../actions/constructor';
 
-import { TConstructorActions } from './constructor.types';
+import { IIngredient, TConstructorActions } from './constructor.types';
+
+type TConstructorState = {
+  constructorIngredients: IIngredient[],
+  bun: string | null,
+  totalPrice: number,
+}
 
 const initialState = {
   constructorIngredients: [],
@@ -14,7 +20,7 @@ const initialState = {
   totalPrice: 0,
 };
 
-export const constructorReducer = (state = initialState, action: TConstructorActions) => {
+export const constructorReducer = (state: TConstructorState = initialState, action: TConstructorActions) => {
   switch (action.type) {
     case ADD_INGREDIENT: {
       if (action.ingredient.type === 'bun') {
