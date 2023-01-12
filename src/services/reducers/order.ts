@@ -5,6 +5,16 @@ import {
   CLEAR_ORDER,
 } from '../actions/order';
 
+import { TOrderActions } from './order.types';
+
+type TOrderState = {
+  order: number | null,
+  name: string | null,
+  isOpen: boolean,
+  getOrderRequest: boolean,
+  getOrderFailed: boolean,
+}
+
 const initialState = {
   order: null,
   name: null,
@@ -13,7 +23,7 @@ const initialState = {
   getOrderFailed: false,
 };
 
-export const orderReducer = (state = initialState, action) => {
+export const orderReducer = (state: TOrderState = initialState, action: TOrderActions) => {
   switch (action.type) {
     case GET_ORDER_REQUEST: {
       return {
