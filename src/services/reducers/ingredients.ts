@@ -5,6 +5,18 @@ import {
   SET_CURRENT_INGREDIENT,
 } from '../actions/ingredients';
 
+import { TIngredientsActions } from './ingredients.types';
+import { IIngredient } from './constructor.types';
+
+type TIngredientsState = {
+  ingredients: IIngredient[],
+  getIngredientsRequest: boolean,
+  getIngredientsFailed: boolean,
+  currentIngredient: {
+    name: string,
+  },
+}
+
 const initialState = {
   ingredients: [],
   getIngredientsRequest: false,
@@ -14,7 +26,7 @@ const initialState = {
   }
 };
 
-export const ingredientsReducer = (state = initialState, action) => {
+export const ingredientsReducer = (state: TIngredientsState = initialState, action: TIngredientsActions) => {
   switch (action.type) {
     case GET_INGRIDIENTS_REQUEST: {
       return {
