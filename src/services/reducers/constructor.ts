@@ -8,9 +8,9 @@ import {
 
 import { IIngredient, TConstructorActions } from './constructor.types';
 
-type TConstructorState = {
+export type TConstructorState = {
   constructorIngredients: IIngredient[],
-  bun: string | null,
+  bun: string | object | null,
   totalPrice: number,
 }
 

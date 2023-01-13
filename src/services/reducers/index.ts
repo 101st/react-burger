@@ -5,19 +5,23 @@ import { ingredientDetailsReducer } from './ingredient-details';
 import { orderReducer } from './order';
 import { authReducer } from './auth';
 
+import { TIngredientsState } from './ingredients';
+import { TConstructorState } from './constructor';
+import { TIngredientDetailsState } from './ingredient-details';
+import { TOrderState } from './order';
 import { TAuthState } from './auth';
 
 export interface TRootReducer {
-  ingredients: any,
-  constructors: any,
-  ingredientDetails: any,
-  order: any,
+  ingredients: TIngredientsState,
+  constructors: TConstructorState,
+  ingredientDetails: TIngredientDetailsState,
+  order: TOrderState,
   auth: TAuthState,
 }
 
 export const rootReducer = combineReducers<TRootReducer>({
   ingredients: ingredientsReducer,
-  constructors: constructorReducer, // 's потому что слово constructor зарезервировано
+  constructors: constructorReducer,
   ingredientDetails: ingredientDetailsReducer,
   order: orderReducer,
   auth: authReducer,

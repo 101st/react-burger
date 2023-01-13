@@ -5,7 +5,7 @@ import {
 
 import { TIngredientDetailsActions } from './ingredient-details.types';
 
-type TIngredientDetailsState = {
+export type TIngredientDetailsState = {
   ingredientDetails: object,
   isOpen: boolean,
 };

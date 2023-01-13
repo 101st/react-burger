@@ -7,7 +7,7 @@ import {
 
 import { TOrderActions } from './order.types';
 
-type TOrderState = {
+export type TOrderState = {
   order: number | null,
   name: string | null,
   isOpen: boolean,

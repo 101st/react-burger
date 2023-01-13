@@ -8,7 +8,7 @@ import {
 import { TIngredientsActions } from './ingredients.types';
 import { IIngredient } from './constructor.types';
 
-type TIngredientsState = {
+export type TIngredientsState = {
   ingredients: IIngredient[],
   getIngredientsRequest: boolean,
   getIngredientsFailed: boolean,
