@@ -29,8 +29,8 @@ function AppHeader() {
           <Link to='/' className={`ml-2 ${isActive('/') || isActive('/ingredients') ? Styles['text_color_active'] : 'text_color_inactive'}`}>Конструктор</Link>
         </nav>
         <nav className='pl-5 pr-5 mr-2'>
-          <ListIcon type={isActive('/orders-feed') ? 'primary' : 'secondary'} />
-          <Link to='/orders-feed' className={`ml-2 ${isActive('/orders-feed') ? Styles['text_color_active'] : 'text_color_inactive'}`}>Лента заказов</Link>
+          <ListIcon type={isActive('/feed') ? 'primary' : 'secondary'} />
+          <Link to='/feed' className={`ml-2 ${isActive('/feed') ? Styles['text_color_active'] : 'text_color_inactive'}`}>Лента заказов</Link>
         </nav>
       </div>
       <div className={Styles.logo}>

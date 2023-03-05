@@ -81,7 +81,7 @@ function App() {
         <ProtectedRoute auth exact path='/register'><Register /></ProtectedRoute>
         <ProtectedRoute auth exact path='/forgot-password'><ForgotPassword /></ProtectedRoute>
         <ProtectedRoute auth exact path='/reset-password'><ResetPassword /></ProtectedRoute>
-        <Route exact path='/orders-feed'><div></div></Route>
+        <Route exact path='/feed'><div></div></Route>
         <ProtectedRoute exact path='/profile/orders/:id'><div></div></ProtectedRoute>
         <ProtectedRoute exact path='/profile/orders'>
           <Profile>
