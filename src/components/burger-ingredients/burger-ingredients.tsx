@@ -1,5 +1,4 @@
 import { useCallback, useState, useRef, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import BurgerIngredientItem from './burger-ingredient-item';
 import Modal from '../modal/modal';
@@ -9,6 +8,7 @@ import { useInView } from 'react-intersection-observer';
 
 import Styles from './burger-ingredients.module.scss';
 import { IIngredient } from '../../services/reducers/constructor.types';
+import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 
 const INGREDIENTS_TITLE_MAPPING: { [key: string]: string } = {
   'bun': 'Булки',
@@ -17,12 +17,12 @@ const INGREDIENTS_TITLE_MAPPING: { [key: string]: string } = {
 }
 
 function BurgerIngredients() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const [currentIngredientType, setCurrentIngredientType] = useState('bun');
-  const { ingredients } = useSelector((store: any) => store.ingredients);
-  const { constructorIngredients } = useSelector((store: any) => store.constructors);
-  const { isOpen } = useSelector((store: any) => store.ingredientDetails);
+  const { ingredients } = useAppSelector((store: any) => store.ingredients);
+  const { constructorIngredients } = useAppSelector((store: any) => store.constructors);
+  const { isOpen } = useAppSelector((store: any) => store.ingredientDetails);
 
   const [bunRef, inViewBuns] = useInView({ threshold: 1 });
   const [sauceRef, inViewSauce] = useInView({ threshold: 1 });
@@ -67,8 +67,8 @@ function BurgerIngredients() {
   }, [inViewBuns, inViewSauce, inViewMain]);
 
   return (
-    <div className='mr-10'>
-      <h1 className='mt-10 mb-5 text text_type_main-large'>Соберите бургер</h1>
+    <div className='text_type_main-default'>
+      <h1 className='mt-10'>Соберите бургер</h1>
       <div className={`${Styles.tabs} mb-10`}>
         {Object.keys(INGREDIENTS_TITLE_MAPPING)
           .map((item: string) => {
@@ -86,7 +86,7 @@ function BurgerIngredients() {
             )
           })}
       </div>
-      <div className={`${Styles['container']} pt-6 pl-4 pr-4`}>
+      <div className={`${Styles.container} pt-6 pl-4 pr-4`}>
         {Object.keys(TABS)
           .map(item => {
             return (

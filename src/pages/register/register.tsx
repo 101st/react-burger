@@ -1,22 +1,23 @@
 import { useState, useEffect, FormEvent } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import Styles from './register.module.scss';
 
 import { getRegister } from '../../services/actions/auth';
+import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 
 function Register() {
-  const dispatch = useDispatch<any>();
+  const dispatch = useAppDispatch();
   const history = useHistory();
   const [form, setValue] = useState({ name: '', email: '', password: '' });
-  const { getRegisterSuccess } = useSelector((store: any) => store.auth);
+  const { getRegisterSuccess } = useAppSelector((store: any) => store.auth);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue({ ...form, [e.target.name]: e.target.value });
   }
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    // @ts-ignore
     dispatch(getRegister(form));
   }
 

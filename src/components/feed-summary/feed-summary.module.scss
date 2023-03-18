@@ -1,0 +1,53 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    grid-area: constructor;
+    width: calc(100% - 30px);
+}
+
+.row {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.firstRow {
+    display: flex;
+}
+
+.leftColumn {
+    width: calc(50% - 18px);
+    margin: 0 auto 0 0;
+}
+
+.rightColumn {
+    width: calc(50% - 18px);
+    margin: 0 0 0 auto;
+}
+
+.header {
+    display: block;
+    width: 100%;
+}
+
+.firstHeader {
+    padding-bottom: 12px;
+}
+
+.nums {
+    overflow-y: hidden;
+    overflow-x: hidden;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.nums > p {
+    padding-right: 10px;
+}
+
+.leftNums {
+    color: #00cccc;
+}

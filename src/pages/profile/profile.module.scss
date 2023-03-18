@@ -7,36 +7,46 @@
 .menu {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  margin-top: 30px;
 }
 
-.menu>div {
+.menu > div {
   height: 64px;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.fields>form>div {
+.fields > form > div {
   margin-top: 24px;
 }
 
 .add-info {
-  width: 320px;
+  // width: 320px;
   font-size: 16px;
   line-height: 24px;
   color: #8585ad;
   opacity: 0.4;
 }
 
-.form-buttons>button {
+.form-buttons > button {
   margin-right: 10px;
 }
 
-
 .orders {
-  width: 480px;
+  height: 740px;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px #2f2f37;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #8585ad;
+  }
 }
 
 a.text_color_active {

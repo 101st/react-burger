@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { Switch, Route, useLocation, useHistory } from 'react-router-dom';
@@ -18,6 +17,7 @@ import AppHeader from '../app-header/app-header';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
 import IngredientDetails from '../ingredient-details/ingredient-details';
+import FeedItemDetails from '../feed-item-details/feed-item-details';
 import Modal from '../modal/modal';
 
 import Login from '../../pages/login/login';
@@ -28,10 +28,12 @@ import Profile from '../../pages/profile/profile';
 import ProfileForm from '../../pages/profile/profile-form';
 import ProfileOrders from '../../pages/profile/profile-orders';
 import ProtectedRoute from '../protected-route/protected-route';
+import { Feed } from '../../pages/feed/feed';
 import NotFound from '../../pages/not-found/not-found';
+import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 
 function App() {
-  const dispatch = useDispatch<any>();
+  const dispatch = useAppDispatch();
   const history = useHistory();
   const location = useLocation();
   const background = (location.state as any)?.background;
@@ -39,7 +41,7 @@ function App() {
     ingredients,
     getIngredientsRequest,
     getIngredientsFailed,
-  } = useSelector((store: any) => store.ingredients);
+  } = useAppSelector((store: any) => store.ingredients);
 
   const handleModalClose = () => {
     dispatch(clearIngredientDetails());
@@ -51,6 +53,7 @@ function App() {
   }, [ingredients, dispatch]);
 
   useEffect(() => {
+    // @ts-ignore
     dispatch(getIngredients());
   }, [dispatch]);
 
@@ -81,8 +84,9 @@ function App() {
         <ProtectedRoute auth exact path='/register'><Register /></ProtectedRoute>
         <ProtectedRoute auth exact path='/forgot-password'><ForgotPassword /></ProtectedRoute>
         <ProtectedRoute auth exact path='/reset-password'><ResetPassword /></ProtectedRoute>
-        <Route exact path='/feed'><div></div></Route>
-        <ProtectedRoute exact path='/profile/orders/:id'><div></div></ProtectedRoute>
+        <Route exact path='/feed'><Feed /></Route>
+        <Route path='/feed/:_id' exact><FeedItemDetails /></Route>
+        <ProtectedRoute exact path='/profile/orders/:_id'><FeedItemDetails /></ProtectedRoute>
         <ProtectedRoute exact path='/profile/orders'>
           <Profile>
             <ProfileOrders />
@@ -101,6 +105,24 @@ function App() {
             title='Детали ингредиента'
             onClose={handleModalClose}>
             <IngredientDetails />
+          </Modal>
+        </Route>
+      )}
+      {background && (
+        <Route path='/feed/:_id'>
+          <Modal
+            title='Детали заказа'
+            onClose={handleModalClose}>
+            <FeedItemDetails />
+          </Modal>
+        </Route>
+      )}
+      {background && (
+        <Route path='/profile/orders/:_id'>
+          <Modal
+            title='Детали заказа'
+            onClose={handleModalClose}>
+            <FeedItemDetails />
           </Modal>
         </Route>
       )}

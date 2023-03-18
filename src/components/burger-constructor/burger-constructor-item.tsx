@@ -1,5 +1,4 @@
 import { useRef } from 'react';
-import { useDispatch } from 'react-redux';
 import { useDrag, useDrop } from 'react-dnd';
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { removeIngredient, dragIngredient } from '../../services/actions/constructor';
@@ -7,6 +6,7 @@ import { removeIngredient, dragIngredient } from '../../services/actions/constru
 import { IIngredient } from '../../services/reducers/constructor.types';
 
 import Styles from './burger-constructor.module.scss';
+import { useAppDispatch } from '../../utils/hooks';
 
 interface IBurgerConstructorItem {
   ingredient: IIngredient;
@@ -17,7 +17,7 @@ interface IBurgerConstructorItem {
 
 function BurgerConstructorItem({ ingredient, isDraggable, position, index }: IBurgerConstructorItem) {
   const ref = useRef(null);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const [, drop] = useDrop({
     accept: 'CONSTRUCTOR',

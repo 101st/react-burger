@@ -1,22 +1,23 @@
 import { useState, useEffect, FormEvent } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Link, useHistory } from 'react-router-dom';
 import { getForgotPassword } from '../../services/actions/auth';
 
 import Styles from './forgot-password.module.scss';
+import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 
 function ForgotPassword() {
-  const dispatch = useDispatch<any>();
+  const dispatch = useAppDispatch();
   const history = useHistory();
 
-  const { getForgotPasswordSuccess } = useSelector((store: any) => store.auth);
+  const { getForgotPasswordSuccess } = useAppSelector((store: any) => store.auth);
   const [form, setValue] = useState({ email: '' });
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue({ ...form, [e.target.name]: e.target.value })
   }
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    // @ts-ignore
     dispatch(getForgotPassword(form.email));
   }
   useEffect(() => {

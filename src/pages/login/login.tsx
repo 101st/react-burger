@@ -1,18 +1,18 @@
 import { useEffect, useState, FormEvent } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { getLogin, getRefreshToken } from '../../services/actions/auth';
 import { getCookie } from '../../utils/cookies';
 
 import Styles from './login.module.scss';
+import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 
 const Login = () => {
-  const dispatch = useDispatch<any>();
+  const dispatch = useAppDispatch();
   const history = useHistory();
   const location = useLocation();
   const [form, setValue] = useState({ email: '', password: '' });
-  const { getLoginSuccess } = useSelector((store: any) => store.auth);
+  const { getLoginSuccess } = useAppSelector((store: any) => store.auth);
   const from = (location.state as any)?.from?.pathname || '/';
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,11 +21,13 @@ const Login = () => {
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    // @ts-ignore
     dispatch(getLogin(form));
   }
 
   useEffect(() => {
     if (!getLoginSuccess && getCookie('refreshToken')) {
+      // @ts-ignore
       dispatch(getRefreshToken());
     }
   }, [dispatch, getLoginSuccess]);

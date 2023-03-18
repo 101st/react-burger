@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useDrop } from 'react-dnd';
 import { useHistory } from 'react-router-dom';
 
 import { CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import BurgerConstructorItem from './burger-constructor-item';
+import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 import Modal from '../modal/modal';
 import OrderDetails from '../order-details/order-details';
 import OrderDetailsLoader from '../order-details/order-details-loader';
@@ -18,11 +18,11 @@ import { IIngredient } from '../../services/reducers/constructor.types';
 import Styles from './burger-constructor.module.scss';
 
 function BurgerConstructor() {
-  const dispatch = useDispatch<any>();
+  const dispatch = useAppDispatch();
   const history = useHistory();
 
-  const { constructorIngredients, bun, totalPrice } = useSelector((store: any) => store.constructors);
-  const { getOrderRequest, isOpen, name, order } = useSelector((store: any) => store.order);
+  const { constructorIngredients, bun, totalPrice } = useAppSelector((store: any) => store.constructors);
+  const { getOrderRequest, isOpen, name, order } = useAppSelector((store: any) => store.order);
 
   const [withBun, setWithBun] = useState(null);
 
@@ -97,6 +97,7 @@ function BurgerConstructor() {
                 if (!getCookie('accessToken'))
                   history.push('/login');
                 else
+                // @ts-ignore
                   dispatch(getOrder(ingredientsId));
               }}
               disabled={!withBun}

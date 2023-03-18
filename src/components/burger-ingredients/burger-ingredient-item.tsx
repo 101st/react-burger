@@ -1,4 +1,3 @@
-import { useDispatch } from 'react-redux';
 import { useDrag } from 'react-dnd';
 import { useLocation, Link } from 'react-router-dom';
 
@@ -9,6 +8,7 @@ import { CurrencyIcon, Counter } from '@ya.praktikum/react-developer-burger-ui-c
 import { IIngredient } from '../../services/reducers/constructor.types';
 
 import Styles from './burger-ingredients.module.scss';
+import { useAppDispatch } from '../../utils/hooks';
 
 interface IBurgerIngredientItem {
   ingredient: IIngredient;
@@ -17,7 +17,7 @@ interface IBurgerIngredientItem {
 }
 
 function BurgerIngredientItem({ ingredient, onClick, count }: IBurgerIngredientItem) {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const location = useLocation();
   const { name, image, price, _id } = ingredient;
   const [, ref] = useDrag({
