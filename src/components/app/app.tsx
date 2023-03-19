@@ -41,7 +41,7 @@ function App() {
     ingredients,
     getIngredientsRequest,
     getIngredientsFailed,
-  } = useAppSelector((store: any) => store.ingredients);
+  } = useAppSelector(store => store.ingredients);
 
   const handleModalClose = () => {
     dispatch(clearIngredientDetails());
