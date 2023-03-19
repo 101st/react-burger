@@ -1,6 +1,7 @@
 import { BASE_URL } from '../../utils/const';
 import { checkResponse } from '../../utils/common';
 import { IIngredient } from '../reducers/constructor.types';
+import { AppDispatch, AppThunk } from '../store';
 
 export const GET_INGRIDIENTS_REQUEST = 'GET_INGRIDIENTS_REQUEST';
 export const GET_INGRIDIENTS_SUCCESS = 'GET_INGRIDIENTS_SUCCESS';
@@ -32,14 +33,14 @@ export function getIngredients() {
 
 export const SET_CURRENT_INGREDIENT = 'SET_CURRENT_INGREDIENT';
 
-export const setCurrentIngredient = (currentIngredient: IIngredient) => ({
+export const setCurrentIngredient = (currentIngredient: IIngredient): AppThunk => async (dispatch: AppDispatch) => ({
   type: SET_CURRENT_INGREDIENT,
   currentIngredient
 });
 
 export const SET_INGRIDIENTS_STORE = 'SET_INGRIDIENTS_STORE';
 
-export const setIngredientsStore = (currentIngredientType: string) => ({
+export const setIngredientsStore = (currentIngredientType: string): AppThunk => async (dispatch: AppDispatch) => ({
   type: SET_INGRIDIENTS_STORE,
   currentIngredientType,
 });
