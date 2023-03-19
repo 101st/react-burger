@@ -21,10 +21,10 @@ function BurgerConstructor() {
   const dispatch = useAppDispatch();
   const history = useHistory();
 
-  const { constructorIngredients, bun, totalPrice } = useAppSelector((store: any) => store.constructors);
+  const { constructorIngredients, bun, totalPrice } = useAppSelector(store => store.constructors);
   const { getOrderRequest, isOpen, name, order } = useAppSelector((store: any) => store.order);
 
-  const [withBun, setWithBun] = useState(null);
+  const [withBun, setWithBun] = useState<boolean | null>(null);
 
   const [{ isHover }, dropTarget] = useDrop({
     accept: 'INGREDIENT',

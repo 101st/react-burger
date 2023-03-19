@@ -9,7 +9,7 @@ export const GET_ORDER_REQUEST = 'GET_ORDER_REQUEST';
 export const GET_ORDER_SUCCESS = 'GET_ORDER_SUCCESS';
 export const GET_ORDER_FAILED = 'GET_ORDER_FAILED';
 
-export const getOrder = (ingredientsId: number): AppDispatch => async () => {
+export const getOrder = (ingredientsId: string[]): AppDispatch => async () => {
   return function (dispatch: Function) {
     const requestHeaders: HeadersInit = new Headers();
     requestHeaders.set('Content-Type', 'application/json');

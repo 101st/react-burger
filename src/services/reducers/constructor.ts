@@ -10,7 +10,7 @@ import { IIngredient, TConstructorActions } from './constructor.types';
 
 export type TConstructorState = {
   constructorIngredients: IIngredient[],
-  bun: string | object | null,
+  bun: IIngredient | null,
   totalPrice: number,
 }
 
