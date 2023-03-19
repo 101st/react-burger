@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 
 import Styles from './feed-list.module.scss';
 import { useAppDispatch, useAppSelector } from '../../utils/hooks';
-import { getWsConnectionClosedAction, getWsConnectionStartAction } from '../../services/actions/ws';
+import { getWsConnectionStartAction } from '../../services/actions/ws';
 import { WS_ORDER_URL } from '../../utils/const';
 
 export const FeedList = () => {
@@ -30,7 +30,7 @@ export const FeedList = () => {
     } else {
       setOrders(feed?.orders || [])
     }
-  }, [feed])
+  }, [feed, location.pathname])
 
   return (
     <ul>

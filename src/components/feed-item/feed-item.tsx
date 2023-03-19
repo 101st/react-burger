@@ -4,9 +4,10 @@ import { IngredientIcon } from '../ingredient-icon/ingredient-icon';
 import { useAppSelector } from '../../utils/hooks';
 
 import Styles from './feed-item.module.scss';
+import { IIngredient } from '../../services/reducers/constructor.types';
 
 export const FeedItem = ({ order }: any) => {
-  const { ingredients } = useAppSelector((store: any) => store.ingredients);
+  const { ingredients } = useAppSelector(store => store.ingredients);
   const uniqIngredients = ingredients.filter((i: { _id: string; }) => order.ingredients.includes(i._id));
 
   let items = uniqIngredients;
@@ -18,8 +19,8 @@ export const FeedItem = ({ order }: any) => {
   }
 
   const price = useMemo(() => {
-    return uniqIngredients ? uniqIngredients.map((i: { price: any; }) =>
-      Number(i.price)).reduce((acc: any, p: any) => acc += p) : 0
+    return uniqIngredients ? uniqIngredients.map((i: IIngredient) =>
+      Number(i.price)).reduce((acc, p) => acc += p) : 0
   }, [uniqIngredients]);
 
   return (
