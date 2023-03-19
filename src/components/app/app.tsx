@@ -11,8 +11,6 @@ import {
   clearIngredientDetails
 } from '../../services/actions/ingredient-details';
 
-import Styles from './app.module.scss';
-
 import AppHeader from '../app-header/app-header';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
@@ -31,6 +29,8 @@ import ProtectedRoute from '../protected-route/protected-route';
 import { Feed } from '../../pages/feed/feed';
 import NotFound from '../../pages/not-found/not-found';
 import { useAppDispatch, useAppSelector } from '../../utils/hooks';
+
+import Styles from './app.module.scss';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -60,54 +60,57 @@ function App() {
   return (
     <>
       <AppHeader />
-      <Switch location={background || location}>
-        <Route exact path='/'>
-          <DndProvider backend={HTML5Backend}>
-            <div className={Styles.container}>
-              {getIngredientsRequest && 'Загрузка ингредиентов...'}
-              {getIngredientsFailed && 'Ошибка: Загрузка ингредиентов!'}
-              {
-                !getIngredientsRequest
-                && !getIngredientsFailed
-                && ingredients.length
-                && <>
-                  <BurgerIngredients />
-                  <BurgerConstructor />
-                </>}
-            </div>
-          </DndProvider>
-        </Route>
-        <Route path='/ingredients/:_id' exact>
-          <IngredientDetails />
-        </Route>
-        <ProtectedRoute auth exact path='/login'><Login /></ProtectedRoute>
-        <ProtectedRoute auth exact path='/register'><Register /></ProtectedRoute>
-        <ProtectedRoute auth exact path='/forgot-password'><ForgotPassword /></ProtectedRoute>
-        <ProtectedRoute auth exact path='/reset-password'><ResetPassword /></ProtectedRoute>
-        <Route exact path='/feed'><Feed /></Route>
-        <Route path='/feed/:_id' exact><FeedItemDetails /></Route>
-        <ProtectedRoute exact path='/profile/orders/:_id'><FeedItemDetails /></ProtectedRoute>
-        <ProtectedRoute exact path='/profile/orders'>
-          <Profile>
-            <ProfileOrders />
-          </Profile>
-        </ProtectedRoute>
-        <ProtectedRoute exact path='/profile'>
-          <Profile>
-            <ProfileForm />
-          </Profile>
-        </ProtectedRoute>
-        <Route><NotFound /></Route>
-      </Switch>
-      {background && (
-        <Route path='/ingredients/:_id'>
-          <Modal
-            title='Детали ингредиента'
-            onClose={handleModalClose}>
+      <div className={Styles.layout}>
+        <Switch location={background || location}>
+          <Route exact path='/'>
+            <DndProvider backend={HTML5Backend}>
+              <div className={Styles.container}>
+                {getIngredientsRequest && 'Загрузка ингредиентов...'}
+                {getIngredientsFailed && 'Ошибка: Загрузка ингредиентов!'}
+                {
+                  !getIngredientsRequest
+                  && !getIngredientsFailed
+                  && ingredients.length
+                  && <>
+                    <BurgerIngredients />
+                    <BurgerConstructor />
+                  </>}
+              </div>
+            </DndProvider>
+          </Route>
+          <Route path='/ingredients/:_id' exact>
             <IngredientDetails />
-          </Modal>
-        </Route>
-      )}
+          </Route>
+          <ProtectedRoute auth exact path='/login'><Login /></ProtectedRoute>
+          <ProtectedRoute auth exact path='/register'><Register /></ProtectedRoute>
+          <ProtectedRoute auth exact path='/forgot-password'><ForgotPassword /></ProtectedRoute>
+          <ProtectedRoute auth exact path='/reset-password'><ResetPassword /></ProtectedRoute>
+          <Route exact path='/feed'><Feed /></Route>
+          <Route path='/feed/:_id' exact><FeedItemDetails /></Route>
+          <ProtectedRoute exact path='/profile/orders/:_id'><FeedItemDetails /></ProtectedRoute>
+          <ProtectedRoute exact path='/profile/orders'>
+            <Profile>
+              <ProfileOrders />
+            </Profile>
+          </ProtectedRoute>
+          <ProtectedRoute exact path='/profile'>
+            <Profile>
+              <ProfileForm />
+            </Profile>
+          </ProtectedRoute>
+          <Route><NotFound /></Route>
+        </Switch>
+        {background && (
+          <Route path='/ingredients/:_id'>
+            <Modal
+              title='Детали ингредиента'
+              onClose={handleModalClose}>
+              <IngredientDetails />
+            </Modal>
+          </Route>
+        )}
+      </div>
+
       {background && (
         <Route path='/feed/:_id'>
           <Modal

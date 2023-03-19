@@ -67,7 +67,7 @@ function BurgerIngredients() {
   }, [inViewBuns, inViewSauce, inViewMain]);
 
   return (
-    <div className='text_type_main-default'>
+    <div className={`${Styles.container} text_type_main-default`}>
       <h1 className='mt-10'>Соберите бургер</h1>
       <div className={`${Styles.tabs} mb-10`}>
         {Object.keys(INGREDIENTS_TITLE_MAPPING)
@@ -86,13 +86,13 @@ function BurgerIngredients() {
             )
           })}
       </div>
-      <div className={`${Styles.container} pt-6 pl-4 pr-4`}>
+      <div className={`${Styles.ingredient_container} pt-6`}>
         {Object.keys(TABS)
           .map(item => {
             return (
               <div ref={TABS[item]?.scroll} key={item}>
                 <div ref={TABS[item]?.click}>{INGREDIENTS_TITLE_MAPPING[item]}</div>
-                <div className={`${Styles['ingredient-type-container']}`}>{getIngredientsByType(item)}</div>
+                <div className={Styles.ingredient_type_container}>{getIngredientsByType(item)}</div>
               </div>
             )
           })}

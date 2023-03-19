@@ -23,7 +23,7 @@ function BurgerIngredientItem({ ingredient, onClick, count }: IBurgerIngredientI
   const [, ref] = useDrag({
     type: 'INGREDIENT',
     item: ingredient,
-    collect: (monitor) => ({})
+    collect: () => ({})
   });
 
   return (
@@ -38,13 +38,13 @@ function BurgerIngredientItem({ ingredient, onClick, count }: IBurgerIngredientI
       }}>
         <img width={252} height={126} alt={name} src={image} />
       </Link>
-      <div className={`${Styles['price-container']}`}>
-        <div className={`${Styles['price']} mt-1 mb-1`}>
+      <div className={Styles.price_container}>
+        <div className={`${Styles.price} mt-1 mb-1`}>
           <span className='text text_type_digits-default mr-1'>{price}</span>
           <CurrencyIcon type={'primary'} />
         </div>
       </div>
-      <div className={`${Styles['name']}`}>
+      <div className={Styles.name}>
         {name}
       </div>
     </div>

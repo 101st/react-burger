@@ -56,9 +56,9 @@ function BurgerConstructor() {
   }, [constructorIngredients, dispatch]);
 
   return (
-    <div className='mt-25' ref={dropTarget}
+    <div className={`${Styles.container} mt-25 ml-10`} ref={dropTarget}
       style={{ boxShadow: `inset 0px 0px 72px -35px ${boxShadowColor}`, paddingTop: bun ? 0 : '96px' }}>
-      <div className={`${Styles.bun} ml-6 pr-4`}>
+      <div className={`${Styles.bun}`}>
         {bun && <BurgerConstructorItem
           key={'bun-1'}
           ingredient={{ ...bun, name: bun.name + ' (верх)', isLocked: true }}
@@ -66,7 +66,7 @@ function BurgerConstructor() {
           index={0}
           position={'top'} />}
       </div>
-      <div className={`${Styles['container']} pr-4`} style={{ marginBottom: bun ? 0 : '96px' }}>
+      <div className={`${Styles.constructor_container}`} style={{ marginBottom: bun ? 0 : '96px' }}>
         {constructorIngredients.map((item: IIngredient, index: number) => {
           if (item.type === 'bun') return null;
           return (
@@ -79,7 +79,7 @@ function BurgerConstructor() {
           )
         })}
       </div>
-      <div className={`${Styles.bun} ml-6 mt-4 pr-4`}>
+      <div className={`${Styles.bun} mt-4`}>
         {bun && <BurgerConstructorItem
           key={'bun-2'}
           ingredient={{ ...bun, name: bun.name + ' (низ)', isLocked: true }}
@@ -88,23 +88,21 @@ function BurgerConstructor() {
           position={'bottom'} />}
       </div>
       <div className={`${Styles.order}`}>
-        <div className={`${Styles['price']} mt-10`}>
+        <div className={`${Styles['price']}`}>
           <span className='text text_type_digits-medium mr-2'>{totalPrice}</span>
-          <div className={`${Styles['totla-price']}`}><CurrencyIcon type='primary' /></div>
-          <div className='ml-10'>
-            <Button type='primary' htmlType='button' size='medium'
-              onClick={() => {
-                if (!getCookie('accessToken'))
-                  history.push('/login');
-                else
+          <div className={`${Styles['totla-price']} ml-2 mr-10`}><CurrencyIcon type='primary' /></div>
+          <Button type='primary' htmlType='button' size='medium'
+            onClick={() => {
+              if (!getCookie('accessToken'))
+                history.push('/login');
+              else
                 // @ts-ignore
-                  dispatch(getOrder(ingredientsId));
-              }}
-              disabled={!withBun}
-            >
-              Оформить заказ
-            </Button>
-          </div>
+                dispatch(getOrder(ingredientsId));
+            }}
+            disabled={!withBun}
+          >
+            Оформить заказ
+          </Button>
         </div>
         {isOpen && <Modal
           title={''}
