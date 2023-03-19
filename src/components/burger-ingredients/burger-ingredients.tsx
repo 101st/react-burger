@@ -29,7 +29,7 @@ function BurgerIngredients() {
   const [mainRef, inViewMain] = useInView({ threshold: .4 });
 
   const TABS: { [key: string]: { scroll: (node?: Element | null) => void, click: any } } = {
-    bun: { scroll: bunRef, click: useRef<HTMLInputElement | null>() },
+    bun: { scroll: bunRef, click: useRef() },
     sauce: { scroll: sauceRef, click: useRef() },
     main: { scroll: mainRef, click: useRef() },
   }
