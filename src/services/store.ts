@@ -2,8 +2,10 @@ import {
   compose,
   legacy_createStore,
   applyMiddleware,
+  ActionCreator,
+  Action,
 } from 'redux';
-import thunk, { ThunkAction, ThunkDispatch } from 'redux-thunk';
+import thunk, { ThunkAction } from 'redux-thunk';
 import { rootReducer } from './reducers';
 import { socketMiddleware } from '../utils/ws';
 
@@ -43,5 +45,10 @@ const enhancer = composeEnhancers(applyMiddleware(thunk, socketMiddleware(wsActi
 export const store = legacy_createStore(rootReducer, enhancer);
 
 export type RootState = ReturnType<typeof store.getState>;
-export type AppThunk<TReturn = void> = ThunkAction<TReturn, RootState, never, TAppActions>;
-export type AppDispatch = ThunkDispatch<RootState, never, TAppActions>;
+// export type AppThunk<TReturn = void> = ThunkAction<TReturn, RootState, never, TAppActions>;
+// export type AppDispatch = ThunkDispatch<RootState, never, TAppActions>;
+
+export type AppThunk<TReturn = void> = ActionCreator<
+  ThunkAction<TReturn, Action, RootState, TAppActions>>;
+
+export type AppDispatch = typeof store.dispatch;

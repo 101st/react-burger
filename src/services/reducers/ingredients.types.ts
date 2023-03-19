@@ -2,7 +2,6 @@ import {
   GET_INGRIDIENTS_REQUEST,
   GET_INGRIDIENTS_SUCCESS,
   GET_INGRIDIENTS_FAILED,
-  SET_CURRENT_INGREDIENT,
 } from '../actions/ingredients';
 import { IIngredient } from './constructor.types';
 
@@ -15,13 +14,7 @@ type TGetIngredientsSuccessAction = {
   ingredients: IIngredient[],
 };
 
-type TSetCurrentIngredientAction = {
-  type: typeof SET_CURRENT_INGREDIENT,
-  currentIngredient: IIngredient,
-};
-
 export type TIngredientsActions = (
   TGetIngredientsActions |
-  TGetIngredientsSuccessAction |
-  TSetCurrentIngredientAction
+  TGetIngredientsSuccessAction
 );

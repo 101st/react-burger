@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import Styles from './feed-summary.module.scss';
 
+const MAX_DISPLAYED_ITEM = 13;
 
 export const FeedSummary = () => {
   const { feed, wsConnected, errorMessag } = useSelector((store: any) => store.ws);
@@ -29,14 +30,14 @@ export const FeedSummary = () => {
         <div className={Styles.leftColumn}>
           <p className={`text text_type_main-default ${Styles.firstHeader}`}>Готовы:</p>
           <div className={Styles.leftNums}>{
-            done?.slice(0, 5)?.map(s => (<p key={s} className={`text text_type_digits-default`}>{s}</p>))
-          }{done?.length > 20 && '...'}</div>
+            done?.slice(0, MAX_DISPLAYED_ITEM)?.map(s => (<p key={s} className={`text text_type_digits-default`}>{s}</p>))
+          }{done?.length > MAX_DISPLAYED_ITEM && '...'}</div>
         </div>
         <div className={Styles.rightColumn}>
           <p className={`text text_type_main-default ${Styles.firstHeader}`}>В работе:</p>
           <div className={Styles.nums}>{
-            waiting?.map(s => (<p key={s} className={`text text_type_digits-default`}>{s}</p>))
-          }</div>
+            waiting?.slice(0, MAX_DISPLAYED_ITEM).map(s => (<p key={s} className={`text text_type_digits-default`}>{s}</p>))
+          }{done?.length > MAX_DISPLAYED_ITEM && '...'}</div>
         </div>
       </div>
       <div className={Styles.row + ' mt-10'}>

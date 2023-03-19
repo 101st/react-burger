@@ -24,7 +24,6 @@ export const FeedList = () => {
   useEffect(() => {
     if (location.pathname === '/profile/orders' && feed) {
       setOrders(feed.orders.filter((order: TOrder) => {
-        console.log(order);
         return order;
       }))
     } else {

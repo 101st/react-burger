@@ -3,7 +3,7 @@ import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import BurgerIngredientItem from './burger-ingredient-item';
 import Modal from '../modal/modal';
 import IngredientDetails from '../ingredient-details/ingredient-details';
-import { setIngredientDetails, clearIngredientDetails } from '../../services/actions/ingredient-details';
+import { clearIngredientDetails } from '../../services/actions/ingredient-details';
 import { useInView } from 'react-intersection-observer';
 
 import Styles from './burger-ingredients.module.scss';
@@ -45,12 +45,11 @@ function BurgerIngredients() {
     return ingredientsForSpecifyType.map((item: IIngredient) => (
       <BurgerIngredientItem
         key={item._id}
-        onClick={() => dispatch(setIngredientDetails(item))}
         ingredient={item}
         count={getCount(item._id)}
       />
     ));
-  }, [ingredients, dispatch, getCount]);
+  }, [ingredients, getCount]);
 
   const handleSmoothScroll = (type: string) => {
     TABS[type].click.current.scrollIntoView({ behavior: 'smooth' });

@@ -2,7 +2,6 @@ import {
   GET_INGRIDIENTS_REQUEST,
   GET_INGRIDIENTS_SUCCESS,
   GET_INGRIDIENTS_FAILED,
-  SET_CURRENT_INGREDIENT,
 } from '../actions/ingredients';
 
 import { TIngredientsActions } from './ingredients.types';
@@ -47,12 +46,6 @@ export const ingredientsReducer = (state: TIngredientsState = initialState, acti
         ...state,
         getIngredientsRequest: false,
         getIngredientsFailed: true,
-      };
-    }
-    case SET_CURRENT_INGREDIENT: {
-      return {
-        ...state,
-        currentIngredient: action.currentIngredient,
       };
     }
     default: {

@@ -4,12 +4,8 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import { Switch, Route, useLocation, useHistory } from 'react-router-dom';
 
 import {
-  setIngredientsStore,
   getIngredients,
 } from '../../services/actions/ingredients';
-import {
-  clearIngredientDetails
-} from '../../services/actions/ingredient-details';
 
 import AppHeader from '../app-header/app-header';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
@@ -44,13 +40,8 @@ function App() {
   } = useAppSelector(store => store.ingredients);
 
   const handleModalClose = () => {
-    dispatch(clearIngredientDetails());
     history.goBack();
   };
-
-  useEffect(() => {
-    dispatch(setIngredientsStore('main'));
-  }, [ingredients, dispatch]);
 
   useEffect(() => {
     dispatch(getIngredients());

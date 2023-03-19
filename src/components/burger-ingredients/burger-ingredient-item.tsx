@@ -1,23 +1,18 @@
 import { useDrag } from 'react-dnd';
 import { useLocation, Link } from 'react-router-dom';
 
-import { setCurrentIngredient } from '../../services/actions/ingredients';
-
 import { CurrencyIcon, Counter } from '@ya.praktikum/react-developer-burger-ui-components';
 
 import { IIngredient } from '../../services/reducers/constructor.types';
 
 import Styles from './burger-ingredients.module.scss';
-import { useAppDispatch } from '../../utils/hooks';
 
 interface IBurgerIngredientItem {
   ingredient: IIngredient;
-  onClick: Function;
   count: number;
 }
 
-function BurgerIngredientItem({ ingredient, onClick, count }: IBurgerIngredientItem) {
-  const dispatch = useAppDispatch();
+function BurgerIngredientItem({ ingredient, count }: IBurgerIngredientItem) {
   const location = useLocation();
   const { name, image, price, _id } = ingredient;
   const [, ref] = useDrag({
@@ -27,10 +22,7 @@ function BurgerIngredientItem({ ingredient, onClick, count }: IBurgerIngredientI
   });
 
   return (
-    <div className={`${Styles.item} pl-4 pr-4 mb-10`} ref={ref} onClick={() => {
-      dispatch(setCurrentIngredient(ingredient));
-      onClick();
-    }}>
+    <div className={`${Styles.item} pl-4 pr-4 mb-10`} ref={ref}>
       {count > 0 && <Counter count={count} size='default' />}
       <Link to={{
         pathname: `/ingredients/${_id}`,
