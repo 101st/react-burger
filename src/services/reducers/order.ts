@@ -5,14 +5,15 @@ import {
   CLEAR_ORDER,
 } from '../actions/order';
 
-import { TOrderActions } from './order.types';
+import { TOrder, TOrderActions } from './order.types';
 
 export type TOrderState = {
-  order: number | null,
+  order: TOrder | null,
   name: string | null,
   isOpen: boolean,
   getOrderRequest: boolean,
   getOrderFailed: boolean,
+  getOrderSuccess: boolean,
 }
 
 const initialState = {
@@ -21,6 +22,7 @@ const initialState = {
   isOpen: false,
   getOrderRequest: false,
   getOrderFailed: false,
+  getOrderSuccess: false,
 };
 
 export const orderReducer = (state: TOrderState = initialState, action: TOrderActions) => {
@@ -31,6 +33,7 @@ export const orderReducer = (state: TOrderState = initialState, action: TOrderAc
         getOrderRequest: true,
         getOrderFailed: false,
         isOpen: true,
+        getOrderSuccess: false,
       };
     }
     case GET_ORDER_SUCCESS: {
@@ -39,6 +42,7 @@ export const orderReducer = (state: TOrderState = initialState, action: TOrderAc
         order: action.order,
         name: action.name,
         getOrderRequest: false,
+        getOrderSuccess: true,
       };
     }
     case GET_ORDER_FAILED: {
@@ -46,6 +50,7 @@ export const orderReducer = (state: TOrderState = initialState, action: TOrderAc
         ...state,
         getOrderFailed: true,
         getOrderRequest: false,
+        getOrderSuccess: false,
       };
     }
     case CLEAR_ORDER: {
@@ -54,6 +59,7 @@ export const orderReducer = (state: TOrderState = initialState, action: TOrderAc
         order: null,
         name: null,
         isOpen: false,
+        getOrderSuccess: false,
       };
     }
     default: {

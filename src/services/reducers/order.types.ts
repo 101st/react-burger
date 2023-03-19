@@ -14,7 +14,7 @@ type TOrderRequestActions = {
 
 type TGetOrderSuccessAction = {
   type: typeof GET_ORDER_SUCCESS,
-  order: number,
+  order: TOrder,
   name: string,
 };
 

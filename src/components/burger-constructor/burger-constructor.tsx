@@ -22,7 +22,7 @@ function BurgerConstructor() {
   const history = useHistory();
 
   const { constructorIngredients, bun, totalPrice } = useAppSelector(store => store.constructors);
-  const { getOrderRequest, isOpen, name, order } = useAppSelector((store: any) => store.order);
+  const { getOrderSuccess, isOpen, name, order } = useAppSelector(store => store.order);
 
   const [withBun, setWithBun] = useState<boolean | null>(null);
 
@@ -107,12 +107,13 @@ function BurgerConstructor() {
           title={''}
           onClose={() => dispatch({ type: CLEAR_ORDER })}
         >
-          {getOrderRequest
-            ? <OrderDetailsLoader />
-            : <OrderDetails
-              orderId={order?.number | 1}
+          {getOrderSuccess
+            ? <OrderDetails
+              orderId={order?.number}
               status={`Ваш заказ '${name}' начали готовить`}
-            />}
+            />
+            : <OrderDetailsLoader />
+          }
         </Modal>}
       </div>
     </div >
