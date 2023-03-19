@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import { FormattedDate } from '@ya.praktikum/react-developer-burger-ui-components'
 import { IngredientIcon } from '../ingredient-icon/ingredient-icon';
 import { useAppSelector } from '../../utils/hooks';
 
@@ -27,7 +28,9 @@ export const FeedItem = ({ order }: any) => {
     <div className={Styles.main}>
       <div className={Styles.content}>
         <p className={`text text_type_digits-default`}>#{order.number}</p>
-        <p className={`text text_type_main-default text_color_inactive`}>{order.createdAt.toLocaleString()}</p>
+        <p className={`text text_type_main-default text_color_inactive`}>
+          <FormattedDate date={new Date(order.createdAt)} />
+        </p>
       </div>
       <p className="text text_type_main-default">{order.name}</p>
       <div className={Styles.content}>
