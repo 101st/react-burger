@@ -20,16 +20,16 @@ function BurgerIngredients() {
   const dispatch = useAppDispatch();
 
   const [currentIngredientType, setCurrentIngredientType] = useState('bun');
-  const { ingredients } = useAppSelector((store: any) => store.ingredients);
-  const { constructorIngredients } = useAppSelector((store: any) => store.constructors);
-  const { isOpen } = useAppSelector((store: any) => store.ingredientDetails);
+  const { ingredients } = useAppSelector(store => store.ingredients);
+  const { constructorIngredients } = useAppSelector(store => store.constructors);
+  const { isOpen } = useAppSelector(store => store.ingredientDetails);
 
   const [bunRef, inViewBuns] = useInView({ threshold: 1 });
   const [sauceRef, inViewSauce] = useInView({ threshold: 1 });
   const [mainRef, inViewMain] = useInView({ threshold: .4 });
 
-  const TABS: { [key: string]: any } = { //TODO убрать тип any
-    bun: { scroll: bunRef, click: useRef() },
+  const TABS: { [key: string]: { scroll: (node?: Element | null) => void, click: any } } = {
+    bun: { scroll: bunRef, click: useRef<HTMLInputElement | null>() },
     sauce: { scroll: sauceRef, click: useRef() },
     main: { scroll: mainRef, click: useRef() },
   }
