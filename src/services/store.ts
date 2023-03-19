@@ -3,7 +3,7 @@ import {
   legacy_createStore,
   applyMiddleware,
 } from 'redux';
-import thunk from 'redux-thunk';
+import thunk, { ThunkAction, ThunkDispatch } from 'redux-thunk';
 import { rootReducer } from './reducers';
 import { socketMiddleware } from '../utils/ws';
 
@@ -17,6 +17,7 @@ import {
 } from './actions/ws';
 
 import { IWsActions } from './reducers/ws.types';
+import { TAppActions } from './reducers';
 
 declare global {
   interface Window {
@@ -42,3 +43,5 @@ const enhancer = composeEnhancers(applyMiddleware(thunk, socketMiddleware(wsActi
 export const store = legacy_createStore(rootReducer, enhancer);
 
 export type RootState = ReturnType<typeof store.getState>;
+export type AppThunk<TReturn = void> = ThunkAction<TReturn, RootState, never, TAppActions>;
+export type AppDispatch = ThunkDispatch<RootState, never, TAppActions>;

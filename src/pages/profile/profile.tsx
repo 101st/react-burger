@@ -17,7 +17,6 @@ function Profile({ children }: { children: React.ReactElement }) {
   }
 
   useEffect(() => {
-    // @ts-ignore
     dispatch(getUser());
   }, [dispatch]);
 
@@ -39,7 +38,6 @@ function Profile({ children }: { children: React.ReactElement }) {
           </Link>
         </div>
         <div onClick={() => {
-          // @ts-ignore
           dispatch(getLogout(() => {
             history.push('/login');
           }));

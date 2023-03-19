@@ -2,13 +2,14 @@ import { BASE_URL } from '../../utils/const';
 import { checkResponse } from '../../utils/common';
 import { clearConstructor } from './constructor';
 import { getCookie } from '../../utils/cookies';
+import { AppDispatch } from '../store';
 
 export const CLEAR_ORDER = 'CLEAR_ORDER';
 export const GET_ORDER_REQUEST = 'GET_ORDER_REQUEST';
 export const GET_ORDER_SUCCESS = 'GET_ORDER_SUCCESS';
 export const GET_ORDER_FAILED = 'GET_ORDER_FAILED';
 
-export const getOrder = (ingredientsId: number) => {
+export const getOrder = (ingredientsId: number): AppDispatch => async () => {
   return function (dispatch: Function) {
     const requestHeaders: HeadersInit = new Headers();
     requestHeaders.set('Content-Type', 'application/json');

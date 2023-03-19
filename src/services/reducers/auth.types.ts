@@ -25,9 +25,10 @@ import {
   PATCH_USER_FAILED,
 } from '../actions/auth';
 
-type TUser = {
+export type TUser = {
   email: string,
   name: string,
+  password: string,
 };
 
 type TData = {

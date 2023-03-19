@@ -17,7 +17,6 @@ function ResetPassword() {
   }
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // @ts-ignore
     dispatch(getResetPassword(form.password, form.token));
   }
 

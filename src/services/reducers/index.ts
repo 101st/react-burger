@@ -13,6 +13,13 @@ import { TOrderState } from './order';
 import { TAuthState } from './auth';
 import { TWsState } from './ws';
 
+import { TAuthActions } from './auth.types';
+import { TIngredientsActions } from './ingredients.types';
+import { TConstructorActions } from './constructor.types';
+import { TIngredientDetailsActions } from './ingredient-details.types';
+import { TOrderActions } from './order.types';
+import { TWsActions } from './ws.types';
+
 export interface IRootReducer {
   ingredients: TIngredientsState,
   constructors: TConstructorState,
@@ -30,3 +37,11 @@ export const rootReducer = combineReducers<IRootReducer>({
   auth: authReducer,
   ws: wsReducer,
 });
+
+export type TAppActions =
+| TIngredientsActions
+| TConstructorActions
+| TIngredientDetailsActions
+| TOrderActions
+| TAuthActions
+| TWsActions

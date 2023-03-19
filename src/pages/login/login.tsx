@@ -21,13 +21,11 @@ const Login = () => {
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // @ts-ignore
     dispatch(getLogin(form));
   }
 
   useEffect(() => {
     if (!getLoginSuccess && getCookie('refreshToken')) {
-      // @ts-ignore
       dispatch(getRefreshToken());
     }
   }, [dispatch, getLoginSuccess]);

@@ -17,7 +17,6 @@ function Register() {
   }
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // @ts-ignore
     dispatch(getRegister(form));
   }
 

@@ -17,7 +17,6 @@ function ForgotPassword() {
   }
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // @ts-ignore
     dispatch(getForgotPassword(form.email));
   }
   useEffect(() => {

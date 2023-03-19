@@ -37,7 +37,6 @@ function ProfileForm() {
     <div className={Styles.fields}>
       <form onSubmit={e => {
         e.preventDefault();
-        // @ts-ignore
         dispatch(patchUser({ name: form.name, email: form.email, password: form.password }));
         setValue({ ...form, password: '' });
       }}>

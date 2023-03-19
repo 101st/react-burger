@@ -53,7 +53,6 @@ function App() {
   }, [ingredients, dispatch]);
 
   useEffect(() => {
-    // @ts-ignore
     dispatch(getIngredients());
   }, [dispatch]);
 

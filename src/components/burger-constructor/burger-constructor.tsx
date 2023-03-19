@@ -96,7 +96,6 @@ function BurgerConstructor() {
               if (!getCookie('accessToken'))
                 history.push('/login');
               else
-                // @ts-ignore
                 dispatch(getOrder(ingredientsId));
             }}
             disabled={!withBun}

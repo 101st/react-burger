@@ -27,14 +27,8 @@ import {
 } from '../actions/auth';
 
 import { EXPIRES_AUTH_TIME } from '../../utils/const';
-
 import { TAuthActions } from './auth.types';
-
-interface IUser {
-  name: String,
-  email: String,
-  password: String
-}
+import { TUser } from './auth.types'
 
 export interface TAuthState {
   getForgotPasswordRequest: boolean,
@@ -51,7 +45,7 @@ export interface TAuthState {
   getLoginRequest: boolean,
   getLoginSuccess: boolean,
   getLoginFailed: boolean,
-  user: IUser,
+  user: TUser,
 
   getRefreshTokenRequest: boolean,
   getRefreshTokenSuccess: boolean,
