@@ -3,7 +3,7 @@ import { TOrder } from '../../services/reducers/order.types';
 import { useAppSelector } from '../../utils/hooks';
 import Styles from './feed-summary.module.scss';
 
-const MAX_DISPLAYED_ITEM = 13;
+const MAX_DISPLAYED_ITEM = 10;
 
 export const FeedSummary = () => {
   const { feed, wsConnected } = useAppSelector(store => store.ws);
