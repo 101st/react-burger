@@ -39,8 +39,8 @@ export const FeedItem = ({ order }: any) => {
             items.map((i: any, idx: any) => (
               <div className={Styles.icon} style={{ zIndex: `${1000 - idx}` }} key={`${idx}_${i._id}`}>
                 <IngredientIcon image={i.image} info={idx === items.length - 1 ? extra : ''} />
-              </div>
-            ))
+              </div>)
+            )
           }
         </div>
         <p className={`text text_type_main-medium ${Styles.price}`}>{price}&nbsp;<CurrencyIcon type="primary" /></p>
