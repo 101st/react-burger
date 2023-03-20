@@ -158,7 +158,7 @@ export const getRefreshToken: AppThunk = (afterRefresh: any) => (dispatch: AppDi
           type: GET_REFRESH_TOKEN_SUCCESS,
           data: json,
         });
-        if (afterRefresh !== undefined) dispatch(afterRefresh);
+        if (afterRefresh !== undefined) afterRefresh();
       }
     })
     .catch((error) => {
@@ -231,7 +231,7 @@ export const getUser: AppThunk = () => {
         }
       })
       .catch((error) => {
-        // dispatch(getRefreshToken(getUser()));
+        getRefreshToken(getUser());
         dispatch({
           type: GET_USER_FAILED,
         });
