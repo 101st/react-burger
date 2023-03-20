@@ -1,3 +1,4 @@
+import { getCookie } from "../../utils/cookies";
 import { TOrderData } from "../reducers/order.types";
 import { AppDispatch, AppThunk } from "../store";
 export const WS_CONNECTION_START: 'WS_CONNECTION_START' = 'WS_CONNECTION_START';
@@ -7,10 +8,16 @@ export const WS_CONNECTION_STOP: 'WS_CONNECTION_STOP' = 'WS_CONNECTION_STOP';
 export const WS_CONNECTION_CLOSED: 'WS_CONNECTION_CLOSED' = 'WS_CONNECTION_CLOSED';
 export const WS_GET_ORDER_DATA: 'WS_GET_ORDER_DATA' = 'WS_GET_ORDER_DATA';
 
-export const getWsConnectionStartAction: AppThunk = (url: string) => (dispatch: AppDispatch) => dispatch({
-  type: WS_CONNECTION_START,
-  payload: url,
-});
+export const getWsConnectionStartAction: AppThunk = (url: string, secured: boolean) => (dispatch: AppDispatch) => {
+  let token: string | undefined = '';
+  if (secured) {
+    token = getCookie('accessToken')?.replace('Bearer ', '')
+  }
+  return dispatch({
+    type: WS_CONNECTION_START,
+    payload: token ? `${url}?token=${token}` : url,
+  })
+};
 
 export const getWsConnectionSuccessAction: AppThunk = () => (dispatch: AppDispatch) => dispatch({
   type: WS_CONNECTION_SUCCESS,

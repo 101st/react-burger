@@ -40,7 +40,6 @@ export const wsReducer = (state = initialState, action: TWsActions): TWsState =>
       return {
         ...state,
         wsConnected: false,
-        feed: null,
         errorMessage: null,
       };
     case WS_CONNECTION_ERROR:

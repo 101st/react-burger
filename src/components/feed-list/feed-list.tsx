@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 
 import Styles from './feed-list.module.scss';
 import { useAppDispatch, useAppSelector } from '../../utils/hooks';
-import { getWsConnectionStartAction } from '../../services/actions/ws';
+import { getWsConnectionClosedAction, getWsConnectionStartAction } from '../../services/actions/ws';
 import { WS_ORDER_URL } from '../../utils/const';
 
 export const FeedList = () => {
@@ -13,23 +13,26 @@ export const FeedList = () => {
   const dispatch = useAppDispatch();
   const [orders, setOrders] = useState([]);
 
-  const { feed, wsConnected } = useAppSelector((store: any) => store.ws);
+  const { feed } = useAppSelector((store: any) => store.ws);
 
   useEffect(() => {
-    if (!wsConnected) {
+
+    if (location.pathname === '/feed') {
       dispatch(getWsConnectionStartAction(WS_ORDER_URL + '/all'));
     }
-  }, [dispatch, wsConnected]);
+
+    if (location.pathname === '/profile/orders') {
+      dispatch(getWsConnectionStartAction(WS_ORDER_URL, true));
+    }
+
+    return () => {
+      dispatch(getWsConnectionClosedAction());
+    }
+  }, [dispatch]);
 
   useEffect(() => {
-    if (location.pathname === '/profile/orders' && feed) {
-      setOrders(feed.orders.filter((order: TOrder) => {
-        return order;
-      }))
-    } else {
-      setOrders(feed?.orders || [])
-    }
-  }, [feed, location.pathname])
+    setOrders(feed?.orders || [])
+  }, [])
 
   return (
     <ul>

@@ -25,7 +25,19 @@
 }
 
 .done {
+  color: green;
+}
+
+.pending {
   color: #00cccc;
+}
+
+.created {
+  color: white;
+}
+
+.canceled {
+  color: red;
 }
 
 .itemsRow {

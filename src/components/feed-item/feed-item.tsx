@@ -5,9 +5,12 @@ import { IngredientIcon } from '../ingredient-icon/ingredient-icon';
 import { useAppSelector } from '../../utils/hooks';
 
 import Styles from './feed-item.module.scss';
+import StylesFID from '../feed-item-details/feed-item-details.module.scss';
 import { IIngredient } from '../../services/reducers/constructor.types';
+import { useLocation } from 'react-router-dom';
 
 export const FeedItem = ({ order }: any) => {
+  const location = useLocation();
   const { ingredients } = useAppSelector(store => store.ingredients);
   const uniqIngredients = ingredients.filter((i: { _id: string; }) => order.ingredients.includes(i._id));
 
@@ -24,6 +27,19 @@ export const FeedItem = ({ order }: any) => {
       Number(i.price)).reduce((acc, p) => acc += p) : 0
   }, [uniqIngredients]);
 
+  const getStatus = (status: string) => {
+    switch (status) {
+      case 'created':
+        return <p className={`text text_type_main-small ${StylesFID.created}`}>Создан</p>
+      case 'done':
+        return <p className={`text text_type_main-small ${StylesFID.done}`}>Выполнен</p>
+      case 'pending':
+        return <p className={`text text_type_main-small ${StylesFID.pending}`}>Готовится</p>  
+      default:
+        return <p className={`text text_type_main-small ${StylesFID.canceled}`}>Отменён</p>
+    }
+  }
+
   return (
     <div className={Styles.main}>
       <div className={Styles.content}>
@@ -33,6 +49,7 @@ export const FeedItem = ({ order }: any) => {
         </p>
       </div>
       <p className="text text_type_main-default">{order.name}</p>
+      {location.pathname === '/profile/orders' && getStatus(order.status)}
       <div className={Styles.content}>
         <div className={Styles.ingredients}>
           {
