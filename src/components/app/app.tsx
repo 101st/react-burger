@@ -104,7 +104,6 @@ function App() {
       {background && (
         <Route path='/feed/:_id'>
           <Modal
-            title='Детали заказа'
             onClose={handleModalClose}>
             <FeedItemDetails />
           </Modal>
@@ -113,7 +112,6 @@ function App() {
       {background && (
         <Route path='/profile/orders/:_id'>
           <Modal
-            title='Детали заказа'
             onClose={handleModalClose}>
             <FeedItemDetails />
           </Modal>
