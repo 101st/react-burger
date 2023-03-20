@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useState } from 'react';
 import { TOrder } from '../../services/reducers/order.types';
 import { useAppSelector } from '../../utils/hooks';
 import Styles from './feed-summary.module.scss';
@@ -7,11 +7,11 @@ const MAX_DISPLAYED_ITEM = 13;
 
 export const FeedSummary = () => {
   const { feed, wsConnected } = useAppSelector(store => store.ws);
+  const [done, setDone] = useState<number[]>([]);
+  const [waiting, setWaiting] = useState<number[]>([]);
 
-  const [today, total, waiting, done] = useMemo(() => {
-    if (!wsConnected || !feed?.orders) {
-      return [0, 0, [], []];
-    }
+  useEffect(() => {
+    if (!wsConnected || !feed?.orders) return;
     const done: number[] = [];
     const waiting: number[] = [];
 
@@ -22,8 +22,9 @@ export const FeedSummary = () => {
         waiting.push(o.number);
       }
     });
-    return [feed.totalToday, feed.total, waiting, done];
-  }, [feed, wsConnected]);
+    setDone(done)
+    setWaiting(waiting)
+  }, [feed, wsConnected])
 
   return (
     <div className={Styles.main + ' mt-25 ml-10'}>
@@ -43,11 +44,11 @@ export const FeedSummary = () => {
       </div>
       <div className={Styles.row + ' mt-10'}>
         <p className={`text text_type_main-default  ${Styles.header}`}>Выполнено за все время:</p>
-        <p className={`text text_type_digits-large`}>{total}</p>
+        <p className={`text text_type_digits-large`}>{feed?.total}</p>
       </div>
       <div className={Styles.row}>
         <p className={`text text_type_main-default ${Styles.header}`}>Выполнено за сегодня:</p>
-        <p className={`text text_type_digits-large`}>{today}</p>
+        <p className={`text text_type_digits-large`}>{feed?.totalToday}</p>
       </div>
     </div>
   )

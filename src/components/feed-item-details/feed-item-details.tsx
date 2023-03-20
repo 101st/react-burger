@@ -53,6 +53,7 @@ const FeedItemDetails = () => {
   }, [dispatch, ingredients, id, wsConnected, feed]);
 
   useEffect(() => {
+    if (wsConnected) return;
     if (location.pathname.match(new RegExp('/feed'))) {
       dispatch(getWsConnectionStartAction(WS_ORDER_URL + '/all'));
     }
