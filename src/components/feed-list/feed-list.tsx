@@ -11,9 +11,9 @@ import { WS_ORDER_URL } from '../../utils/const';
 export const FeedList = () => {
   const location = useLocation();
   const dispatch = useAppDispatch();
-  const [orders, setOrders] = useState([]);
+  const [orders, setOrders] = useState<TOrder[]>([]);
 
-  const { feed } = useAppSelector((store: any) => store.ws);
+  const { feed } = useAppSelector(store => store.ws);
 
   useEffect(() => {
 
@@ -28,12 +28,12 @@ export const FeedList = () => {
     return () => {
       dispatch(getWsConnectionClosedAction());
     }
-  }, [dispatch]);
+  }, [dispatch, location.pathname]);
 
   useEffect(() => {
     if (feed)
       setOrders(feed?.orders || [])
-  }, [feed])
+  }, [feed]);
 
   return (
     <ul>

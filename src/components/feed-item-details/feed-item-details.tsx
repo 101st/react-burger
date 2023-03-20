@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { IngredientIcon } from '../ingredient-icon/ingredient-icon';
 import { IIngredient } from '../../services/reducers/constructor.types'
 import Styles from './feed-item-details.module.scss';
 import { TOrder } from '../../services/reducers/order.types';
 import { useAppSelector, useAppDispatch } from '../../utils/hooks';
-import { getWsConnectionStartAction } from '../../services/actions/ws';
+import { getWsConnectionClosedAction, getWsConnectionStartAction } from '../../services/actions/ws';
 import { WS_ORDER_URL } from '../../utils/const';
 
 type TIngredientGroup = { item: IIngredient; count: number };
@@ -28,33 +28,43 @@ const group = (ingredients: IIngredient[]): TIngredientGroup[] => {
 }
 
 const FeedItemDetails = () => {
-  const dispatch = useAppDispatch()
+  const location = useLocation();
+  const dispatch = useAppDispatch();
   const { _id: id } = useParams<{ _id: string }>();
-  const { ingredients } = useAppSelector((store: any) => store.ingredients);
-  const { feed, wsConnected } = useAppSelector((store: any) => store.ws);
+  const { ingredients } = useAppSelector(store => store.ingredients);
+  const { feed, wsConnected } = useAppSelector(store => store.ws);
 
-  const [currentOrder, setCurrentOrder] = useState<TOrder | null>(null);
-  const [addInfo, setAddInfo] = useState<{ price: any, date: any } | null>(null);
+  const [currentOrder, setCurrentOrder] = useState<TOrder | undefined>(undefined);
+  const [addInfo, setAddInfo] = useState<{ price: number, date: Date } | null>(null);
   const [groups, setGroups] = useState<TIngredientGroup[]>([]);
 
   useEffect(() => {
-    if (!feed?.orders) {
-      if (!wsConnected) {
-        dispatch(getWsConnectionStartAction(WS_ORDER_URL + '/all'));
-      }
-      return;
-    }
-
-    const currentOrder = feed.orders.find((o: any) => o._id === id);
+    if (!feed?.orders) return;
+    const currentOrder = feed.orders.find((o: TOrder) => o._id === id);
+    if (!currentOrder) return;
     setCurrentOrder(currentOrder);
-    const filtredIngredients = ingredients.filter((i: any) => currentOrder && currentOrder.ingredients.find((oi: any) => oi === i._id)) || [];
+    const filtredIngredients = ingredients.filter((i: IIngredient) => currentOrder.ingredients.find((oi: string) => oi === i._id)) || [];
     const groups = group(filtredIngredients);
     setGroups(groups);
     const price = groups.map(g => g.item.price * g.count).reduce((acc, n) => acc += n);
     const date = new Date(currentOrder.createdAt);
     setAddInfo({ price, date });
 
-  }, [dispatch, ingredients, id, wsConnected, feed?.orders]);
+  }, [dispatch, ingredients, id, wsConnected, feed]);
+
+  useEffect(() => {
+    if (location.pathname.match(new RegExp('/feed'))) {
+      dispatch(getWsConnectionStartAction(WS_ORDER_URL + '/all'));
+    }
+
+    if (location.pathname.match(new RegExp('/profile/orders'))) {
+      dispatch(getWsConnectionStartAction(WS_ORDER_URL, true));
+    }
+    return () => {
+      dispatch(getWsConnectionClosedAction());
+    }
+
+  }, [dispatch, location.pathname]);
 
   return (
     <div className={`${Styles.container} pt-20`}>

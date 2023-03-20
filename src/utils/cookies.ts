@@ -1,7 +1,5 @@
 /*eslint no-useless-escape: "error"*/
-export const setCookie = (name: string, value: string, options: {
-  [name: string]: any;
-} = {}) => {
+export const setCookie = (name: string, value: string, options: { [name: string]: any } = {}) => {
   options = {
     path: '/',
     ...options

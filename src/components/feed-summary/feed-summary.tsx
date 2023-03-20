@@ -1,20 +1,21 @@
 import { useMemo } from 'react';
-import { useSelector } from 'react-redux';
+import { TOrder } from '../../services/reducers/order.types';
+import { useAppSelector } from '../../utils/hooks';
 import Styles from './feed-summary.module.scss';
 
 const MAX_DISPLAYED_ITEM = 13;
 
 export const FeedSummary = () => {
-  const { feed, wsConnected, errorMessag } = useSelector((store: any) => store.ws);
+  const { feed, wsConnected } = useAppSelector(store => store.ws);
 
   const [today, total, waiting, done] = useMemo(() => {
-    if (!wsConnected || errorMessag === null || !feed?.orders) {
+    if (!wsConnected || !feed?.orders) {
       return [0, 0, [], []];
     }
-    const done: string[] = [];
-    const waiting: string[] = [];
+    const done: number[] = [];
+    const waiting: number[] = [];
 
-    feed.orders.forEach((o: { status: any; number: string; }) => {
+    feed.orders.forEach((o: TOrder) => {
       if (o.status === 'done') {
         done.push(o.number);
       } else {
@@ -22,7 +23,7 @@ export const FeedSummary = () => {
       }
     });
     return [feed.totalToday, feed.total, waiting, done];
-  }, [feed, errorMessag, wsConnected]);
+  }, [feed, wsConnected]);
 
   return (
     <div className={Styles.main + ' mt-25 ml-10'}>
