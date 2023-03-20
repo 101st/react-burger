@@ -6,7 +6,7 @@ import ModalBackDrop from '../modal-overlay/modal-overlay';
 import Styles from './modal.module.scss';
 
 interface IModal {
-  title: string;
+  title?: string;
   onClose: () => void;
   children: React.ReactNode;
 }
@@ -27,8 +27,8 @@ function Modal({ title, onClose, children }: IModal) {
 
   return ReactDOM.createPortal(
     <div className={`${Styles.container}`}>
-      <div className={`${Styles.modal} pt-10 pr-10 pl-10 pb-15`}>
-        <ModalHeader onClose={onClose}>{title}</ModalHeader>
+      <div className={`${Styles.modal} pr-10 pl-10`}>
+        {title && <ModalHeader onClose={onClose}>{title}</ModalHeader>}
         {children}
       </div>
       <ModalBackDrop onClose={onClose} />
