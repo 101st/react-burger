@@ -31,8 +31,9 @@ export const FeedList = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    setOrders(feed?.orders || [])
-  }, [])
+    if (feed)
+      setOrders(feed?.orders || [])
+  }, [feed])
 
   return (
     <ul>
