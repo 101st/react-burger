@@ -12,8 +12,8 @@ const Login = () => {
   const history = useHistory();
   const location = useLocation();
   const [form, setValue] = useState({ email: '', password: '' });
-  const { getLoginSuccess } = useAppSelector((store: any) => store.auth);
-  const from = (location.state as any)?.from?.pathname || '/';
+  const { getLoginSuccess } = useAppSelector(store => store.auth);
+  const from = (location.state as any)?.from?.pathname || '/';  //TODO пока не понял как от этого избавиться
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue({ ...form, [e.target.name]: e.target.value })

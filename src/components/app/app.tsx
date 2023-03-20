@@ -32,7 +32,7 @@ function App() {
   const dispatch = useAppDispatch();
   const history = useHistory();
   const location = useLocation();
-  const background = (location.state as any)?.background;
+  const background = (location.state as any)?.background; //TODO пока не понял как от этого избавиться
   const {
     ingredients,
     getIngredientsRequest,

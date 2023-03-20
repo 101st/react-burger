@@ -10,7 +10,7 @@ function ForgotPassword() {
   const dispatch = useAppDispatch();
   const history = useHistory();
 
-  const { getForgotPasswordSuccess } = useAppSelector((store: any) => store.auth);
+  const { getForgotPasswordSuccess } = useAppSelector(store => store.auth);
   const [form, setValue] = useState({ email: '' });
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue({ ...form, [e.target.name]: e.target.value })

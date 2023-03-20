@@ -65,7 +65,7 @@ const FeedItemDetails = () => {
       dispatch(getWsConnectionClosedAction());
     }
 
-  }, [dispatch, location.pathname]);
+  }, [dispatch, location.pathname, wsConnected]);
 
   return (
     <div className={`${Styles.container} pt-20`}>

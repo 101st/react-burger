@@ -38,7 +38,7 @@ const wsActions: IWsActions = {
 
 const composeEnhancers =
   typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-    ? (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
+    ? (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({}) //TODO пока не понял как от этого избавиться
     : compose;
 
 const enhancer = composeEnhancers(applyMiddleware(thunk, socketMiddleware(wsActions)));

@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 
 function ProfileForm() {
   const dispatch = useAppDispatch();
-  const { user } = useAppSelector((store: any) => store.auth);
+  const { user } = useAppSelector(store => store.auth);
   const [showButtons, setShowButtons] = useState(false);
   const [form, setValue] = useState({
     email: '',

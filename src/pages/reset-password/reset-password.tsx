@@ -10,7 +10,7 @@ function ResetPassword() {
   const dispatch = useAppDispatch();
   const history = useHistory();
 
-  const { getResetPasswordSuccess, getForgotPasswordSuccess } = useAppSelector((store: any) => store.auth);
+  const { getResetPasswordSuccess, getForgotPasswordSuccess } = useAppSelector(store => store.auth);
   const [form, setValue] = useState({ password: '', token: '' });
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue({ ...form, [e.target.name]: e.target.value })

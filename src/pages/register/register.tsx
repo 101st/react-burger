@@ -10,7 +10,7 @@ function Register() {
   const dispatch = useAppDispatch();
   const history = useHistory();
   const [form, setValue] = useState({ name: '', email: '', password: '' });
-  const { getRegisterSuccess } = useAppSelector((store: any) => store.auth);
+  const { getRegisterSuccess } = useAppSelector(store => store.auth);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue({ ...form, [e.target.name]: e.target.value });

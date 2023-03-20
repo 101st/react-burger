@@ -28,7 +28,7 @@ function BurgerIngredients() {
   const [sauceRef, inViewSauce] = useInView({ threshold: 1 });
   const [mainRef, inViewMain] = useInView({ threshold: .4 });
 
-  const TABS: { [key: string]: { scroll: (node?: Element | null) => void, click: any } } = {
+  const TABS: { [key: string]: { scroll: (node?: Element | null) => void, click: any } } = { //TODO пока не понял как от этого избавиться
     bun: { scroll: bunRef, click: useRef() },
     sauce: { scroll: sauceRef, click: useRef() },
     main: { scroll: mainRef, click: useRef() },

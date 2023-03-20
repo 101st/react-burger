@@ -8,8 +8,9 @@ import Styles from './feed-item.module.scss';
 import StylesFID from '../feed-item-details/feed-item-details.module.scss';
 import { IIngredient } from '../../services/reducers/constructor.types';
 import { useLocation } from 'react-router-dom';
+import { TOrder } from '../../services/reducers/order.types';
 
-export const FeedItem = ({ order }: any) => {
+export const FeedItem = ({ order }: {order: TOrder}) => {
   const location = useLocation();
   const { ingredients } = useAppSelector(store => store.ingredients);
   const uniqIngredients = ingredients.filter((i: { _id: string; }) => order.ingredients.includes(i._id));
@@ -53,7 +54,7 @@ export const FeedItem = ({ order }: any) => {
       <div className={Styles.content}>
         <div className={Styles.ingredients}>
           {
-            items.map((i: any, idx: any) => (
+            items.map((i: IIngredient, idx: number) => (
               <div className={Styles.icon} style={{ zIndex: `${1000 - idx}` }} key={`${idx}_${i._id}`}>
                 <IngredientIcon image={i.image} info={idx === items.length - 1 ? extra : ''} />
               </div>)

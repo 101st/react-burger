@@ -1,5 +1,5 @@
 /*eslint no-useless-escape: "error"*/
-export const setCookie = (name: string, value: string, options: { [name: string]: any } = {}) => {
+export const setCookie = (name: string, value: string, options: { [name: string]: any } = {}) => { //TODO пока не понял как от этого избавиться
   options = {
     path: '/',
     ...options

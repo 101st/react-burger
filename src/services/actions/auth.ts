@@ -140,7 +140,7 @@ export const GET_REFRESH_TOKEN_REQUEST = 'GET_REFRESH_TOKEN_REQUEST';
 export const GET_REFRESH_TOKEN_SUCCESS = 'GET_REFRESH_TOKEN_SUCCESS';
 export const GET_REFRESH_TOKEN_FAILED = 'GET_REFRESH_TOKEN_FAILED';
 
-export const getRefreshToken: AppThunk = (afterRefresh: any) => (dispatch: AppDispatch) => {
+export const getRefreshToken: AppThunk = (afterRefresh: AppThunk) => (dispatch: AppDispatch) => {
   dispatch({
     type: GET_REFRESH_TOKEN_REQUEST,
   });
