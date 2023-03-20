@@ -58,13 +58,13 @@ const FeedItemDetails = () => {
 
   return (
     <div className={`${Styles.container} pt-20`}>
-      <div className={Styles.firstRow}><p className='text text_type_digits-default'>#{currentOrder?.number}</p></div>
+      <h2 className={`${Styles.firstRow}`}><p className='text text_type_main-large-default'>#{currentOrder?.number}</p></h2>
       <div className={Styles.nameRow}>
-        <p className='text text_type_main-default'>{currentOrder?.name}</p>
+        <h2 className='text text_type_main-large-default'>{currentOrder?.name}</h2>
         {(currentOrder?.status === 'done') && <p className={`text text_type_main-small ${Styles.done}`}>Выполнен</p>}
       </div>
       <div className={Styles.itemsRow}>
-        <p className='text text_type_main-default'>Состав:</p>
+        <p className='text text_type_main-default mt-10'>Состав:</p>
         <div className={Styles.items}>
           {groups.map(g => (<div className={Styles.ingredient} key={g.item._id}>
             <IngredientIcon image={g.item.image} />
@@ -76,8 +76,8 @@ const FeedItemDetails = () => {
           </div>))}
         </div>
       </div>
-      <div className={Styles.lastRow}>
-        <p className={`text text_type_main-small ${Styles.time}`}>{addInfo?.date.toLocaleString()}</p>
+      <div className={`${Styles.lastRow} mt-5`}>
+        <div className={`text text_type_main-small ${Styles.time}`}>{addInfo?.date.toLocaleString()}</div>
         <div className={Styles.itemPrice}>
           <p className={`text text_type_digits-default`}>{addInfo?.price}&nbsp;</p>
           <CurrencyIcon type='primary' /></div>
