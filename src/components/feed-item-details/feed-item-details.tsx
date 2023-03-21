@@ -11,18 +11,23 @@ import { WS_ORDER_URL } from '../../utils/const';
 
 type TIngredientGroup = { item: IIngredient; count: number };
 
-const group = (ingredients: IIngredient[]): TIngredientGroup[] => {
+const group = (ingredients: IIngredient[], currentOrder: { ingredients: string[] }): TIngredientGroup[] => {
+  let filtredIngredients = [];
+  for (const value of currentOrder.ingredients) {
+    const ing = ingredients.find(i => i._id === value);
+    if (ing) {
+      filtredIngredients.push(ing);
+    }
+  }
+
   const acc: TIngredientGroup[] = [];
-  ingredients.forEach(i => {
+  filtredIngredients.forEach(i => {
     let grp = acc.find(g => g.item._id === i._id);
     if (!grp) {
       grp = { item: i, count: 0 };
       acc.push(grp);
     }
     grp.count++;
-    if (i.type === 'bun') {
-      grp.count++;
-    }
   });
   return acc;
 }
@@ -32,28 +37,30 @@ const FeedItemDetails = () => {
   const dispatch = useAppDispatch();
   const { _id: id } = useParams<{ _id: string }>();
   const { ingredients } = useAppSelector(store => store.ingredients);
-  const { feed, wsConnected } = useAppSelector(store => store.ws);
+  const { feed } = useAppSelector(store => store.ws);
 
-  const [currentOrder, setCurrentOrder] = useState<TOrder | undefined>(undefined);
+  const [currentOrder, setCurrentOrder] = useState<TOrder>();
   const [addInfo, setAddInfo] = useState<{ price: number, date: Date } | null>(null);
   const [groups, setGroups] = useState<TIngredientGroup[]>([]);
 
   useEffect(() => {
+
+    if (!ingredients) return;
     if (!feed?.orders) return;
     const currentOrder = feed.orders.find((o: TOrder) => o._id === id);
+
     if (!currentOrder) return;
     setCurrentOrder(currentOrder);
-    const filtredIngredients = ingredients.filter((i: IIngredient) => currentOrder.ingredients.find((oi: string) => oi === i._id)) || [];
-    const groups = group(filtredIngredients);
+    const groups = group(ingredients, currentOrder);
     setGroups(groups);
     const price = groups.map(g => g.item.price * g.count).reduce((acc, n) => acc += n);
     const date = new Date(currentOrder.createdAt);
     setAddInfo({ price, date });
 
-  }, [dispatch, ingredients, id, wsConnected, feed]);
+  }, [feed?.orders, id, ingredients]);
 
   useEffect(() => {
-    if (wsConnected) return;
+
     if (location.pathname.match(new RegExp('/feed'))) {
       dispatch(getWsConnectionStartAction(WS_ORDER_URL + '/all'));
     }
@@ -65,7 +72,7 @@ const FeedItemDetails = () => {
       dispatch(getWsConnectionClosedAction());
     }
 
-  }, [dispatch, location.pathname, wsConnected]);
+  }, [dispatch, location.pathname]);
 
   return (
     <div className={`${Styles.container} pt-20`}>
