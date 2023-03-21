@@ -110,7 +110,7 @@ function BurgerConstructor() {
           {getOrderSuccess
             ? <OrderDetails
               orderId={order?.number}
-              status={`Ваш заказ '${name}' начали готовить`}
+              status={`Ваш заказ '${name}' готов`}
             />
             : <OrderDetailsLoader />
           }
