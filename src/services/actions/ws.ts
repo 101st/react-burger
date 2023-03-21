@@ -15,7 +15,10 @@ export const getWsConnectionStartAction: AppThunk = (url: string, secured: boole
   }
   return dispatch({
     type: WS_CONNECTION_START,
-    payload: token ? `${url}?token=${token}` : url,
+    payload: {
+      url: token ? `${url}?token=${token}` : url,
+      secured
+    },
   })
 };
 

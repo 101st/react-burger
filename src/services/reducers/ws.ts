@@ -10,13 +10,15 @@ import { TOrderData } from './order.types';
 
 export type TWsState = {
   wsConnected: boolean;
-  feed: TOrderData | null;
+  commonFeed: TOrderData | null;
+  userFeed: TOrderData | null;
   errorMessage: string | null;
 };
 
 const initialState: TWsState = {
   wsConnected: false,
-  feed: null,
+  commonFeed: null,
+  userFeed: null,
   errorMessage: null,
 };
 
@@ -25,7 +27,7 @@ export const wsReducer = (state = initialState, action: TWsActions): TWsState =>
     case WS_CONNECTION_SUCCESS:
       return {
         ...state,
-        feed: null,
+        commonFeed: null,
         wsConnected: true,
         errorMessage: null,
       };
@@ -33,7 +35,7 @@ export const wsReducer = (state = initialState, action: TWsActions): TWsState =>
       return {
         ...state,
         wsConnected: false,
-        feed: null,
+        commonFeed: null,
         errorMessage: null,
       };
     case WS_CONNECTION_CLOSED:
@@ -49,9 +51,16 @@ export const wsReducer = (state = initialState, action: TWsActions): TWsState =>
         errorMessage: action.payload,
       };
     case WS_GET_ORDER_DATA:
+      if (action.payload?.secured) {
+        return {
+          ...state,
+          userFeed: action.payload,
+          errorMessage: null,
+        };
+      }
       return {
         ...state,
-        feed: action.payload,
+        commonFeed: action.payload,
         errorMessage: null,
       };
     default:

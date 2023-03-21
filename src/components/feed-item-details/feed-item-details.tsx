@@ -37,7 +37,7 @@ const FeedItemDetails = () => {
   const dispatch = useAppDispatch();
   const { _id: id } = useParams<{ _id: string }>();
   const { ingredients } = useAppSelector(store => store.ingredients);
-  const { feed } = useAppSelector(store => store.ws);
+  const { commonFeed } = useAppSelector(store => store.ws);
 
   const [currentOrder, setCurrentOrder] = useState<TOrder>();
   const [addInfo, setAddInfo] = useState<{ price: number, date: Date } | null>(null);
@@ -46,8 +46,8 @@ const FeedItemDetails = () => {
   useEffect(() => {
 
     if (!ingredients) return;
-    if (!feed?.orders) return;
-    const currentOrder = feed.orders.find((o: TOrder) => o._id === id);
+    if (!commonFeed?.orders) return;
+    const currentOrder = commonFeed.orders.find((o: TOrder) => o._id === id);
 
     if (!currentOrder) return;
     setCurrentOrder(currentOrder);
@@ -57,7 +57,7 @@ const FeedItemDetails = () => {
     const date = new Date(currentOrder.createdAt);
     setAddInfo({ price, date });
 
-  }, [feed?.orders, id, ingredients]);
+  }, [commonFeed?.orders, id, ingredients]);
 
   useEffect(() => {
 

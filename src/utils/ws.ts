@@ -1,6 +1,7 @@
 import type { Middleware } from 'redux';
 import { IWsActions } from '../services/reducers/ws.types';
 import { IRootReducer } from '../services/reducers';
+import { useState } from 'react';
 
 export const socketMiddleware = (wsActions: IWsActions): Middleware<{}, IRootReducer> => {
   return store => next => action => {
@@ -10,7 +11,9 @@ export const socketMiddleware = (wsActions: IWsActions): Middleware<{}, IRootRed
     const { onInit, onOpen, onClose, onError, onData, onStop } = wsActions;
 
     if (type === onInit) {
-      socket = new WebSocket(payload);
+      const { url, secured } = payload;
+
+      socket = new WebSocket(url);
 
       if (socket) {
         socket.onopen = event => {
@@ -34,7 +37,7 @@ export const socketMiddleware = (wsActions: IWsActions): Middleware<{}, IRootRed
           const parsedData = JSON.parse(data);
           const { success, ...restParsedData } = parsedData;
           if (success) {
-            dispatch({ type: onData, payload: restParsedData });
+            dispatch({ type: onData, payload: { ...restParsedData, secured } });
           } else {
             dispatch({ type: onError, payload: restParsedData.message });
           }

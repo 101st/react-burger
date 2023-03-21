@@ -6,16 +6,16 @@ import Styles from './feed-summary.module.scss';
 const MAX_DISPLAYED_ITEM = 10;
 
 export const FeedSummary = () => {
-  const { feed, wsConnected } = useAppSelector(store => store.ws);
+  const { commonFeed, wsConnected } = useAppSelector(store => store.ws);
   const [done, setDone] = useState<number[]>([]);
   const [waiting, setWaiting] = useState<number[]>([]);
 
   useEffect(() => {
-    if (!wsConnected || !feed?.orders) return;
+    if (!wsConnected || !commonFeed?.orders) return;
     const done: number[] = [];
     const waiting: number[] = [];
 
-    feed.orders.forEach((o: TOrder) => {
+    commonFeed.orders.forEach((o: TOrder) => {
       if (o.status === 'done') {
         done.push(o.number);
       } else {
@@ -24,7 +24,7 @@ export const FeedSummary = () => {
     });
     setDone(done)
     setWaiting(waiting)
-  }, [feed, wsConnected])
+  }, [commonFeed, wsConnected])
 
   return (
     <div className={Styles.main + ' mt-25 ml-10'}>
@@ -44,11 +44,11 @@ export const FeedSummary = () => {
       </div>
       <div className={Styles.row + ' mt-10'}>
         <p className={`text text_type_main-default  ${Styles.header}`}>Выполнено за все время:</p>
-        <p className={`text text_type_digits-large`}>{feed?.total}</p>
+        <p className={`text text_type_digits-large`}>{commonFeed?.total}</p>
       </div>
       <div className={Styles.row}>
         <p className={`text text_type_main-default ${Styles.header}`}>Выполнено за сегодня:</p>
-        <p className={`text text_type_digits-large`}>{feed?.totalToday}</p>
+        <p className={`text text_type_digits-large`}>{commonFeed?.totalToday}</p>
       </div>
     </div>
   )

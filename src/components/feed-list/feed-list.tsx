@@ -13,7 +13,7 @@ export const FeedList = () => {
   const dispatch = useAppDispatch();
   const [orders, setOrders] = useState<TOrder[]>([]);
 
-  const { feed } = useAppSelector(store => store.ws);
+  const { commonFeed, userFeed } = useAppSelector(store => store.ws);
 
   useEffect(() => {
 
@@ -31,9 +31,14 @@ export const FeedList = () => {
   }, [dispatch, location.pathname]);
 
   useEffect(() => {
-    if (feed)
-      setOrders(feed?.orders || [])
-  }, [feed]);
+    if (location.pathname === '/feed' && commonFeed) {
+      setOrders(commonFeed?.orders)
+    }
+
+    if (location.pathname === '/profile/orders' && userFeed) {
+      setOrders(userFeed?.orders)
+    }
+  }, [commonFeed, userFeed, location.pathname]);
 
   return (
     <ul>

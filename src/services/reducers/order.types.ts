@@ -43,4 +43,5 @@ export type TOrderData = {
   orders: TOrder[],
   total: number,
   totalToday: number,
+  secured: boolean | undefined,
 }
