@@ -7,13 +7,19 @@ import { getCookie } from '../../utils/cookies';
 import Styles from './login.module.scss';
 import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 
+interface LocationState {
+  from: {
+    pathname: string;
+  };
+}
+
 const Login = () => {
   const dispatch = useAppDispatch();
   const history = useHistory();
-  const location = useLocation();
+  const location = useLocation<LocationState>();
   const [form, setValue] = useState({ email: '', password: '' });
   const { getLoginSuccess } = useAppSelector(store => store.auth);
-  const from = (location.state as any)?.from?.pathname || '/';  //TODO пока не понял как от этого избавиться
+  const from = location.state?.from?.pathname || '/';
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue({ ...form, [e.target.name]: e.target.value })

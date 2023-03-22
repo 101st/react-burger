@@ -1,7 +1,6 @@
 import type { Middleware } from 'redux';
 import { IWsActions } from '../services/reducers/ws.types';
 import { IRootReducer } from '../services/reducers';
-import { useState } from 'react';
 
 export const socketMiddleware = (wsActions: IWsActions): Middleware<{}, IRootReducer> => {
   return store => next => action => {
