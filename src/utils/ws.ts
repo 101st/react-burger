@@ -1,6 +1,7 @@
 import type { Middleware } from 'redux';
 import { IWsActions } from '../services/reducers/ws.types';
 import { IRootReducer } from '../services/reducers';
+import { getRefreshToken } from '../services/actions/auth';
 
 export const socketMiddleware = (wsActions: IWsActions): Middleware<{}, IRootReducer> => {
   return store => next => action => {
@@ -34,6 +35,7 @@ export const socketMiddleware = (wsActions: IWsActions): Middleware<{}, IRootRed
 
         socket.onmessage = ({ data }) => {
           const parsedData = JSON.parse(data);
+          if (parsedData?.message === "Invalid or missing token") dispatch(getRefreshToken() as any)
           const { success, ...restParsedData } = parsedData;
           if (success) {
             dispatch({ type: onData, payload: { ...restParsedData, secured } });
