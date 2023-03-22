@@ -28,11 +28,16 @@ import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 
 import Styles from './app.module.scss';
 
+interface ILocation {
+  background: undefined | { pathname: string, search: string, hash: string, state: undefined }
+}
+
 function App() {
   const dispatch = useAppDispatch();
   const history = useHistory();
-  const location = useLocation();
-  const background = (location.state as any)?.background; //TODO пока не понял как от этого избавиться
+  const location = useLocation<ILocation>();
+  const background = (location.state)?.background;
+
   const {
     ingredients,
     getIngredientsRequest,
