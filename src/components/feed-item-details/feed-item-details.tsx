@@ -37,7 +37,8 @@ const FeedItemDetails = () => {
   const dispatch = useAppDispatch();
   const { _id: id } = useParams<{ _id: string }>();
   const { ingredients } = useAppSelector(store => store.ingredients);
-  const { commonFeed } = useAppSelector(store => store.ws);
+  const { commonFeed, userFeed, wsConnected } = useAppSelector(store => store.ws);
+  const [orders, setOrders] = useState<TOrder[]>([]);
 
   const [currentOrder, setCurrentOrder] = useState<TOrder>();
   const [addInfo, setAddInfo] = useState<{ price: number, date: Date } | null>(null);
@@ -46,8 +47,8 @@ const FeedItemDetails = () => {
   useEffect(() => {
 
     if (!ingredients) return;
-    if (!commonFeed?.orders) return;
-    const currentOrder = commonFeed.orders.find((o: TOrder) => o._id === id);
+    if (!orders) return;
+    const currentOrder = orders.find((o: TOrder) => o._id === id);
 
     if (!currentOrder) return;
     setCurrentOrder(currentOrder);
@@ -57,9 +58,11 @@ const FeedItemDetails = () => {
     const date = new Date(currentOrder.createdAt);
     setAddInfo({ price, date });
 
-  }, [commonFeed?.orders, id, ingredients]);
+  }, [orders, id, ingredients]);
 
   useEffect(() => {
+
+    if (wsConnected) return;
 
     if (location.pathname.match(new RegExp('/feed'))) {
       dispatch(getWsConnectionStartAction(WS_ORDER_URL + '/all'));
@@ -72,7 +75,17 @@ const FeedItemDetails = () => {
       dispatch(getWsConnectionClosedAction());
     }
 
-  }, [dispatch, location.pathname]);
+  }, [dispatch, location.pathname, wsConnected]);
+
+  useEffect(() => {
+    if (location.pathname.match(new RegExp('/feed')) && commonFeed) {
+      setOrders(commonFeed?.orders)
+    }
+
+    if (location.pathname.match(new RegExp('/profile/orders')) && userFeed) {
+      setOrders(userFeed?.orders)
+    }
+  }, [commonFeed, userFeed, location.pathname]);
 
   return (
     <div className={`${Styles.container} pt-20`}>
