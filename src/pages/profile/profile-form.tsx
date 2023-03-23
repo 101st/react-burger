@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { patchUser } from '../../services/actions/auth';
 
 import Styles from './profile.module.scss';
+import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 
 function ProfileForm() {
-  const dispatch = useDispatch<any>();
-  const { user } = useSelector((store: any) => store.auth);
+  const dispatch = useAppDispatch();
+  const { user } = useAppSelector(store => store.auth);
   const [showButtons, setShowButtons] = useState(false);
   const [form, setValue] = useState({
     email: '',

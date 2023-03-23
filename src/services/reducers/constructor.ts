@@ -6,13 +6,21 @@ import {
   SET_TOTAL_PRICE,
 } from '../actions/constructor';
 
+import { IIngredient, TConstructorActions } from './constructor.types';
+
+export type TConstructorState = {
+  constructorIngredients: IIngredient[],
+  bun: IIngredient | null,
+  totalPrice: number,
+}
+
 const initialState = {
   constructorIngredients: [],
   bun: null,
   totalPrice: 0,
 };
 
-export const constructorReducer = (state = initialState, action) => {
+export const constructorReducer = (state: TConstructorState = initialState, action: TConstructorActions) => {
   switch (action.type) {
     case ADD_INGREDIENT: {
       if (action.ingredient.type === 'bun') {
@@ -21,7 +29,7 @@ export const constructorReducer = (state = initialState, action) => {
           bun: action.ingredient,
           constructorIngredients: [
             ...state.constructorIngredients
-              .filter(item => item.type !== 'bun'), action.ingredient, action.ingredient
+              .filter(({ type }) => type !== 'bun'), action.ingredient, action.ingredient
           ],
         }
       }
@@ -34,7 +42,7 @@ export const constructorReducer = (state = initialState, action) => {
       return {
         ...state,
         constructorIngredients: [...state.constructorIngredients].filter(
-          (ingredient) => ingredient.id !== action.ingredient.id
+          ({ id }) => id !== action.ingredient.id
         ),
       };
     }
@@ -43,7 +51,8 @@ export const constructorReducer = (state = initialState, action) => {
       const prevIngredient = state_.splice(
         action.hoverIndex,
         1,
-        action.ingredient
+        // TODO пока не понял как без as never обойтись
+        action.ingredient as never
       );
       state_.splice(action.dragIndex, 1, prevIngredient[0]);
       return {

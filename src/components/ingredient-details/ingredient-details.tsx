@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
 import Styles from './ingredient-details.module.scss';
 
-import { IIngredient } from '../../interfaces/common';
+import { IIngredient } from '../../services/reducers/constructor.types';
+import { useAppSelector } from '../../utils/hooks';
 
 interface IUseParam {
   _id: string
@@ -17,8 +17,8 @@ interface IConsist {
 
 function IngredientDetails() {
   const { _id } = useParams<IUseParam>();
-  const { ingredients } = useSelector((store: any) => store.ingredients);
-  const [currentIngredient, setCurrentIngredient] = useState<IIngredient | null>(null);
+  const { ingredients } = useAppSelector(store => store.ingredients);
+  const [currentIngredient, setCurrentIngredient] = useState<IIngredient | undefined>(undefined);
 
   const Consist = ({ name, metric, value }: IConsist) => (
     <div className={`mr-5 text text_type_main-default text_color_inactive`}>
@@ -28,7 +28,8 @@ function IngredientDetails() {
   )
 
   useEffect(() => {
-    setCurrentIngredient(ingredients.find((i: IIngredient) => i._id === _id));
+    const ingredient = ingredients.find((i: IIngredient) => i._id === _id);
+    setCurrentIngredient(ingredient);
   }, [ingredients, _id]);
 
   return (

@@ -3,11 +3,14 @@ import Done from '../../images/done.svg';
 import Styles from './order-details.module.scss';
 
 interface IOrderDetails {
-  orderId: number;
+  orderId: number | undefined;
   status: string;
 }
 
 function OrderDetails({ orderId, status }: IOrderDetails) {
+  
+  if (!orderId) return null;
+
   return (
     <>
       <div className={`${Styles['order-id']} mt-16 text text_type_main-large`}>{orderId}</div>

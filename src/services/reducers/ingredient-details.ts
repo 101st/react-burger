@@ -3,12 +3,19 @@ import {
   SET_INGREDIENT_DETAILS,
 } from '../actions/ingredient-details';
 
+import { TIngredientDetailsActions } from './ingredient-details.types';
+
+export type TIngredientDetailsState = {
+  ingredientDetails: object,
+  isOpen: boolean,
+};
+
 const initialState = {
   ingredientDetails: {},
   isOpen: false,
 };
 
-export const ingredientDetailsReducer = (state = initialState, action) => {
+export const ingredientDetailsReducer = (state: TIngredientDetailsState = initialState, action: TIngredientDetailsActions) => {
   switch (action.type) {
     case SET_INGREDIENT_DETAILS: {
       return {

@@ -1,14 +1,14 @@
 import { useCallback, useState, useRef, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import BurgerIngredientItem from './burger-ingredient-item';
 import Modal from '../modal/modal';
 import IngredientDetails from '../ingredient-details/ingredient-details';
-import { setIngredientDetails, clearIngredientDetails } from '../../services/actions/ingredient-details';
+import { clearIngredientDetails } from '../../services/actions/ingredient-details';
 import { useInView } from 'react-intersection-observer';
 
 import Styles from './burger-ingredients.module.scss';
-import { IIngredient } from '../../interfaces/common';
+import { IIngredient } from '../../services/reducers/constructor.types';
+import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 
 const INGREDIENTS_TITLE_MAPPING: { [key: string]: string } = {
   'bun': 'Булки',
@@ -17,18 +17,18 @@ const INGREDIENTS_TITLE_MAPPING: { [key: string]: string } = {
 }
 
 function BurgerIngredients() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const [currentIngredientType, setCurrentIngredientType] = useState('bun');
-  const { ingredients } = useSelector((store: any) => store.ingredients);
-  const { constructorIngredients } = useSelector((store: any) => store.constructors);
-  const { isOpen } = useSelector((store: any) => store.ingredientDetails);
+  const { ingredients } = useAppSelector(store => store.ingredients);
+  const { constructorIngredients } = useAppSelector(store => store.constructors);
+  const { isOpen } = useAppSelector(store => store.ingredientDetails);
 
   const [bunRef, inViewBuns] = useInView({ threshold: 1 });
   const [sauceRef, inViewSauce] = useInView({ threshold: 1 });
   const [mainRef, inViewMain] = useInView({ threshold: .4 });
 
-  const TABS: { [key: string]: any } = { //TODO убрать тип any
+  const TABS: { [key: string]: { scroll: (node?: Element | null) => void, click: any } } = {
     bun: { scroll: bunRef, click: useRef() },
     sauce: { scroll: sauceRef, click: useRef() },
     main: { scroll: mainRef, click: useRef() },
@@ -45,12 +45,11 @@ function BurgerIngredients() {
     return ingredientsForSpecifyType.map((item: IIngredient) => (
       <BurgerIngredientItem
         key={item._id}
-        onClick={() => dispatch(setIngredientDetails(item))}
         ingredient={item}
         count={getCount(item._id)}
       />
     ));
-  }, [ingredients, dispatch, getCount]);
+  }, [ingredients, getCount]);
 
   const handleSmoothScroll = (type: string) => {
     TABS[type].click.current.scrollIntoView({ behavior: 'smooth' });
@@ -67,8 +66,8 @@ function BurgerIngredients() {
   }, [inViewBuns, inViewSauce, inViewMain]);
 
   return (
-    <div className='mr-10'>
-      <h1 className='mt-10 mb-5 text text_type_main-large'>Соберите бургер</h1>
+    <div className={`${Styles.container} text_type_main-default`}>
+      <h1 className='mt-10'>Соберите бургер</h1>
       <div className={`${Styles.tabs} mb-10`}>
         {Object.keys(INGREDIENTS_TITLE_MAPPING)
           .map((item: string) => {
@@ -86,13 +85,13 @@ function BurgerIngredients() {
             )
           })}
       </div>
-      <div className={`${Styles['container']} pt-6 pl-4 pr-4`}>
+      <div className={`${Styles.ingredient_container} pt-6`}>
         {Object.keys(TABS)
           .map(item => {
             return (
               <div ref={TABS[item]?.scroll} key={item}>
                 <div ref={TABS[item]?.click}>{INGREDIENTS_TITLE_MAPPING[item]}</div>
-                <div className={`${Styles['ingredient-type-container']}`}>{getIngredientsByType(item)}</div>
+                <div className={Styles.ingredient_type_container}>{getIngredientsByType(item)}</div>
               </div>
             )
           })}

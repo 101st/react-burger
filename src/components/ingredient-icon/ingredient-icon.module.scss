@@ -1,0 +1,37 @@
+.ingredientBg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(to right, rgba(128, 26, 178, 1), rgba(76, 76, 255, 1));
+    border-radius: 32px;
+}
+
+.ingredient {
+    width: 60px;
+    height: 60px;
+    background-color: #1c1c21;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ingredient > p {
+    padding-left: 10px;
+    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+}
+
+.info {
+    background-color: rgba(0, 0, 0, 0.5);
+    width: inherit;
+    height: inherit;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

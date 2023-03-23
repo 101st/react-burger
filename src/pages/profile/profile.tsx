@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { getUser, getLogout } from '../../services/actions/auth';
+import { useAppDispatch } from '../../utils/hooks';
 
 import Styles from './profile.module.scss';
 
 function Profile({ children }: { children: React.ReactElement }) {
-  const dispatch = useDispatch<any>();
+  const dispatch = useAppDispatch();
   const { pathname } = useLocation();
   const history = useHistory();
 
@@ -22,7 +22,7 @@ function Profile({ children }: { children: React.ReactElement }) {
 
   return (
     <div className={Styles.container + ' mt-20'}>
-      <div className={Styles.menu + ' mr-20'}>
+      <div className={Styles.menu}>
         <div>
           <Link to='/profile' className={`${Styles.link} ${isActive('/profile')}`}>
             <p className='text text_type_main-medium'>

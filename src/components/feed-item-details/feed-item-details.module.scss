@@ -1,0 +1,91 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 60px;
+}
+
+.firstRow {
+  justify-content: center;
+  margin-top: -50px;
+}
+
+.nameRow {
+  flex-direction: column;
+  h2 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.done {
+  color: green;
+}
+
+.pending {
+  color: #00cccc;
+}
+
+.created {
+  color: white;
+}
+
+.canceled {
+  color: red;
+}
+
+.itemsRow {
+  flex-direction: column;
+}
+
+.items {
+  height: 350px;
+  overflow-y: auto;
+  margin-top: 10px;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px #2f2f37;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #8585ad;
+  }
+}
+
+.ingredient {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+}
+
+.ingredient > p {
+  padding: 0 10px;
+}
+
+.lastRow {
+  align-items: center;
+  display: flex;
+}
+
+.itemPrice {
+  display: flex;
+  flex-direction: row;
+  margin-left: auto;
+  margin-right: 10px;
+}
+
+.time {
+  color: #8585ad;
+}

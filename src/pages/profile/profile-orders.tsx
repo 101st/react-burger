@@ -1,8 +1,12 @@
+import { FeedList } from '../../components/feed-list/feed-list';
 import Styles from './profile.module.scss';
 
 function ProfileOrders() {
   return (
-    <div className={`${Styles.orders} mt-10`}>Cooming soon...</div>
+    <div className={Styles.orders}>
+      <FeedList />
+    </div>
+
   )
 }
 

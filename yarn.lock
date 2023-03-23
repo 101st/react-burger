@@ -2417,12 +2417,13 @@
   resolved "https://registry.yarnpkg.com/@xtuc/long/-/long-4.2.2.tgz#d291c6a4e97989b5c61d9acf396ae4fe133a718d"
   integrity sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==
 
-"@ya.praktikum/react-developer-burger-ui-components@^1.13.1":
-  version "1.13.5"
-  resolved "https://registry.yarnpkg.com/@ya.praktikum/react-developer-burger-ui-components/-/react-developer-burger-ui-components-1.13.5.tgz#fe3769cf661a1c31e46945df003e67b43059fba3"
-  integrity sha512-ZnBKNdvuhECdjQMlYb/jCdWNJkeYxhDyUWIXNG47yes/pp/hxNgB8ErJtSy6jU7qh6DbW1qXOPaEie03K9xQ5A==
+"@ya.praktikum/react-developer-burger-ui-components@^1.14.0":
+  version "1.14.0"
+  resolved "https://registry.yarnpkg.com/@ya.praktikum/react-developer-burger-ui-components/-/react-developer-burger-ui-components-1.14.0.tgz#50eaf4df96532feb87dca4f5b0399ef80edaacc4"
+  integrity sha512-SoGRRUaNg7Zmu6dL2sqPn87OwNye/vuE/D6U0DzkGkeTedo/EryEvV8xGsrMyWmjBr87LJ8YlrI8PNHHSn+8/A==
   dependencies:
     clsx "^1.1.1"
+    plural-ru "^2.0.2"
 
 abab@^2.0.3, abab@^2.0.5:
   version "2.0.6"
@@ -6670,6 +6671,11 @@ pkg-up@^3.1.0:
   integrity sha512-nDywThFk1i4BQK4twPQ6TA4RT8bDY96yeuCVBWL3ePARCiEKDRSrNGbFIgUJpLp+XeIR65v8ra7WuJOFUBtkMA==
   dependencies:
     find-up "^3.0.0"
+
+plural-ru@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/plural-ru/-/plural-ru-2.0.2.tgz#5fda445d7a7f83a94020e3b81266c873a85eebb4"
+  integrity sha512-zmQv/tMG7fjF8r8JJ2U1p9dP1RgQ54RnP9nOM9dJHlcWU4mVmesKU9RgouxvyrCIU7lwOtGBYJ6cBa00UlzUZQ==
 
 postcss-attribute-case-insensitive@^5.0.2:
   version "5.0.2"
