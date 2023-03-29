@@ -16,7 +16,7 @@ export type TIngredientsState = {
   },
 }
 
-const initialState = {
+export const initialState = {
   ingredients: [],
   getIngredientsRequest: false,
   getIngredientsFailed: false,
