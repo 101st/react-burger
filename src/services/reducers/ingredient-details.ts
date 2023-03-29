@@ -10,7 +10,7 @@ export type TIngredientDetailsState = {
   isOpen: boolean,
 };
 
-const initialState = {
+export const initialState = {
   ingredientDetails: {},
   isOpen: false,
 };
