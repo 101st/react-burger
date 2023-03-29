@@ -16,7 +16,7 @@ export type TOrderState = {
   getOrderSuccess: boolean,
 }
 
-const initialState = {
+export const initialState = {
   order: null,
   name: null,
   isOpen: false,
