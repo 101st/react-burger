@@ -48,6 +48,7 @@ type TForgotPasswordActions = {
 type TForgotPasswordSuccessAction = {
   type: typeof GET_FORGOT_PASSWORD_SUCCESS,
   message: string,
+  success: boolean
 };
 
 type TResetPasswordActions = {
@@ -60,6 +61,7 @@ type TResetPasswordActions = {
 type TResetPasswordSuccessAction = {
   type: typeof GET_RESET_PASSWORD_SUCCESS,
   message: string,
+  success: boolean
 };
 
 type TLoginActions = {
@@ -108,6 +110,7 @@ type TLogoutActions = {
 type TLogoutSuccessAction = {
   type: typeof GET_LOGOUT_SUCCESS,
   message: string,
+  success: boolean
 };
 
 type TUserActions = {
@@ -119,8 +122,10 @@ type TUserActions = {
 
 type TUserSuccessAction = {
   type: typeof GET_USER_SUCCESS,
-  data: TData,
-  message: string,
+  data: {
+    user: TUser,
+    success: boolean
+  }
 };
 
 type TPatchUserActions = {
@@ -132,8 +137,10 @@ type TPatchUserActions = {
 
 type TPatchUserSuccessAction = {
   type: typeof PATCH_USER_SUCCESS,
-  data: TData,
-  message: string,
+  data: {
+    user: TUser,
+    success: boolean
+  }
 };
 
 export type TAuthActions = (
