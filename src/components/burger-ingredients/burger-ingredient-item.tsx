@@ -29,16 +29,16 @@ function BurgerIngredientItem({ ingredient, count }: IBurgerIngredientItem) {
         state: { background: location },
       }}>
         <img width={252} height={126} alt={name} src={image} />
-      </Link>
-      <div className={Styles.price_container}>
-        <div className={`${Styles.price} mt-1 mb-1`}>
-          <span className='text text_type_digits-default mr-1'>{price}</span>
-          <CurrencyIcon type={'primary'} />
+        <div className={Styles.price_container}>
+          <div className={`${Styles.price} mt-1 mb-1`}>
+            <span className='text text_type_digits-default mr-1'>{price}</span>
+            <CurrencyIcon type={'primary'} />
+          </div>
         </div>
-      </div>
-      <div className={Styles.name}>
-        {name}
-      </div>
+        <div className={Styles.name}>
+          {name}
+        </div>
+      </Link>
     </div>
   )
 }
