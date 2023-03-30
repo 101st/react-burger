@@ -43,7 +43,7 @@ const Login = () => {
   }, [getLoginSuccess, history, from]);
 
   return (
-    <div className={Styles.container + ' mt-20 text_type_main-default'}>
+    <div className={Styles.container + ' mt-20 text_type_main-default'} data-cy="login-form">
       <h1 className='mb-6'>Вход</h1>
       <form className={Styles.form} onSubmit={onSubmit}>
         <Input

@@ -89,7 +89,7 @@ function BurgerIngredients() {
         {Object.keys(TABS)
           .map(item => {
             return (
-              <div ref={TABS[item]?.scroll} key={item}>
+              <div ref={TABS[item]?.scroll} key={item} data-cy="item-ingredient">
                 <div ref={TABS[item]?.click}>{INGREDIENTS_TITLE_MAPPING[item]}</div>
                 <div className={Styles.ingredient_type_container}>{getIngredientsByType(item)}</div>
               </div>

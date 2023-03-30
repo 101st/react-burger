@@ -27,7 +27,7 @@ function Modal({ title, onClose, children }: IModal) {
 
   return ReactDOM.createPortal(
     <div className={`${Styles.container}`}>
-      <div className={`${Styles.modal} pr-10 pl-10`}>
+      <div className={`${Styles.modal} pr-10 pl-10`} data-cy="modal">
         {title && <ModalHeader onClose={onClose}>{title}</ModalHeader>}
         {children}
       </div>
