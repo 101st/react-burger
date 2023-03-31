@@ -7,3 +7,6 @@ git rm -r --cached .
 git add .
 git commit -am 'git cache cleared'
 git push
+
+
+Сайт вот тут https://lovely-melba-c37333.netlify.app/
