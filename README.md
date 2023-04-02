@@ -9,4 +9,4 @@ git commit -am 'git cache cleared'
 git push
 
 
-Сайт вот тут https://lovely-melba-c37333.netlify.app/
+Сайт вот тут https://rb.forwarding.site/ - на своём сервере
