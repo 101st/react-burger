@@ -75,7 +75,7 @@ const FeedItemDetails = () => {
       dispatch(getWsConnectionClosedAction());
     }
 
-  }, [dispatch, location.pathname, wsConnected]);
+  }, [dispatch, location.pathname]);
 
   useEffect(() => {
     if (location.pathname.match(new RegExp('/feed')) && commonFeed) {
