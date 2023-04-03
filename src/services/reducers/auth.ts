@@ -64,7 +64,7 @@ export interface TAuthState {
   patchUserFailed: boolean,
 }
 
-const initialState: TAuthState = {
+export const initialState: TAuthState = {
   getForgotPasswordRequest: false,
   getForgotPasswordSuccess: false,
   getForgotPasswordFailed: false,
@@ -118,7 +118,7 @@ export const authReducer = (state: TAuthState = initialState, action: TAuthActio
       return {
         ...state,
         getForgotPasswordRequest: false,
-        getForgotPasswordSuccess: action.message === 'Reset email sent',
+        getForgotPasswordSuccess: action.success,
       };
     }
     case GET_FORGOT_PASSWORD_FAILED: {
@@ -142,7 +142,7 @@ export const authReducer = (state: TAuthState = initialState, action: TAuthActio
       return {
         ...state,
         getResetPasswordRequest: false,
-        getResetPasswordSuccess: action.message === 'Password successfully reset',
+        getResetPasswordSuccess: action.success,
       };
     }
     case GET_RESET_PASSWORD_FAILED: {
@@ -169,7 +169,7 @@ export const authReducer = (state: TAuthState = initialState, action: TAuthActio
         ...state,
         getLoginRequest: false,
         getLoginSuccess: true,
-        user: { ...state.user, ...action.data?.user },
+        user: action.data.user,
       };
     }
     case GET_LOGIN_FAILED: {
@@ -196,7 +196,7 @@ export const authReducer = (state: TAuthState = initialState, action: TAuthActio
         ...state,
         getRegisterRequest: false,
         getRegisterSuccess: true,
-        user: { ...state.user, ...action.data?.user },
+        user: action.data?.user,
       };
     }
     case GET_REGISTER_FAILED: {
@@ -248,7 +248,7 @@ export const authReducer = (state: TAuthState = initialState, action: TAuthActio
       return {
         ...state,
         getLogoutRequest: false,
-        getLogoutSuccess: action.message === 'Successful logout',
+        getLogoutSuccess: action.success,
         getLoginSuccess: false,
       };
     }
@@ -273,8 +273,8 @@ export const authReducer = (state: TAuthState = initialState, action: TAuthActio
       return {
         ...state,
         getUserRequest: false,
-        user: { ...state.user, ...action.data?.user },
-        getUserSuccess: action.message === 'Successful logout',
+        user: action.data.user,
+        getUserSuccess: action.data.success,
       };
     }
     case GET_USER_FAILED: {
@@ -298,8 +298,8 @@ export const authReducer = (state: TAuthState = initialState, action: TAuthActio
       return {
         ...state,
         patchUserRequest: false,
-        user: { ...state.user, ...action.data?.user },
-        patchUserSuccess: action.message === 'Successful logout',
+        user: action.data?.user,
+        patchUserSuccess: action.data.success,
       };
     }
     case PATCH_USER_FAILED: {

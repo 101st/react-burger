@@ -10,7 +10,7 @@ export interface IIngredient {
   _id: string,
   id?: string,
   name: string,
-  type: 'bun' | 'sauce' | 'main',
+  type: string,
   proteins: number,
   fat: number,
   carbohydrates: number,
@@ -47,7 +47,7 @@ type TDragIngredient = {
 
 type TSetTotalPrice = {
   type: typeof SET_TOTAL_PRICE,
-  data: never
+  data: number
 };
 
 export type TConstructorActions = (

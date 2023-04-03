@@ -56,7 +56,7 @@ function BurgerConstructor() {
   }, [constructorIngredients, dispatch]);
 
   return (
-    <div className={`${Styles.container} mt-25 ml-10`} ref={dropTarget}
+    <div className={`${Styles.container} mt-25 ml-10`} ref={dropTarget} data-cy="constructor-form"
       style={{ boxShadow: `inset 0px 0px 72px -35px ${boxShadowColor}`, paddingTop: bun ? 0 : '96px' }}>
       <div className={`${Styles.bun}`}>
         {bun && <BurgerConstructorItem

@@ -6,7 +6,6 @@ import { IIngredient } from './constructor.types';
 
 type TClearIngredientDetails = {
   type: typeof CLEAR_INGREDIENT_DETAILS,
-  ingredient: IIngredient,
 };
 
 type TSetIngredientDetails = {

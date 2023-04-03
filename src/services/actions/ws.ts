@@ -37,7 +37,6 @@ export const getWsConnectionStopAction: AppThunk = () => (dispatch: AppDispatch)
 
 export const getWsConnectionClosedAction: AppThunk = (payload: string) => (dispatch: AppDispatch) => dispatch({
   type: WS_CONNECTION_CLOSED,
-  payload,
 });
 
 export const getWsGetOrderDataAction: AppThunk = (orderData: TOrderData) => (dispatch: AppDispatch) => dispatch({

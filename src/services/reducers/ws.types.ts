@@ -26,7 +26,6 @@ export interface IWsConnectionStopAction {
 
 export interface IWsConnectionClosedAction {
   readonly type: typeof WS_CONNECTION_CLOSED;
-  readonly payload: Event | null;
 }
 
 export interface IWsGetOrderDataAction {

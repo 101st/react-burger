@@ -15,7 +15,7 @@ export type TWsState = {
   errorMessage: string | null;
 };
 
-const initialState: TWsState = {
+export const initialState: TWsState = {
   wsConnected: false,
   commonFeed: null,
   userFeed: null,

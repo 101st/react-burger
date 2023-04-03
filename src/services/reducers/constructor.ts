@@ -14,7 +14,7 @@ export type TConstructorState = {
   totalPrice: number,
 }
 
-const initialState = {
+export const initialState = {
   constructorIngredients: [],
   bun: null,
   totalPrice: 0,
